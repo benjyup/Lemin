@@ -5,63 +5,69 @@
 ** Login   <mesqui_v@epitech.net>
 **
 ** Started on  Sun Apr 17 01:59:33 2016 vincent mesquita
-** Last update Sun Apr 17 03:30:33 2016 vincent mesquita
+** Last update Sun Apr 17 20:46:05 2016 vincent mesquita
 */
 
 #include <stdlib.h>
 #include "parser.h"
 #include "my_basics.h"
 
-static void	my_epure_str(char *str)
+static int	my_start_and_end(char *str, t_leminfo *leminfo)
 {
-  int		i;
-
   if (!str)
-    return ;
-  i = -1;
-  while (str[++i])
-    if (str[i] == '\t')
-      str[i] = ' ';
+    return (-1);
+  if (my_strcomp(str, "##start"))
+    if (leminfo->start || !(leminfo->start = my_strcpy(str)))
+      return (my_puterror2("##start already initialized\n", LINE));
+  if (my_strcomp(str, "##end"))
+    if (leminfo->end || !(leminfo->end = my_strcpy(str)))
+      return (my_puterror2("##end already initialized\n", LINE));
+  return (0);
+}
+
+static int	my_ant_nbr(char **wordtab, t_leminfo *leminfo)
+{
+  if (LINE == 1)
+    {
+      if (my_wordtab_len(wordtab) != 1
+	  || my_nan(wordtab[0])
+	  || (leminfo->ants_nbr = my_getnbr(wordtab[0])) <= 0)
+	return (my_puterror2("Ant number invalid\n", LINE));
+    }
+  return (0);
 }
 
 static int	my_rooms(t_leminfo *leminfo,
-			 char **wordtab,
-			 int line)
+			 char *str)
 {
-  if (line == 1 && (my_wordtab_len(wordtab) != 1 || my_nan(wordtab[0])))
-    return (my_puterror("Error: Ant number invalid\n"));
-  if (my_strcomp(wordtab[0], "##start"))
-    if (leminfo->start || !(leminfo->start = my_strcpy(wordtab[0])))
-      return (my_puterror("##start already initialized\n"));
-  if (my_strcomp(wordtab[0], "##end"))
-    if (leminfo->end || !(leminfo->end = my_strcpy(wordtab[0])))
-      return (my_puterror("##end already initialized\n"));
+  char		**wordtab;
+
+  if (!(wordtab = my_str_to_wordtab(str, ' ')))
+    return (-1);
+  if (my_ant_nbr(wordtab, leminfo) == -1)
+    return(-1);
+  if (my_start_and_end(wordtab[0], leminfo) == -1)
+    return (-1);
+  my_free_wordtab(wordtab);
+  leminfo->line += 1;
   return (0);
 }
 
 int		my_parser(t_leminfo *leminfo)
 {
   char		*str;
-  int		line;
-  char		**wordtab;
 
-  line = 1;
-  if (!leminfo)
+  if (!my_init_leminfo(leminfo))
     return (-1);
-  leminfo->start = NULL;
-  leminfo->end = NULL;
   while ((str = get_next_line(0)) != NULL)
     {
       my_epure_str(str);
-      if (!(wordtab = my_str_to_wordtab(str, ' ')))
+      if (my_rooms(leminfo, str) == -1)
 	return (-1);
-      if (my_rooms(leminfo, wordtab, line++) == -1)
-	return (-1);
-      my_show_wordtab(wordtab);
       free(str);
     }
-  if (line == 1)
-    return (my_puterror("There isn't information on stdin\n"));
+  if (leminfo->line == 1)
+    return (my_puterror2("There isn't information on stdin\n", LINE));
   free_leminfo(leminfo);
   return (0);
 }

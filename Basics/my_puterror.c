@@ -5,12 +5,31 @@
 ** Login   <mesqui_v@epitech.net>
 **
 ** Started on  Fri Jan  8 15:30:26 2016 vincent mesquita
-** Last update Mon Apr 11 12:33:09 2016 vincent mesquita
+** Last update Sun Apr 17 19:33:23 2016 vincent mesquita
 */
 
 #include <string.h>
 #include <unistd.h>
 #include "my_basics.h"
+
+void		my_putchar_error(char c)
+{
+  if (write(2, &c, 1) == -1)
+    return ;
+}
+
+int		my_put_nbr_error(int nbr)
+{
+  if (nbr < 0)
+    {
+      nbr = nbr * (-1);
+      my_putchar('-');
+    }
+  if (nbr >= 10)
+    my_put_nbr_error(nbr / 10);
+  my_putchar_error(nbr % 10 + '0');
+  return (-1);
+}
 
 int		my_puterror(char *str)
 {
@@ -20,5 +39,14 @@ int		my_puterror(char *str)
     return (-1);
   length = my_strlen(str);
   write(2, str, length);
+  return (-1);
+}
+
+int		my_puterror2(char *str, int line)
+{
+  my_puterror("Error: line ");
+  my_put_nbr_error(line);
+  my_puterror(": ");
+  my_puterror(str);
   return (-1);
 }

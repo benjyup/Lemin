@@ -5,7 +5,7 @@
 ## Login   <mesqui_v@epitech.net>
 ## 
 ## Started on  Sun Apr 17 01:55:36 2016 vincent mesquita
-## Last update Sun Apr 17 03:27:36 2016 vincent mesquita
+## Last update Sun Apr 17 20:39:03 2016 vincent mesquita
 ##
 
 NAME	=	lem_in
@@ -17,9 +17,11 @@ CFLAGS	=	-W -Wall -Wextra -I./inc
 SRCS	=	./Basics/my_putchar.c		\
 		./Basics/my_putstr.c		\
 		./Basics/my_puterror.c		\
+		./Basics/my_put_nbr.c		\
 		./Basics/my_strlen.c		\
 		./Basics/my_strcpy.c		\
 		./Basics/my_strcomp.c		\
+		./Basics/my_getnbr.c		\
 		./Basics/my_strcat_char.c	\
 		./Basics/my_str_to_wordtab.c	\
 		./Basics/my_free_wordtab.c	\
@@ -30,6 +32,8 @@ SRCS	=	./Basics/my_putchar.c		\
 		./src/there_is_dash.c		\
 		./src/my_nan.c			\
 		./src/free_leminfo.c		\
+		./src/my_epure_str.c		\
+		./src/my_init_leminfo.c		\
 		./src/parser.c
 
 OBJS	=	$(SRCS:.c=.o)
