@@ -5,7 +5,7 @@
 ## Login   <mesqui_v@epitech.net>
 ## 
 ## Started on  Sun Apr 17 01:55:36 2016 vincent mesquita
-## Last update Sun Apr 17 20:39:03 2016 vincent mesquita
+## Last update Mon Apr 18 11:26:57 2016 vincent mesquita
 ##
 
 NAME	=	lem_in
@@ -34,6 +34,7 @@ SRCS	=	./Basics/my_putchar.c		\
 		./src/free_leminfo.c		\
 		./src/my_epure_str.c		\
 		./src/my_init_leminfo.c		\
+		./src/my_fill_room_list.c	\
 		./src/parser.c
 
 OBJS	=	$(SRCS:.c=.o)

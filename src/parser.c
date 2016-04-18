@@ -5,7 +5,7 @@
 ** Login   <mesqui_v@epitech.net>
 **
 ** Started on  Sun Apr 17 01:59:33 2016 vincent mesquita
-** Last update Sun Apr 17 20:46:05 2016 vincent mesquita
+** Last update Mon Apr 18 11:35:38 2016 vincent mesquita
 */
 
 #include <stdlib.h>
@@ -42,14 +42,15 @@ static int	my_rooms(t_leminfo *leminfo,
 {
   char		**wordtab;
 
-  if (!(wordtab = my_str_to_wordtab(str, ' ')))
-    return (-1);
-  if (my_ant_nbr(wordtab, leminfo) == -1)
-    return(-1);
-  if (my_start_and_end(wordtab[0], leminfo) == -1)
+  if (leminfo->pipe != 0)
+    return (my_puterror2("Error: Bad format\n", LINE));
+  if (!(wordtab = my_str_to_wordtab(str, ' '))
+      || my_ant_nbr(wordtab, leminfo) == -1
+      || my_start_and_end(wordtab[0], leminfo) == -1
+      || my_fill_room_list(leminfo, wordtab))
     return (-1);
   my_free_wordtab(wordtab);
-  leminfo->line += 1;
+  LINE += 1;
   return (0);
 }
 
@@ -62,8 +63,13 @@ int		my_parser(t_leminfo *leminfo)
   while ((str = get_next_line(0)) != NULL)
     {
       my_epure_str(str);
-      if (my_rooms(leminfo, str) == -1)
-	return (-1);
+      if (!there_is_dash(str, leminfo))
+	{
+	  if (my_rooms(leminfo, str) == -1)
+	    return (-1);
+	}
+      else
+	my_putstr("Pipe\n");
       free(str);
     }
   if (leminfo->line == 1)
