@@ -5,7 +5,7 @@
 ** Login   <mesqui_v@epitech.net>
 **
 ** Started on  Sun Apr 17 03:25:48 2016 vincent mesquita
-** Last update Sun Apr 17 03:27:08 2016 vincent mesquita
+** Last update Mon Apr 18 12:42:32 2016 vincent mesquita
 */
 
 #include <stdlib.h>
@@ -16,5 +16,5 @@ void		free_leminfo(t_leminfo *leminfo)
   if (leminfo->start != NULL)
     free(leminfo->start);
   if (leminfo->end != NULL)
-    free(leminfo->start);
+    free(leminfo->end);
 }

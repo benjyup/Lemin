@@ -5,11 +5,11 @@
 ** Login   <mesqui_v@epitech.net>
 **
 ** Started on  Fri Apr  8 01:34:18 2016 vincent mesquita
-** Last update Fri Apr  8 01:34:19 2016 vincent mesquita
+** Last update Mon Apr 18 12:50:52 2016 vincent mesquita
 */
 
 #ifndef READ_SIZE
-# define READ_SIZE (20)
+# define READ_SIZE (1)
 #endif /* !READ_SIZE */
 
 #ifndef GET_NEXT_LINE_H_
