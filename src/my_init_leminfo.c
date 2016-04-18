@@ -5,12 +5,34 @@
 ** Login   <mesqui_v@epitech.net>
 **
 ** Started on  Sun Apr 17 20:35:37 2016 vincent mesquita
-** Last update Mon Apr 18 12:24:35 2016 vincent mesquita
+** Last update Mon Apr 18 13:30:28 2016 vincent mesquita
 */
 
 #include <stdlib.h>
 #include "parser.h"
 #include "my_basics.h"
+
+static int		name_already_used(char *name,
+					  t_room_list *root)
+{
+  t_room_list		*current;
+
+  if (!name || !root)
+    return (1);
+  current = root->next;
+  while (current != root)
+    {
+      if (my_strcomp(name, current->ri->name))
+	{
+	  my_puterror("Error: '");
+	  my_puterror(name);
+	  my_puterror("' already used\n");
+	  return(1);
+	}
+      current = current->next;
+    }
+  return (0);
+}
 
 int			my_add_to_end_room_list(t_room_list *root,
 						t_room_info *ri)
@@ -18,7 +40,7 @@ int			my_add_to_end_room_list(t_room_list *root,
   t_room_list		*new_rl;
   t_room_list		*current;
 
-  if (!root)
+  if (!root || !ri || name_already_used(ri->name, root))
     return (-1);
   current = root->prev;
   if (!(new_rl = malloc(sizeof(*new_rl))))

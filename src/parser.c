@@ -5,7 +5,7 @@
 ** Login   <mesqui_v@epitech.net>
 **
 ** Started on  Sun Apr 17 01:59:33 2016 vincent mesquita
-** Last update Mon Apr 18 13:04:27 2016 vincent mesquita
+** Last update Mon Apr 18 13:20:11 2016 vincent mesquita
 */
 
 #include <stdlib.h>
@@ -14,19 +14,20 @@
 
 static int	my_start_and_end(char *str, t_leminfo *leminfo)
 {
-  if (leminfo->start_end == 0)
+  if (leminfo->start_end == 0 || my_strcomp(str, "##start")
+      || my_strcomp(str, "##end"))
     {
       if (my_strcomp(str, "##start"))
 	{
-	  leminfo->start_end = START;
-	  if (leminfo->start)
+	  if (leminfo->start || leminfo->start_end != 0)
 	    return (my_puterror2("##start already initialized\n", LINE));
+	  leminfo->start_end = START;
 	}
       if (my_strcomp(str, "##end"))
 	{
-	  leminfo->start_end = END;
-	  if (leminfo->end)
+	  if (leminfo->end || leminfo->start_end != 0)
 	    return (my_puterror2("##end already initialized\n", LINE));
+	  leminfo->start_end = END;
 	}
     }
   else if (!my_strcomp(str,"##start") && !my_strcomp(str,"##end"))
@@ -63,7 +64,6 @@ static int	my_rooms(t_leminfo *leminfo,
       || my_fill_room_list(leminfo, wordtab))
     return (-1);
   my_free_wordtab(wordtab);
-  LINE += 1;
   return (0);
 }
 
@@ -85,6 +85,7 @@ int		my_parser(t_leminfo *leminfo)
 	}
       else
 	my_putstr("Pipe\n");
+      LINE += 1;
       free(str);
     }
   if (leminfo->line == 1)
