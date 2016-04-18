@@ -5,14 +5,14 @@
 ## Login   <mesqui_v@epitech.net>
 ## 
 ## Started on  Sun Apr 17 01:55:36 2016 vincent mesquita
-## Last update Mon Apr 18 11:26:57 2016 vincent mesquita
+## Last update Mon Apr 18 12:30:19 2016 vincent mesquita
 ##
 
 NAME	=	lem_in
 
 CC	=	gcc
 
-CFLAGS	=	-W -Wall -Wextra -I./inc
+CFLAGS	=	-W -Wall -Wextra -I./inc -g3
 
 SRCS	=	./Basics/my_putchar.c		\
 		./Basics/my_putstr.c		\

@@ -5,13 +5,15 @@
 ** Login   <mesqui_v@epitech.net>
 **
 ** Started on  Sun Apr 17 02:01:14 2016 vincent mesquita
-** Last update Mon Apr 18 11:34:15 2016 vincent mesquita
+** Last update Mon Apr 18 12:23:48 2016 vincent mesquita
 */
 
 #ifndef PARSER_H_
 # define PARSER_H_
 # define LINE		leminfo->line
 # define MALLOC_ERR	"Error Malloc() failed\n"
+# define START		1
+# define END		2
 
 typedef struct		s_position
 {
@@ -35,12 +37,14 @@ typedef struct		s_room_list
 typedef struct		s_leminfo
 {
   unsigned int		line;
+  unsigned int		total_link;
   int			ants_nbr;
+  int			start_end;
   char			pipe;
   char			*start;
   char			*end;
   t_room_list		*rl_root;
-}		t_leminfo;
+}			t_leminfo;
 
 int			my_nan(char *str);
 void			free_leminfo(t_leminfo *leminfo);
@@ -52,5 +56,6 @@ int			my_fill_room_list(t_leminfo *leminfo,
 				  char **wordtab);
 int			my_add_to_end_room_list(t_room_list *root,
 						t_room_info *ri);
+void			my_show_room_list(t_room_list *root);
 
 #endif /* !PARSER_H_ */

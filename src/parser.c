@@ -5,7 +5,7 @@
 ** Login   <mesqui_v@epitech.net>
 **
 ** Started on  Sun Apr 17 01:59:33 2016 vincent mesquita
-** Last update Mon Apr 18 11:35:38 2016 vincent mesquita
+** Last update Mon Apr 18 12:26:55 2016 vincent mesquita
 */
 
 #include <stdlib.h>
@@ -16,12 +16,22 @@ static int	my_start_and_end(char *str, t_leminfo *leminfo)
 {
   if (!str)
     return (-1);
-  if (my_strcomp(str, "##start"))
-    if (leminfo->start || !(leminfo->start = my_strcpy(str)))
-      return (my_puterror2("##start already initialized\n", LINE));
-  if (my_strcomp(str, "##end"))
-    if (leminfo->end || !(leminfo->end = my_strcpy(str)))
-      return (my_puterror2("##end already initialized\n", LINE));
+  if (leminfo->start_end == 0)
+    {
+      if (my_strcomp(str, "##start"))
+	if (leminfo->start)
+	  return (my_puterror2("##start already initialized\n", LINE));
+      if (my_strcomp(str, "##end"))
+	if (leminfo->end || !(leminfo->end = my_strcpy(str)))
+	  return (my_puterror2("##end already initialized\n", LINE));
+    }
+  else
+    {
+      if (leminfo->start_end == START && !(leminfo->start = my_strcpy(str)))
+	return (my_puterror(MALLOC_ERR));
+      if (leminfo->start_end == END && !(leminfo->end = my_strcpy(str)))
+	return (my_puterror(MALLOC_ERR));
+    }
   return (0);
 }
 

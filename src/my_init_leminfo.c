@@ -5,7 +5,7 @@
 ** Login   <mesqui_v@epitech.net>
 **
 ** Started on  Sun Apr 17 20:35:37 2016 vincent mesquita
-** Last update Mon Apr 18 11:34:10 2016 vincent mesquita
+** Last update Mon Apr 18 12:24:35 2016 vincent mesquita
 */
 
 #include <stdlib.h>
@@ -49,8 +49,10 @@ int			my_init_leminfo(t_leminfo *leminfo)
       || !(leminfo->rl_root = create_rl()))
     return (0);
   LINE = 1;
+  leminfo->total_link = 0;
   leminfo->ants_nbr = 0;
   leminfo->pipe = 0;
+  leminfo->start_end = 0;
   leminfo->start = NULL;
   leminfo->end = NULL;
   return (1);
