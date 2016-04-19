@@ -5,7 +5,7 @@
 ** Login   <mesqui_v@epitech.net>
 **
 ** Started on  Sun Apr 17 01:59:33 2016 vincent mesquita
-** Last update Tue Apr 19 13:25:43 2016 vincent mesquita
+** Last update Tue Apr 19 13:29:58 2016 vincent mesquita
 */
 
 #include <stdlib.h>
@@ -45,6 +45,8 @@ static int	my_pipes(t_leminfo *leminfo,
 {
   char		**wordtab;
 
+  if (!leminfo->start || !leminfo->end)
+    return (my_puterror("Error: there is no start, or no end\n"));
   if (!(wordtab = my_str_to_wordtab(str, '-'))
       || my_wordtab_len(wordtab) != 2
       || my_add_links(leminfo, wordtab) == -1)
