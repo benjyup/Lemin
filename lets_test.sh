@@ -27,3 +27,23 @@ echo ''
 sleep 0.5
 echo "Test 07: There is no link"
 ./lem_in < ./test/no_link | cat -e
+echo ''
+sleep 0.5
+echo "Test 08: There is no road"
+./lem_in < ./test/no_road_to_end | cat -e
+echo ''
+sleep 0.5
+echo "Test 09: src compatible?"
+./lem_in < ./src | cat -e
+echo ''
+sleep 0.5
+echo "Test 10: Makefile compatible?"
+./lem_in < ./Makefile | cat -e
+echo ''
+sleep 0.5
+echo "Test 11: exec compatible?"
+./lem_in < ./lem_in | cat -e
+echo ''
+sleep 0.5
+echo "Test 12: inc compatible?"
+./lem_in < ./inc/lemin.h | cat -e
