@@ -1,6 +1,6 @@
 echo "Coucou les billy, c'est parti pour check le Lemin, chacun de ces tests rentrent une erreur, donc si ya pas de msg d'erreur, c'est KO"
 echo ''
-sleep 3
+sleep 1
 echo "Test 01: Too many args"
 ./lem_in < ./test/trop_darg | cat -e
 echo ''
