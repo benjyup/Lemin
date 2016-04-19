@@ -5,7 +5,7 @@
 ** Login   <mesqui_v@epitech.net>
 **
 ** Started on  Sun Apr 17 01:59:33 2016 vincent mesquita
-** Last update Tue Apr 19 17:33:56 2016 vincent mesquita
+** Last update Tue Apr 19 17:46:14 2016 vincent mesquita
 */
 
 #include <stdlib.h>
@@ -30,7 +30,7 @@ static int	my_rooms(t_leminfo *leminfo,
   char		**wordtab;
 
   if (LINE == 1 || str[0] == 0 || check != 0)
-    return (0);
+    return (check);
   if (leminfo->pipe != 0)
     return (my_puterror2("Error: Bad format\n", LINE));
   if (!(wordtab = my_str_to_wordtab(str, ' '))
@@ -49,7 +49,7 @@ static int	my_pipes(t_leminfo *leminfo,
   char		*cpy;
 
   if (LINE == 1 || check != 0)
-    return (0);
+    return (check);
   if (!leminfo->start || !leminfo->end)
     return (my_puterror("Error: there is no start, or no end\n"));
   if (!(wordtab = my_str_to_wordtab(str, '-'))

@@ -1,7 +1,7 @@
 bin=`which ./lem_in`
 if [ "$bin" = "" ]
 then
-    echo "Need './lem_in' FDPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP"
+    echo "Need './lem_in' Banjam1 est un edp ! timot la marmotte"
     exit
 fi
 
