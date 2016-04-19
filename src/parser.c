@@ -5,7 +5,7 @@
 ** Login   <mesqui_v@epitech.net>
 **
 ** Started on  Sun Apr 17 01:59:33 2016 vincent mesquita
-** Last update Tue Apr 19 13:29:58 2016 vincent mesquita
+** Last update Tue Apr 19 13:47:54 2016 vincent mesquita
 */
 
 #include <stdlib.h>
@@ -45,11 +45,14 @@ static int	my_pipes(t_leminfo *leminfo,
 {
   char		**wordtab;
 
+  if (LINE == 1)
+    return (0);
   if (!leminfo->start || !leminfo->end)
     return (my_puterror("Error: there is no start, or no end\n"));
   if (!(wordtab = my_str_to_wordtab(str, '-'))
-      || my_wordtab_len(wordtab) != 2
-      || my_add_links(leminfo, wordtab) == -1)
+      || my_wordtab_len(wordtab) != 2)
+    return (my_puterror2("Error: Bad format\n", LINE));
+  if (my_add_links(leminfo, wordtab) == -1)
     return (-1);
   return (0);
 }
@@ -92,15 +95,17 @@ int		my_parser(t_leminfo *leminfo)
     {
       my_epure_str(str);
       check = my_ant_nbr(str, leminfo);
-      if (!there_is_dash(str, leminfo) && LINE != 1)
+      if (!there_is_dash(str, leminfo))
 	check = my_rooms(leminfo, str);
-      else if (LINE != 1)
+      else
 	check = my_pipes(leminfo, str);
       LINE += 1;
       my_print_line(str);
       free(str);
     }
   if (leminfo->line == 1)
-    return (my_puterror2("There isn't information on stdin\n", LINE));
+    return (my_puterror("Error: there is no information on stdin\n"));
+  if (leminfo->pipe == 0)
+    return (my_puterror("Erro: there is no link\n"));
   return (0);
 }
