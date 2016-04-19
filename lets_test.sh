@@ -1,3 +1,10 @@
+bin=`which ./lem_in`
+if [ "$bin" = "" ]
+then
+    echo "Need './lem_in' FDPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP"
+    exit
+fi
+
 echo "Coucou les billy, c'est parti pour check le Lemin, chacun de ces tests rentrent une erreur, donc si ya pas de msg d'erreur, c'est KO"
 echo ''
 sleep 1
