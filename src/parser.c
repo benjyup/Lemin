@@ -5,7 +5,7 @@
 ** Login   <mesqui_v@epitech.net>
 **
 ** Started on  Sun Apr 17 01:59:33 2016 vincent mesquita
-** Last update Tue Apr 19 13:55:05 2016 vincent mesquita
+** Last update Tue Apr 19 15:02:00 2016 vincent mesquita
 */
 
 #include <stdlib.h>
@@ -28,7 +28,7 @@ static int	my_rooms(t_leminfo *leminfo,
 {
   char		**wordtab;
 
-  if (LINE == 1)
+  if (LINE == 1 || str[0] == 0)
     return (0);
   if (leminfo->pipe != 0)
     return (my_puterror2("Error: Bad format\n", LINE));
@@ -108,6 +108,6 @@ int		my_parser(t_leminfo *leminfo)
   if (leminfo->line == 1)
     return (my_puterror("Error: there is no information on stdin\n"));
   if (leminfo->pipe == 0)
-    return (my_puterror("Erro: there is no link\n"));
+    return (my_puterror("Error: there is no link\n"));
   return (0);
 }
