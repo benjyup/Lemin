@@ -1,0 +1,14 @@
+5
+##start
+titi 5 5
+toto 10 10
+tete 4 4
+##end
+tata 15 15
+titi-tete
+titi-toto
+titi-tata
+tete-titi
+toto-tata
+tete-toto
+tata-titi

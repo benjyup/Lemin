@@ -5,13 +5,14 @@
 ** Login   <mesqui_v@epitech.net>
 **
 ** Started on  Sun Apr 17 01:51:45 2016 vincent mesquita
-** Last update Mon Apr 18 11:25:18 2016 vincent mesquita
+** Last update Tue Apr 19 12:08:39 2016 Timothée Puentes
 */
 
 #ifndef LEMIN_H_
 # define LEMIN_H_
 
 #include "parser.h"
+#include "graph.h"
 
 int		my_parser(t_leminfo *leminfo);
 

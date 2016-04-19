@@ -5,7 +5,7 @@
 ** Login   <mesqui_v@epitech.net>
 **
 ** Started on  Fri Jan  8 15:30:26 2016 vincent mesquita
-** Last update Sun Apr 17 19:33:23 2016 vincent mesquita
+** Last update Tue Apr 19 12:52:54 2016 Timothée Puentes
 */
 
 #include <string.h>
@@ -40,6 +40,17 @@ int		my_puterror(char *str)
   length = my_strlen(str);
   write(2, str, length);
   return (-1);
+}
+
+void		*my_puterror_pnt(char *str)
+{
+  int		length;
+
+  if (str == NULL)
+    return (NULL);
+  length = my_strlen(str);
+  write(2, str, length);
+  return (NULL);
 }
 
 int		my_puterror2(char *str, int line)
