@@ -5,7 +5,7 @@
 ** Login   <mesqui_v@epitech.net>
 **
 ** Started on  Tue Apr 19 11:11:20 2016 vincent mesquita
-** Last update Tue Apr 19 16:23:21 2016 vincent mesquita
+** Last update Tue Apr 19 16:34:40 2016 vincent mesquita
 */
 
 #include <stdlib.h>
@@ -43,6 +43,19 @@ static t_link_list	*create_ll(void)
   return (root);
 }
 
+void		show(t_link_list *root)
+{
+  t_link_list	*current;
+
+  current = root->next;
+  while (current != root)
+    {
+      my_putstr(current->link->NAME);
+      my_putchar(10);
+      current = current->next;
+    }
+}
+
 int		add_the_link(t_leminfo *leminfo,
 			     char **wordtab,
 			     t_room_list *current)
@@ -56,18 +69,10 @@ int		add_the_link(t_leminfo *leminfo,
   link_to = ROOT->next;
   while (link_to != ROOT && !my_strcomp(link_to->NAME, wordtab[1]))
     link_to = link_to->next;
-  my_putstr("NAME: ");
-  my_putstr(link_to->NAME);
-  my_putstr("\n");
   if (link_to == ROOT)
     return (my_puterror2("Error: Bad link\n", LINE));
   if (my_add_to_list(current->LINKS, link_to) == -1)
     return (-1);
-  my_putstr("NAME LL: ");
-  my_putstr(current->LINKS->next->link->ri->name);
-  my_putstr("\n");
-  if (current->LINKS->next == current->LINKS)
-    my_putstr("coucou\n");
   return (0);
 }
 

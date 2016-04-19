@@ -5,7 +5,7 @@
 ** Login   <puente_t@epitech.net>
 **
 ** Started on  Mon Apr 18 12:00:52 2016 Timothée Puentes
-** Last update Tue Apr 19 13:41:58 2016 Timothée Puentes
+** Last update Tue Apr 19 16:26:42 2016 Vincent Florian
 */
 
 #ifndef GRAPH_H_
@@ -14,6 +14,7 @@
 # define	SUCCESS 0
 # define	ERR 1
 # define	PNT_ERR (void*)-1
+
 typedef struct	s_path
 {
   char		*name;
