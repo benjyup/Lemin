@@ -5,7 +5,7 @@
 ** Login   <mesqui_v@epitech.net>
 **
 ** Started on  Sun Apr 17 01:59:33 2016 vincent mesquita
-** Last update Tue Apr 19 17:26:52 2016 vincent mesquita
+** Last update Tue Apr 19 17:31:18 2016 vincent mesquita
 */
 
 #include <stdlib.h>
@@ -24,11 +24,12 @@ static int	my_ant_nbr(char *str, t_leminfo *leminfo)
 }
 
 static int	my_rooms(t_leminfo *leminfo,
-			 char *str)
+			 char *str,
+			 int check)
 {
   char		**wordtab;
 
-  if (LINE == 1 || str[0] == 0)
+  if (LINE == 1 || str[0] == 0 || check != 0)
     return (0);
   if (leminfo->pipe != 0)
     return (my_puterror2("Error: Bad format\n", LINE));
@@ -41,12 +42,13 @@ static int	my_rooms(t_leminfo *leminfo,
 }
 
 static int	my_pipes(t_leminfo *leminfo,
-			 char *str)
+			 char *str,
+			 int check)
 {
   char		**wordtab;
   char		*cpy;
 
-  if (LINE == 1)
+  if (LINE == 1 || check != 0)
     return (0);
   if (!leminfo->start || !leminfo->end)
     return (my_puterror("Error: there is no start, or no end\n"));
@@ -102,9 +104,9 @@ int		my_parser(t_leminfo *leminfo)
       my_epure_str(str);
       check = my_ant_nbr(str, leminfo);
       if (!there_is_dash(str, leminfo))
-	check = my_rooms(leminfo, str);
+	check = my_rooms(leminfo, str, check);
       else
-	check = my_pipes(leminfo, str);
+	check = my_pipes(leminfo, str, check);
       LINE += 1;
       my_print_line(str);
       free(str);
