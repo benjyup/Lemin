@@ -5,7 +5,7 @@
 ** Login   <mesqui_v@epitech.net>
 **
 ** Started on  Sun Apr 17 01:59:33 2016 vincent mesquita
-** Last update Tue Apr 19 17:06:36 2016 vincent mesquita
+** Last update Tue Apr 19 17:26:52 2016 vincent mesquita
 */
 
 #include <stdlib.h>
@@ -109,11 +109,11 @@ int		my_parser(t_leminfo *leminfo)
       my_print_line(str);
       free(str);
     }
-  if ((!leminfo->start || !leminfo->end) && leminfo->pipe == 0)
+  if ((!leminfo->start || !leminfo->end) && leminfo->pipe == 0 && check == 0)
     return (my_puterror("Error: there is no start, or no end\n"));
-  if (leminfo->line == 1)
+  if (leminfo->line == 1 && check == 0)
     return (my_puterror("Error: there is no information on stdin\n"));
-  if (leminfo->pipe == 0)
+  if (leminfo->pipe == 0 && check == 0)
     return (my_puterror("Error: there is no link\n"));
   return (0);
 }
