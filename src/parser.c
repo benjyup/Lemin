@@ -5,7 +5,7 @@
 ** Login   <mesqui_v@epitech.net>
 **
 ** Started on  Sun Apr 17 01:59:33 2016 vincent mesquita
-** Last update Tue Apr 19 17:31:18 2016 vincent mesquita
+** Last update Tue Apr 19 17:33:56 2016 vincent mesquita
 */
 
 #include <stdlib.h>
@@ -18,7 +18,7 @@ static int	my_ant_nbr(char *str, t_leminfo *leminfo)
     {
       if (my_nan(str)
 	  || (leminfo->ants_nbr = my_getnbr(str)) <= 0)
-	return (my_puterror2("Ant number invalid\n", LINE));
+	return (my_puterror2("Error: Ant number invalid\n", LINE));
     }
   return (0);
 }
