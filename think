@@ -2,3 +2,10 @@ nombre max de fourmis ?
 there_is_dash doit changé leminfo->pipe à 1
 check coordonée
 
+Error :
+Seulement start commentaire end * 1
+si ya pas de liaisons
+fourmi negative, trop grande
+Y a t'il une fin ? un début ? 
+Si on peut partir du début ou arriver a la fin
+deux arguments pour les links avec un tiret
