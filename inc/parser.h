@@ -5,7 +5,7 @@
 ** Login   <mesqui_v@epitech.net>
 **
 ** Started on  Sun Apr 17 02:01:14 2016 vincent mesquita
-** Last update Mon Apr 18 12:23:48 2016 vincent mesquita
+** Last update Tue Apr 19 11:41:31 2016 vincent mesquita
 */
 
 #ifndef PARSER_H_
@@ -14,6 +14,9 @@
 # define MALLOC_ERR	"Error Malloc() failed\n"
 # define START		1
 # define END		2
+# define ROOT		leminfo->rl_root
+# define NAME		ri->name
+# define LINKS		ri->links
 
 typedef struct		s_position
 {
@@ -21,10 +24,18 @@ typedef struct		s_position
   int			y;
 }			t_position;
 
+typedef struct		s_link_list
+{
+  struct s_room_list	*link;
+  struct s_link_list	*next;
+  struct s_link_list	*prev;
+}			t_link_list;
+
 typedef struct		s_room_info
 {
   char			*name;
   t_position		pos;
+  t_link_list		*links;
 }			t_room_info;
 
 typedef struct		s_room_list
@@ -46,6 +57,11 @@ typedef struct		s_leminfo
   t_room_list		*rl_root;
 }			t_leminfo;
 
+t_room_list		*create_rl(void);
+int			my_add_links(t_leminfo *leminfo,
+				     char **wordtab);
+int			my_start_and_end(char *str,
+					 t_leminfo *leminfo);
 int			my_nan(char *str);
 void			free_leminfo(t_leminfo *leminfo);
 void			my_epure_str(char *str);

@@ -5,7 +5,7 @@
 ** Login   <mesqui_v@epitech.net>
 **
 ** Started on  Mon Apr 18 11:04:15 2016 vincent mesquita
-** Last update Mon Apr 18 13:01:22 2016 vincent mesquita
+** Last update Tue Apr 19 11:22:00 2016 vincent mesquita
 */
 
 #include <stdlib.h>
@@ -35,11 +35,12 @@ int			my_fill_room_list(t_leminfo *leminfo,
 {
   t_room_info		*ri;
 
-  if (LINE == 1 || my_strcomp(wordtab[0], "##start")
+  if (my_strcomp(wordtab[0], "##start")
       || my_strcomp(wordtab[0], "##end"))
     return (0);
   if (!(ri = malloc(sizeof(*ri))))
     return (my_puterror(MALLOC_ERR));
+  ri->links = NULL;
   if (my_wordtab_len(wordtab) != 3)
     return (my_puterror2("Error: Bad format\n", LINE));
   if (!(ri->name = my_strcpy(wordtab[0])))

@@ -5,41 +5,12 @@
 ** Login   <mesqui_v@epitech.net>
 **
 ** Started on  Sun Apr 17 01:59:33 2016 vincent mesquita
-** Last update Mon Apr 18 13:20:11 2016 vincent mesquita
+** Last update Tue Apr 19 12:01:45 2016 vincent mesquita
 */
 
 #include <stdlib.h>
 #include "parser.h"
 #include "my_basics.h"
-
-static int	my_start_and_end(char *str, t_leminfo *leminfo)
-{
-  if (leminfo->start_end == 0 || my_strcomp(str, "##start")
-      || my_strcomp(str, "##end"))
-    {
-      if (my_strcomp(str, "##start"))
-	{
-	  if (leminfo->start || leminfo->start_end != 0)
-	    return (my_puterror2("##start already initialized\n", LINE));
-	  leminfo->start_end = START;
-	}
-      if (my_strcomp(str, "##end"))
-	{
-	  if (leminfo->end || leminfo->start_end != 0)
-	    return (my_puterror2("##end already initialized\n", LINE));
-	  leminfo->start_end = END;
-	}
-    }
-  else if (!my_strcomp(str,"##start") && !my_strcomp(str,"##end"))
-    {
-      if (leminfo->start_end == START && !(leminfo->start = my_strcpy(str)))
-	return (my_puterror(MALLOC_ERR));
-      if (leminfo->start_end == END && !(leminfo->end = my_strcpy(str)))
-	return (my_puterror(MALLOC_ERR));
-      leminfo->start_end = 0;
-    }
-  return (0);
-}
 
 static int	my_ant_nbr(char *str, t_leminfo *leminfo)
 {
@@ -57,6 +28,8 @@ static int	my_rooms(t_leminfo *leminfo,
 {
   char		**wordtab;
 
+  if (LINE == 1)
+    return (0);
   if (leminfo->pipe != 0)
     return (my_puterror2("Error: Bad format\n", LINE));
   if (!(wordtab = my_str_to_wordtab(str, ' '))
@@ -67,33 +40,40 @@ static int	my_rooms(t_leminfo *leminfo,
   return (0);
 }
 
+static int	my_pipes(t_leminfo *leminfo,
+			 char *str)
+{
+  char		**wordtab;
+
+  if (!(wordtab = my_str_to_wordtab(str, '-'))
+      || my_wordtab_len(wordtab) != 2
+      || my_add_links(leminfo, wordtab) == -1)
+    return (-1);
+  return (0);
+}
+
 int		my_parser(t_leminfo *leminfo)
 {
   char		*str;
+  char		check;
 
   if (!my_init_leminfo(leminfo))
     return (-1);
-  while ((str = get_next_line(0)) != NULL)
+  check = 0;
+  while (check >= 0 && (str = get_next_line(0)) != NULL)
     {
       my_epure_str(str);
-      if (my_ant_nbr(str, leminfo) == -1)
-	return (-1);
-      if (!there_is_dash(str, leminfo))
-	{
-	  if (my_rooms(leminfo, str) == -1)
-	    return (-1);
-	}
-      else
-	my_putstr("Pipe\n");
+      check = my_ant_nbr(str, leminfo);
+      if (!there_is_dash(str, leminfo) && LINE != 1)
+	check = my_rooms(leminfo, str);
+      else if (LINE != 1)
+	check = my_pipes(leminfo, str);
       LINE += 1;
+      my_putstr(str);
+      my_putchar('\n');
       free(str);
     }
   if (leminfo->line == 1)
     return (my_puterror2("There isn't information on stdin\n", LINE));
-  my_putstr(leminfo->start);
-  my_putchar(10);
-  my_putstr(leminfo->end);
-  my_putchar(10);
-  free_leminfo(leminfo);
   return (0);
 }
