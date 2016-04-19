@@ -5,7 +5,7 @@
 ** Login   <mesqui_v@epitech.net>
 **
 ** Started on  Tue Apr 19 11:11:20 2016 vincent mesquita
-** Last update Tue Apr 19 14:58:28 2016 vincent mesquita
+** Last update Tue Apr 19 16:23:21 2016 vincent mesquita
 */
 
 #include <stdlib.h>
@@ -50,7 +50,8 @@ int		add_the_link(t_leminfo *leminfo,
   t_room_list	*link_to;
 
   /*check le retour*/
-  if (!(current->LINKS = create_ll()))
+  if (current->LINKS == NULL
+      && !(current->LINKS = create_ll()))
     return (my_puterror(MALLOC_ERR));
   link_to = ROOT->next;
   while (link_to != ROOT && !my_strcomp(link_to->NAME, wordtab[1]))
@@ -65,6 +66,8 @@ int		add_the_link(t_leminfo *leminfo,
   my_putstr("NAME LL: ");
   my_putstr(current->LINKS->next->link->ri->name);
   my_putstr("\n");
+  if (current->LINKS->next == current->LINKS)
+    my_putstr("coucou\n");
   return (0);
 }
 
