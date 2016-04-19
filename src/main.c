@@ -5,7 +5,7 @@
 ** Login   <mesqui_v@epitech.net>
 **
 ** Started on  Sun Apr 17 01:54:13 2016 vincent mesquita
-** Last update Tue Apr 19 16:38:21 2016 Vincent Florian
+** Last update Tue Apr 19 16:52:20 2016 vincent mesquita
 */
 
 #include <stdlib.h>
@@ -25,25 +25,25 @@ void		print_all_path(t_path *path)
     }
 }
 
-void		my_path(t_lemininfo *data)
-{
-  t_maillon	*courrant;
-  t_maillon	**father;
+/* void		my_path(t_leminfo *data) */
+/* { */
+/*   t_maillon	*courrant; */
+/*   t_maillon	**father; */
 
-  father = malloc(sizeof(**father));
-  courrant = data->laby;
-  while (courrant != NULL && courrant->name != data->start)
-    courrant = courrant->next;
-  *father = courrant;
-  data->father = father;
-  (*data->father)->poids = 0;
-  (*data->father)->parcours = 1;
-  while ((*data->father)->name != data->end)
-    {
-      my_son(data); // trouver les fils de poids les plus faible.
-      my_poids(data); // Le poit le plus faible.
-    }
-}
+/*   father = malloc(sizeof(**father)); */
+/*   courrant = data->laby; */
+/*   while (courrant != NULL && courrant->name != data->start) */
+/*     courrant = courrant->next; */
+/*   *father = courrant; */
+/*   data->father = father; */
+/*   (*data->father)->poids = 0; */
+/*   (*data->father)->parcours = 1; */
+/*   while ((*data->father)->name != data->end) */
+/*     { */
+/*       my_son(data); // trouver les fils de poids les plus faible. */
+/*       my_poids(data); // Le poit le plus faible. */
+/*     } */
+/* } */
 
 int		main(void)
 {

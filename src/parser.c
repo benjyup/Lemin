@@ -5,7 +5,7 @@
 ** Login   <mesqui_v@epitech.net>
 **
 ** Started on  Sun Apr 17 01:59:33 2016 vincent mesquita
-** Last update Tue Apr 19 15:02:00 2016 vincent mesquita
+** Last update Tue Apr 19 17:06:36 2016 vincent mesquita
 */
 
 #include <stdlib.h>
@@ -44,6 +44,7 @@ static int	my_pipes(t_leminfo *leminfo,
 			 char *str)
 {
   char		**wordtab;
+  char		*cpy;
 
   if (LINE == 1)
     return (0);
@@ -52,6 +53,11 @@ static int	my_pipes(t_leminfo *leminfo,
   if (!(wordtab = my_str_to_wordtab(str, '-'))
       || my_wordtab_len(wordtab) != 2)
     return (my_puterror2("Error: Bad format\n", LINE));
+  if (my_add_links(leminfo, wordtab) == -1)
+    return (-1);
+  cpy = wordtab[0];
+  wordtab[0] = wordtab[1];
+  wordtab[1] = cpy;
   if (my_add_links(leminfo, wordtab) == -1)
     return (-1);
   return (0);
