@@ -5,7 +5,7 @@
 ** Login   <mesqui_v@epitech.net>
 **
 ** Started on  Sun Apr 17 01:54:13 2016 vincent mesquita
-** Last update Wed Apr 20 16:16:56 2016 Vincent Florian
+** Last update Wed Apr 20 16:20:03 2016 vincent mesquita
 */
 
 #include <stdlib.h>
@@ -38,5 +38,6 @@ int		main(void)
     }
   if ((way = my_path(&leminfo)) == NULL)
     return (0);
+  free_leminfo(&leminfo);
   return (0);
 }
