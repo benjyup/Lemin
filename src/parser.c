@@ -5,7 +5,7 @@
 ** Login   <mesqui_v@epitech.net>
 **
 ** Started on  Sun Apr 17 01:59:33 2016 vincent mesquita
-** Last update Wed Apr 20 11:23:54 2016 vincent mesquita
+** Last update Wed Apr 20 12:18:09 2016 vincent mesquita
 */
 
 #include <stdlib.h>
@@ -55,6 +55,8 @@ static int	my_pipes(t_leminfo *leminfo,
   if (!(wordtab = my_str_to_wordtab(str, '-'))
       || my_wordtab_len(wordtab) != 2)
     return (my_puterror2("Error: Bad format\n", LINE));
+  if (my_strcomp(wordtab[0], wordtab[1]))
+    return (0);
   if (my_add_links(leminfo, wordtab) == -1)
     return (-1);
   cpy = wordtab[0];
@@ -111,11 +113,6 @@ int		my_parser(t_leminfo *leminfo)
       my_print_line(str, check);
       free(str);
     }
-  if ((!leminfo->start || !leminfo->end) && leminfo->pipe == 0 && check == 0)
-    return (my_puterror("Error: there is no start, or no end\n"));
-  if (leminfo->line == 1 && check == 0)
-    return (my_puterror("Error: there is no information on stdin\n"));
-  if (leminfo->pipe == 0 && check == 0)
-    return (my_puterror("Error: there is no link\n"));
-  return (0);
+  my_errors(leminfo, check);
+  return (check);
 }
