@@ -5,11 +5,18 @@
 ** Login   <mesqui_v@epitech.net>
 **
 ** Started on  Sun Apr 17 03:25:48 2016 vincent mesquita
-** Last update Mon Apr 18 12:42:32 2016 vincent mesquita
+** Last update Wed Apr 20 16:01:10 2016 vincent mesquita
 */
 
 #include <stdlib.h>
 #include "parser.h"
+
+static int	my_free_room_list(t_room_list *root)
+{
+  t_room_list	*current;
+
+  current = root->next;;
+}
 
 void		free_leminfo(t_leminfo *leminfo)
 {

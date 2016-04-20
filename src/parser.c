@@ -5,7 +5,7 @@
 ** Login   <mesqui_v@epitech.net>
 **
 ** Started on  Sun Apr 17 01:59:33 2016 vincent mesquita
-** Last update Wed Apr 20 12:18:09 2016 vincent mesquita
+** Last update Wed Apr 20 14:51:16 2016 vincent mesquita
 */
 
 #include <stdlib.h>
@@ -103,16 +103,18 @@ int		my_parser(t_leminfo *leminfo)
   check = 0;
   while (check >= 0 && (str = get_next_line(0)) != NULL)
     {
-      my_epure_str(str);
-      check = my_ant_nbr(str, leminfo);
-      if (!there_is_dash(str, leminfo))
-	check = my_rooms(leminfo, str, check);
-      else
-	check = my_pipes(leminfo, str, check);
-      LINE += 1;
-      my_print_line(str, check);
+      if (!is_a_comment(str))
+	{
+	  my_epure_str(str);
+	  check = my_ant_nbr(str, leminfo);
+	  if (!there_is_dash(str, leminfo))
+	    check = my_rooms(leminfo, str, check);
+	  else
+	    check = my_pipes(leminfo, str, check);
+	  LINE += 1;
+	  my_print_line(str, check);
+	}
       free(str);
     }
-  my_errors(leminfo, check);
-  return (check);
+  return (((my_errors(leminfo, check) == - 1) ? (-1) : (check)));
 }

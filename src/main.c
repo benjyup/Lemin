@@ -5,7 +5,7 @@
 ** Login   <mesqui_v@epitech.net>
 **
 ** Started on  Sun Apr 17 01:54:13 2016 vincent mesquita
-** Last update Wed Apr 20 12:48:36 2016 Vincent Florian
+** Last update Wed Apr 20 13:59:03 2016 vincent mesquita
 */
 
 #include <stdlib.h>
@@ -31,7 +31,10 @@ int		main(void)
   t_leminfo	leminfo;
 
   if (my_parser(&leminfo) == -1)
-    return (0);
+    {
+      my_putstr("Je return -1\n");
+      return (0);
+    }
   my_path(&leminfo);
   return (0);
 }
