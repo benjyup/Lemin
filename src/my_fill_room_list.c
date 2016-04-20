@@ -5,7 +5,7 @@
 ** Login   <mesqui_v@epitech.net>
 **
 ** Started on  Mon Apr 18 11:04:15 2016 vincent mesquita
-** Last update Tue Apr 19 17:42:42 2016 vincent mesquita
+** Last update Tue Apr 19 18:53:52 2016 Vincent Florian
 */
 
 #include <stdlib.h>
@@ -49,6 +49,9 @@ int			my_fill_room_list(t_leminfo *leminfo,
     return (my_puterror2("Error: Bad format\n", LINE));
   ri->pos.x = my_getnbr(wordtab[1]);
   ri->pos.y = my_getnbr(wordtab[2]);
+  ri->antecedent = NULL;
+  ri->poids = -1;
+  ri->parcours = 0;
   if (my_add_to_end_room_list(leminfo->rl_root, ri) == -1)
     return (-1);
   leminfo->total_link += 1;

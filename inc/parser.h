@@ -5,7 +5,7 @@
 ** Login   <mesqui_v@epitech.net>
 **
 ** Started on  Sun Apr 17 02:01:14 2016 vincent mesquita
-** Last update Tue Apr 19 11:41:31 2016 vincent mesquita
+** Last update Tue Apr 19 18:52:42 2016 Vincent Florian
 */
 
 #ifndef PARSER_H_
@@ -17,6 +17,8 @@
 # define ROOT		leminfo->rl_root
 # define NAME		ri->name
 # define LINKS		ri->links
+# define PARC		ri->parcours
+# define POIDS		ri->poids
 
 typedef struct		s_position
 {
@@ -35,6 +37,9 @@ typedef struct		s_room_info
 {
   char			*name;
   t_position		pos;
+  int			poids;
+  int			parcours;
+  char			*antecedent;
   t_link_list		*links;
 }			t_room_info;
 
@@ -55,6 +60,7 @@ typedef struct		s_leminfo
   char			*start;
   char			*end;
   t_room_list		*rl_root;
+  t_room_list		**father;
 }			t_leminfo;
 
 t_room_list		*create_rl(void);
