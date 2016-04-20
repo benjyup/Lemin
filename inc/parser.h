@@ -5,7 +5,7 @@
 ** Login   <mesqui_v@epitech.net>
 **
 ** Started on  Sun Apr 17 02:01:14 2016 vincent mesquita
-** Last update Wed Apr 20 12:33:04 2016 vincent mesquita
+** Last update Wed Apr 20 12:50:54 2016 Vincent Florian
 */
 
 #ifndef PARSER_H_
@@ -80,5 +80,6 @@ int			my_fill_room_list(t_leminfo *leminfo,
 int			my_add_to_end_room_list(t_room_list *root,
 						t_room_info *ri);
 void			my_show_room_list(t_room_list *root);
+void			my_path(t_leminfo *data);
 
 #endif /* !PARSER_H_ */

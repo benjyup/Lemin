@@ -1,11 +1,11 @@
 ##
 ## Makefile for  in /home/mesqui_v/rendu/Tek1/S2/CPE/LemIn/CPE_2015_Lemin
-## 
+##
 ## Made by vincent mesquita
 ## Login   <mesqui_v@epitech.net>
-## 
+##
 ## Started on  Sun Apr 17 01:55:36 2016 vincent mesquita
-## Last update Wed Apr 20 11:58:28 2016 vincent mesquita
+## Last update Wed Apr 20 12:49:47 2016 Vincent Florian
 ##
 
 NAME	=	lem_in
@@ -31,6 +31,7 @@ SRCS	=	./Basics/my_putchar.c		\
 		./src/main.c			\
 		./src/there_is_dash.c		\
 		./src/my_nan.c			\
+		./src/my_way.c			\
 		./src/free_leminfo.c		\
 		./src/my_epure_str.c		\
 		./src/my_init_leminfo.c		\
