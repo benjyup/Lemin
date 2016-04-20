@@ -5,7 +5,7 @@
 ** Login   <mesqui_v@epitech.net>
 **
 ** Started on  Sun Apr 17 01:59:33 2016 vincent mesquita
-** Last update Tue Apr 19 17:46:14 2016 vincent mesquita
+** Last update Wed Apr 20 11:23:54 2016 vincent mesquita
 */
 
 #include <stdlib.h>
@@ -65,12 +65,12 @@ static int	my_pipes(t_leminfo *leminfo,
   return (0);
 }
 
-static void	my_print_line(char *str)
+static void	my_print_line(char *str, int check)
 {
   unsigned int	i;
 
   i = 0;
-  if (str == NULL || !str[i])
+  if (str == NULL || !str[i] || check < 0)
     return ;
   i = 0;
   while (str[i] == ' ')
@@ -108,7 +108,7 @@ int		my_parser(t_leminfo *leminfo)
       else
 	check = my_pipes(leminfo, str, check);
       LINE += 1;
-      my_print_line(str);
+      my_print_line(str, check);
       free(str);
     }
   if ((!leminfo->start || !leminfo->end) && leminfo->pipe == 0 && check == 0)
