@@ -5,7 +5,7 @@
 ** Login   <mesqui_v@epitech.net>
 **
 ** Started on  Sun Apr 17 01:59:33 2016 vincent mesquita
-** Last update Wed Apr 20 14:51:16 2016 vincent mesquita
+** Last update Wed Apr 20 16:44:52 2016 vincent mesquita
 */
 
 #include <stdlib.h>
@@ -64,6 +64,7 @@ static int	my_pipes(t_leminfo *leminfo,
   wordtab[1] = cpy;
   if (my_add_links(leminfo, wordtab) == -1)
     return (-1);
+  my_free_wordtab(wordtab);
   return (0);
 }
 

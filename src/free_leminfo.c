@@ -5,16 +5,38 @@
 ** Login   <mesqui_v@epitech.net>
 **
 ** Started on  Sun Apr 17 03:25:48 2016 vincent mesquita
-** Last update Wed Apr 20 16:23:10 2016 vincent mesquita
+** Last update Wed Apr 20 16:42:57 2016 vincent mesquita
 */
 
 #include <stdlib.h>
 #include "parser.h"
 
+static void	my_free_link_list(t_link_list *root)
+{
+  t_link_list	*current;
+  t_link_list	*tmp;
+
+  if (!root)
+    return ;
+  current = root->next;
+  while (current != root)
+    {
+      tmp = current;
+      current = current->next;
+      free(tmp);
+    }
+  free(root);
+}
+
 static void	my_free_room_info(t_room_info *ri)
 {
-  if (!ri->name)
-    free(ri->name);
+  if (!ri)
+    return ;
+  if (NAME)
+    free(NAME);
+  if (LINKS)
+    my_free_link_list(LINKS);
+  free(ri);
 }
 
 static void	my_free_room_list(t_room_list *root)
@@ -32,6 +54,7 @@ static void	my_free_room_list(t_room_list *root)
       current = current->next;
       free(tmp);
     }
+  free(root);
 }
 
 void		free_leminfo(t_leminfo *leminfo)
@@ -40,4 +63,5 @@ void		free_leminfo(t_leminfo *leminfo)
     free(leminfo->start);
   if (leminfo->end != NULL)
     free(leminfo->end);
+  my_free_room_list(ROOT);
 }
