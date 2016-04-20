@@ -5,7 +5,7 @@
 ** Login   <mesqui_v@epitech.net>
 **
 ** Started on  Sun Apr 17 02:01:14 2016 vincent mesquita
-** Last update Wed Apr 20 16:04:53 2016 Vincent Florian
+** Last update Wed Apr 20 16:38:17 2016 Vincent Florian
 */
 
 #ifndef PARSER_H_
@@ -37,6 +37,7 @@ typedef struct		s_room_info
 {
   char			*name;
   t_position		pos;
+  int			ant_num;
   int			poids;
   int			parcours;
   struct s_room_list	*antecedent;

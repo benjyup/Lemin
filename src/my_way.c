@@ -5,7 +5,7 @@
 ** Login   <vincen_s@epitech.net>
 **
 ** Started on  Wed Apr 20 12:48:27 2016 Vincent Florian
-** Last update Wed Apr 20 16:00:41 2016 Vincent Florian
+** Last update Wed Apr 20 17:01:56 2016 Vincent Florian
 */
 
 #include <stdlib.h>
@@ -93,6 +93,18 @@ t_room_list	*my_list_path(t_leminfo *data)
     }
   return (my_way);
 }
+
+/* int		my_antman(t_room_list *my_way, t_liminfo *data) */
+/* { */
+/*   t_room_list	*current; */
+
+/*   i = 1; */
+/*   while (data->father->ant_num != data->ants_nbr - 1) */
+/*     { */
+/*       current = data->father; */
+/*       i++; */
+/*     } */
+/* } */
 
 t_room_list	*my_path(t_leminfo *data)
 {
