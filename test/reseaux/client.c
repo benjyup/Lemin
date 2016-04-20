@@ -37,7 +37,7 @@ struct hostent		*init_hostent(char *ip)
 
 int			read_and(int sockfd)
 {
-  char		buffer[256];
+  char			buffer[256];
   int			n;
 
   printf("Please enter the message: ");
@@ -46,12 +46,6 @@ int			read_and(int sockfd)
   n = write(sockfd, buffer, my_strlen(buffer));
   if (n < 0)
     return(printf("Error read\n"));
-  my_memset(buffer, 256, 0);
-  n = read(sockfd,buffer,255);
-  if (n < 0)
-    return(printf("Error read\n"));
-  printf("%s\n",buffer);
-  close(sockfd);
 }
 
 int			main(int argc, char *argv[])
@@ -79,6 +73,8 @@ int			main(int argc, char *argv[])
   serv_addr.sin_port = swap(portno);
   if (connect(sockfd, (struct sockaddr *)&serv_addr, sizeof(serv_addr)) < 0)
     return (printf("Error connecting\n"));
+  while(1)
   read_and(sockfd);
-  return (0);
+ close(sockfd);
+ return (0);
 }
