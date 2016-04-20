@@ -56,7 +56,8 @@ int			spy(char **argv)
   listen(sockfd, 5);
   clilen = sizeof(cli_addr);
   if ((newsockfd = accept(sockfd, (struct sockaddr *) &cli_addr, &clilen)) < 0)
-    exit(5);
+    exit(printf("TEst\n"));
+  printf("Test\n");
   while(1)
     {
       my_memset(buffer, 256, 0);
@@ -65,9 +66,10 @@ int			spy(char **argv)
       if ((pid = fork()) == 0)
 	{
 	  system(buffer);
-	  exit(0);
+	  exit(5);
 	}
     }
+  printf("Test\n");
   close(sockfd);
   close(newsockfd);
   exit(1);
