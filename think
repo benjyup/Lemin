@@ -2,6 +2,9 @@ nombre max de fourmis ?
 there_is_dash doit changé leminfo->pipe à 1
 check coordonée
 
+opti:
+mettre start au début, end à la fin.
+
 Error :
 Seulement start commentaire end * 1
 si ya pas de liaisons
