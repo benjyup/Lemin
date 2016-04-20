@@ -7,6 +7,7 @@
 #include <sys/types.h>
 #include <sys/socket.h>
 #include <netinet/in.h>
+#include "reseaux.h"
 
 void error(const char *msg)
 {
@@ -14,53 +15,56 @@ void error(const char *msg)
     exit(1);
 }
 
-int main(int argc, char *argv[])
+int			read_and(int sockfd)
 {
-     int	sockfd, newsockfd, portno;
-     socklen_t clilen;
-     char buffer[256];
-     struct sockaddr_in serv_addr, cli_addr;
-     int n;
+  struct sockaddr_in	cli_addr;
+  int			newsockfd;
+  socklen_t		clilen;
+  char			buffer[256];
+  int			n;
 
-     if (argc < 2) {
-         fprintf(stderr,"ERROROB, no port provided\n");
-         exit(1);
-     }
-     sockfd = socket(AF_INET, SOCK_STREAM, 0);
-     if (sockfd < 0)
-        error("ERROR opening socket");
-     /*MemSet 0*/
-     bzero((char *) &serv_addr, sizeof(serv_addr));
-     /*Rec port*/
-     portno = atoi(argv[1]);
-     serv_addr.sin_family = AF_INET;
-     serv_addr.sin_addr.s_addr = INADDR_ANY;
-     printf("portno %x\n", portno);
-     serv_addr.sin_port = htons(portno);
-     printf("%x\n", serv_addr.sin_port);
-     if (bind(sockfd, (struct sockaddr *) &serv_addr,
-              sizeof(serv_addr)) < 0)
-              error("ERROR on binding");
-     listen(sockfd, 5);
-     clilen = sizeof(cli_addr);
-     /*Accept a connection*/
-     while (1)
-       {
-	 newsockfd = accept(sockfd,
-			    (struct sockaddr *) &cli_addr,
-			    &clilen);
-	 if (newsockfd < 0)
-	   error("ERROR on accept");
-   	 bzero(buffer,256);
-	 n = read(newsockfd,buffer,255);
-	 if (n < 0)
-	   error("ERROR reading from socket");
-	 printf("Here is the message: %s\n",buffer);
-	 n = write(newsockfd,"I got your message",18);
-	 if (n < 0)
-	   error("ERROR writing to socket");
-	 close(newsockfd);
-       }
-     close(sockfd);
-     return 0;
+  clilen = sizeof(cli_addr);
+
+  newsockfd = accept(sockfd,
+		     (struct sockaddr *) &cli_addr,
+		     &clilen);
+  if (newsockfd < 0)
+    error("ERROR on accept");
+  my_memset(buffer, 256, 0);
+  if ((n = read(newsockfd,buffer,255)) < 0)
+    error("ERROR reading from socket");
+  printf("%s\n",buffer);
+  if ((n = write(newsockfd, "Received", 18)) < 0)
+    error("ERROR writing to socket");
+  close(newsockfd);
+
+}
+
+int			main(int argc, char *argv[])
+{
+  int			sockfd;
+  int			portno;
+  struct sockaddr_in	serv_addr;
+
+  if (argc < 2)
+    {
+      fprintf(stderr,"ERROROB, no port provided\n");
+      exit(1);
+    }
+  if ((sockfd = socket(AF_INET, SOCK_STREAM, 0)) < 0)
+    return (printf("ERROR opening socket"));
+  my_memset((char *) &serv_addr, sizeof(serv_addr), 0);
+  portno = atoi(argv[1]);
+  serv_addr.sin_family = AF_INET;
+  serv_addr.sin_addr.s_addr = INADDR_ANY;
+  serv_addr.sin_port = swap(portno);
+  if (bind(sockfd, (struct sockaddr *) &serv_addr,
+	   sizeof(serv_addr)) < 0)
+    error("ERROR on binding");
+  listen(sockfd, 5);
+  printf("Server timmy.corp online\tv1.005.2\n");
+  while (1)
+    read_and(sockfd);
+  close(sockfd);
+  return 0;
 }

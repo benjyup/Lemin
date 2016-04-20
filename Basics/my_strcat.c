@@ -5,10 +5,11 @@
 ** Login   <mesqui_v@epitech.net>
 **
 ** Started on  Fri Jan  8 15:55:23 2016 vincent mesquita
-** Last update Sun Apr 17 01:30:58 2016 vincent mesquita
+** Last update Wed Apr 20 12:18:19 2016 Timothée Puentes
 */
 
 #include <stdlib.h>
+#include "my_basics.h"
 
 char		*my_strcat(char *str1, char *str2)
 {

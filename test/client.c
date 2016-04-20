@@ -6,51 +6,79 @@
 #include <sys/socket.h>
 #include <netinet/in.h>
 #include <netdb.h>
+#include "my_basics.h"
+#include "reseaux.h"
 
-void error(const char *msg)
+struct hostent		*init_hostent(char *ip)
 {
-    perror(msg);
-    exit(0);
+  int			c;
+  struct hostent	*server;
+  char			**ip_cut;
+
+  if ((server = malloc(sizeof(*server))) == NULL ||
+      (server->h_name = strdup(ip)) == NULL ||
+      (server->h_aliases = malloc(sizeof(char*))) == NULL ||
+      (server->h_addr_list = malloc(sizeof(char*) * 2)) == NULL ||
+      (server->h_addr = malloc(5)) == NULL ||
+      (ip_cut = my_str_to_wordtab(ip, '.')) == NULL)
+    return (NULL);
+  server->h_length = 4;
+  server->h_aliases[0] = NULL;
+    server->h_addrtype = 2;
+  c = 0;
+  while (c < server->h_length)
+    {
+      server->h_addr[c] = atoi(ip_cut[c]);
+      c += 1;
+    }
+  server->h_addr_list[1] = NULL;
+  return (server);
 }
 
-int main(int argc, char *argv[])
+int			read_and(int sockfd)
 {
-    int		sockfd, portno, n;
-    struct sockaddr_in serv_addr;
-    struct hostent *server;
+  char		buffer[256];
+  int			n;
 
-    char buffer[256];
-    if (argc < 3) {
-       fprintf(stderr,"usage %s hostname port\n", argv[0]);
-       exit(0);
+  printf("Please enter the message: ");
+  my_memset(buffer, 256, 0);
+  fgets(buffer,255,stdin);
+  n = write(sockfd, buffer, my_strlen(buffer));
+  if (n < 0)
+    return(printf("Error read\n"));
+  my_memset(buffer, 256, 0);
+  n = read(sockfd,buffer,255);
+  if (n < 0)
+    return(printf("Error read\n"));
+  printf("%s\n",buffer);
+  close(sockfd);
+}
+
+int			main(int argc, char *argv[])
+{
+  int			sockfd;
+  int			portno;
+  struct sockaddr_in	serv_addr;
+  struct hostent	*server;
+  int			c;
+
+  if (argc < 3)
+    {
+      fprintf(stderr,"usage %s hostname port\n", argv[0]);
+      return (1);
     }
-    portno = atoi(argv[2]);
-    sockfd = socket(AF_INET, SOCK_STREAM, 0);
-    if (sockfd < 0)
-        error("ERROR opening socket");
-    server = gethostbyname(argv[1]);
-    printf("Name %s\nAliases%s\naddrtype%i\nLenght%i\nAddr%s\n",
-	   server->h_name, server->h_aliases[0], server->h_addrtype,
-	   server->h_length, server->h_addr);
-    bzero((char *) &serv_addr, sizeof(serv_addr));
-    serv_addr.sin_family = AF_INET;
-    bcopy((char *)server->h_addr,
-         (char *)&serv_addr.sin_addr.s_addr,
-         server->h_length);
-    serv_addr.sin_port = htons(portno);
-    if (connect(sockfd,(struct sockaddr *) &serv_addr,sizeof(serv_addr)) < 0)
-        error("ERROR connecting");
-    printf("Please enter the message: ");
-    bzero(buffer,256);
-    fgets(buffer,255,stdin);
-    n = write(sockfd,buffer,strlen(buffer));
-    if (n < 0)
-         error("ERROR writing to socket");
-    bzero(buffer,256);
-    n = read(sockfd,buffer,255);
-    if (n < 0)
-         error("ERROR reading from socket");
-    printf("%s\n",buffer);
-    close(sockfd);
-    return 0;
+  if ((sockfd = socket(AF_INET, SOCK_STREAM, 0)) < 0 ||
+      (portno = atoi(argv[2])) < 0 ||
+      (server = init_hostent(argv[1])) == NULL)
+    return (1);
+  c = 0;
+  my_memset((char *)&serv_addr, sizeof(serv_addr), 0);
+  serv_addr.sin_family = AF_INET;
+  if (my_memcpy((char *)&serv_addr.sin_addr.s_addr, (char *)server->h_addr, server->h_length) == NULL)
+    return (1);
+  serv_addr.sin_port = swap(portno);
+  if (connect(sockfd, (struct sockaddr *)&serv_addr, sizeof(serv_addr)) < 0)
+    return (printf("Error connecting\n"));
+  read_and(sockfd);
+  return (0);
 }
