@@ -5,7 +5,7 @@
 ** Login   <mesqui_v@epitech.net>
 **
 ** Started on  Sun Apr 17 20:35:37 2016 vincent mesquita
-** Last update Tue Apr 19 11:45:57 2016 vincent mesquita
+** Last update Wed Apr 20 15:56:20 2016 Vincent Florian
 */
 
 #include <stdlib.h>
@@ -31,6 +31,25 @@ static int		name_already_used(char *name,
 	}
       current = current->next;
     }
+  return (0);
+}
+
+int			my_add_to_begin_room_list(t_room_list *root,
+						  t_room_info *ri)
+{
+  t_room_list		*new_rl;
+  t_room_list		*current;
+
+  if (!root || !ri || name_already_used(ri->name, root))
+    return (-1);
+  current = root->next;
+  if (!(new_rl = malloc(sizeof(*new_rl))))
+    return (my_puterror(MALLOC_ERR));
+  new_rl->ri = ri;
+  new_rl->next = current;
+  new_rl->prev = root;
+  current->prev = new_rl;
+  root->next = new_rl;
   return (0);
 }
 
@@ -77,5 +96,6 @@ int			my_init_leminfo(t_leminfo *leminfo)
   leminfo->start_end = 0;
   leminfo->start = NULL;
   leminfo->end = NULL;
+  leminfo->father = NULL;
   return (1);
 }
