@@ -5,7 +5,7 @@
 ** Login   <mesqui_v@epitech.net>
 **
 ** Started on  Wed Apr 20 14:51:46 2016 vincent mesquita
-** Last update Wed Apr 20 15:10:06 2016 vincent mesquita
+** Last update Wed Apr 20 16:10:46 2016 vincent mesquita
 */
 
 #include "my_basics.h"
@@ -28,7 +28,6 @@ static int	hash_count(char *str)
 int		is_a_comment(char *str)
 {
   unsigned int	i;
-  int		count;
 
   i = 0;
   if (!str[i])

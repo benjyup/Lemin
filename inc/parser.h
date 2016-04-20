@@ -5,7 +5,11 @@
 ** Login   <mesqui_v@epitech.net>
 **
 ** Started on  Sun Apr 17 02:01:14 2016 vincent mesquita
+<<<<<<< HEAD
 ** Last update Wed Apr 20 16:38:17 2016 Vincent Florian
+=======
+** Last update Wed Apr 20 16:22:30 2016 vincent mesquita
+>>>>>>> 56d471a81ae721fc3d9bbbd52ad565d36f5120b2
 */
 
 #ifndef PARSER_H_
@@ -64,6 +68,7 @@ typedef struct		s_leminfo
   t_room_list		*father;
 }			t_leminfo;
 
+void			free_leminfo(t_leminfo *leminfo);
 int			my_add_to_begin_room_list(t_room_list *root,
 						  t_room_info *ri);
 int			is_a_comment(char *str);
