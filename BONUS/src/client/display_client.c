@@ -5,7 +5,7 @@
 ** Login   <puente_t@epitech.net>
 **
 ** Started on  Thu Apr 21 10:33:03 2016 Timothée Puentes
-** Last update Thu Apr 21 17:17:02 2016 Timothée Puentes
+** Last update Thu Apr 21 17:21:29 2016 Timothée Puentes
 */
 
 #include <stdio.h>
@@ -66,14 +66,14 @@ t_bunny_response	mainloop(void *_data)
   else if (order == O_INC || order == O_OUT)
     data->ant = ((order == O_INC) ? (1) : (0));
   else if (order == O_NTURN)
-    color = RED;
+    color = 0x32FF00FF;
   p.x = WIN_X / 3;
   p.y = WIN_Y / 2;
-  if (data->ant && !data->count)
-    my_tektext(data->pix, data->font, &p, "! Ant incoming !");
   p.x = 0;
   p.y = 0;
   bunny_my_fill(data->pix, color);
+  if (data->ant && !data->count)
+    my_tektext(data->pix, data->font, &p, "! Ant incoming !");
   data->count = (data->count + 1) % 256;
   bunny_blit(&data->win->buffer, &data->pix->clipable, &p);
   bunny_display(data->win);
