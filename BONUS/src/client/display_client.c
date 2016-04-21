@@ -5,7 +5,7 @@
 ** Login   <puente_t@epitech.net>
 **
 ** Started on  Thu Apr 21 10:33:03 2016 Timothée Puentes
-** Last update Thu Apr 21 15:23:25 2016 Timothée Puentes
+** Last update Thu Apr 21 15:24:33 2016 Timothée Puentes
 */
 
 #include <stdio.h>
@@ -78,8 +78,8 @@ int		display_client(int sockfd)
 
   my_memset(buffer, BUFF, 0);
   if (read(sockfd, buffer, BUFF) < 0)
-    return (my_puterror(WRITE_ERR));
-  if (read(sockfd, buffer, BUFF) < 0)
+    return (my_puterror(READ_ERR));
+  if (write(sockfd, buffer, BUFF) < 0)
     return (my_puterror(WRITE_ERR));
   if ((data.win = bunny_start(WIN_X, WIN_Y, false, buffer)) == NULL ||
       (data.pix = bunny_new_pixelarray(WIN_X, WIN_Y)) == NULL)
