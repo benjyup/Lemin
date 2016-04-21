@@ -5,7 +5,7 @@
 ** Login   <puente_t@epitech.net>
 **
 ** Started on  Wed Apr 20 15:53:12 2016 Timothée Puentes
-** Last update Thu Apr 21 15:48:32 2016 Timothée Puentes
+** Last update Thu Apr 21 15:50:59 2016 Timothée Puentes
 */
 
 #include <stdlib.h>
@@ -60,6 +60,7 @@ static int	treat_line(t_reseaux *data, char *str)
   char		**wordtab;
   unsigned int	c;
 
+  my_putstr("New turn\n");
   if ((wordtab = my_str_to_wordtab(str, ' ')) == NULL)
     return (my_puterror(MALLOC_ERR));
   c = 0;
