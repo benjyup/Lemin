@@ -5,7 +5,7 @@
 ** Login   <puente_t@epitech.net>
 **
 ** Started on  Wed Apr 20 15:16:12 2016 Timothée Puentes
-** Last update Thu Apr 21 11:07:54 2016 Timothée Puentes
+** Last update Thu Apr 21 14:14:06 2016 Timothée Puentes
 */
 
 #include <stdlib.h>
@@ -48,7 +48,7 @@ int			etablish_new_connexion(t_reseaux *data)
     {
       if ((CLIENT[c] = accept(data->sockfd, (struct sockaddr*)(&cli_addr)
 			      , &clilen)) < 0)
-	return (my_puterror("ERROR on accept"));
+	return (perror("ERROR on accept\n"));
       if (write(CLIENT[c], cur->ri->name,
 		my_strlen(cur->ri->name)) != my_strlen(cur->ri->name))
 	return (my_puterror(WRITE_ERR));
@@ -62,25 +62,24 @@ int			etablish_new_connexion(t_reseaux *data)
 
 int			server(t_reseaux *data)
 {
-  int			sockfd;
-  struct sockaddr_in	serv_addr;
+ struct sockaddr_in	serv_addr;
 
-  if ((sockfd = socket(AF_INET, SOCK_STREAM, 0)) < 0)
+  if ((data->sockfd = socket(AF_INET, SOCK_STREAM, 0)) < 0)
     return (my_puterror("ERROR opening socket"));
   my_memset((char *) &serv_addr, sizeof(serv_addr), 0);
   serv_addr.sin_family = AF_INET;
   serv_addr.sin_addr.s_addr = INADDR_ANY;
   serv_addr.sin_port = swap(PORT);
-  if (bind(sockfd, (struct sockaddr *) &serv_addr,
+  if (bind(data->sockfd, (struct sockaddr *) &serv_addr,
 	   sizeof(serv_addr)) < 0)
     return (my_puterror("ERROR on binding"));
   if ((data->client = malloc(sizeof(int) * TOTAL_ROOM)) == NULL)
     return (my_puterror(MALLOC_ERR));
-  listen(sockfd, TOTAL_ROOM);
+  listen(data->sockfd, TOTAL_ROOM);
   if (!etablish_new_connexion(data) ||
       treat_data(data))
     return (1);
-  close(sockfd);
+  close(data->sockfd);
   return (0);
 }
 

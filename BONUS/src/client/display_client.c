@@ -5,7 +5,7 @@
 ** Login   <puente_t@epitech.net>
 **
 ** Started on  Thu Apr 21 10:33:03 2016 Timothée Puentes
-** Last update Thu Apr 21 11:26:42 2016 Timothée Puentes
+** Last update Thu Apr 21 14:15:13 2016 Timothée Puentes
 */
 
 #include <stdio.h>
@@ -83,6 +83,7 @@ int		display_client(int sockfd)
       (data.pix = bunny_new_pixelarray(WIN_X, WIN_Y)) == NULL)
     return (my_puterror(MALLOC_ERR));
   bunny_set_loop_main_function(mainloop);
+  data.sockfd = sockfd;
   data.ant = 0;
   data.count = 0;
   set_termios(0);

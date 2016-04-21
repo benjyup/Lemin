@@ -5,7 +5,7 @@
 ** Login   <puente_t@epitech.net>
 **
 ** Started on  Wed Apr 20 12:41:48 2016 Timothée Puentes
-** Last update Thu Apr 21 10:31:33 2016 Timothée Puentes
+** Last update Thu Apr 21 14:10:09 2016 Timothée Puentes
 */
 
 #ifndef RESEAUX_H_
@@ -13,7 +13,7 @@
 
 # include "lemin.h"
 
-# define	PORT 1042
+# define	PORT 5000
 # define	TOTAL_ROOM data->leminfo->total_link
 # define	TOTAL_ANT (unsigned int)data->leminfo->ants_nbr
 # define	CLIENT data->client
