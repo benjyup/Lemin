@@ -5,7 +5,7 @@
 ** Login   <puente_t@epitech.net>
 **
 ** Started on  Wed Apr 20 15:16:12 2016 Timothée Puentes
-** Last update Thu Apr 21 15:05:00 2016 Timothée Puentes
+** Last update Thu Apr 21 15:24:19 2016 Timothée Puentes
 */
 
 #include <stdlib.h>
@@ -15,6 +15,7 @@
 #include <netinet/in.h>
 #include "reseaux.h"
 #include "my_basics.h"
+#include "client.h"
 
 static int		init_ants(t_reseaux *data)
 {
@@ -35,10 +36,10 @@ static int		init_ants(t_reseaux *data)
 static void		      print_data_connexion(struct sockaddr_in cli_addr, char *str)
 {
   printf("Connecting %i.%i.%i.%i on room [%s]\n",
-	 (cli_addr.sin_addr.s_addr >> 8 * 3) % 256,
-	 (cli_addr.sin_addr.s_addr >> 8 * 2) % 256,
-	 (cli_addr.sin_addr.s_addr >> 8) % 256,
 	 (cli_addr.sin_addr.s_addr % 256),
+	 (cli_addr.sin_addr.s_addr >> 8) % 256,
+	 (cli_addr.sin_addr.s_addr >> 8 * 2) % 256,
+	 (cli_addr.sin_addr.s_addr >> 8 * 3) % 256,
 	 str);
 }
 
@@ -48,7 +49,7 @@ int			etablish_new_connexion(t_reseaux *data)
   socklen_t		clilen;
   unsigned int		c;
   t_room_list		*cur;
-  char			buff[24];
+  char			buff[BUFF + 1];
 
   if (init_ants(data))
     return (1);
@@ -59,11 +60,9 @@ int			etablish_new_connexion(t_reseaux *data)
       if ((CLIENT[c] = accept(data->sockfd, (struct sockaddr*)(&cli_addr)
 			      , &clilen)) < 0)
 	return (my_puterror("ERROR on accept\n"));
-      print_data_connexion(cli_addr, cur->ri->name);
-      if (write(CLIENT[c], cur->ri->name,
-		my_strlen(cur->ri->name)) != my_strlen(cur->ri->name))
+      if (write(CLIENT[c], cur->ri->name, BUFF) != BUFF)
 	return (my_puterror(WRITE_ERR));
-      if (read(CLIENT[c], buff, 24) < 0)
+      if (read(CLIENT[c], buff, BUFF) < 0 || !my_strcomp(buff, cur->ri->name))
 	return (my_puterror(READ_ERR));
       cur = cur->next;
       c += 1;

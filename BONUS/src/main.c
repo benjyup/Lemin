@@ -5,7 +5,7 @@
 ** Login   <mesqui_v@epitech.net>
 **
 ** Started on  Sun Apr 17 01:54:13 2016 vincent mesquita
-** Last update Thu Apr 21 12:13:35 2016 Timothée Puentes
+** Last update Thu Apr 21 15:15:08 2016 Timothée Puentes
 */
 
 #include <stdlib.h>
@@ -39,6 +39,7 @@ int		main(void)
   my_putstr("##visu\n");
   if ((way = my_path(&leminfo)) == NULL)
     return (0);
+  my_antman(way, &leminfo);
   free_leminfo(&leminfo);
   return (0);
 }

@@ -5,7 +5,7 @@
 ** Login   <puente_t@epitech.net>
 **
 ** Started on  Thu Apr 21 10:25:32 2016 Timothée Puentes
-** Last update Thu Apr 21 11:13:02 2016 Timothée Puentes
+** Last update Thu Apr 21 15:22:28 2016 Timothée Puentes
 */
 
 #include <stdio.h>
@@ -52,14 +52,15 @@ int			main(int argc, char *argv[])
   struct sockaddr_in	serv_addr;
   struct hostent	*server;
 
-  if (argc < 3)
-    return (my_puterror("usage ./client_visu hostname port\n"));
+  if (argc < 2)
+    return (my_puterror("usage ./client_visu hostname\n"));
   if ((sockfd = socket(AF_INET, SOCK_STREAM, 0)) < 0 ||
       (server = init_hostent(argv[1])) == NULL)
     return (1);
   my_memset((char *)&serv_addr, sizeof(serv_addr), 0);
   serv_addr.sin_family = AF_INET;
-  if (my_memcpy((char *)&serv_addr.sin_addr.s_addr, (char *)server->h_addr, server->h_length) == NULL)
+  if (my_memcpy((char *)&serv_addr.sin_addr.s_addr, (char *)server->h_addr,
+		server->h_length) == NULL)
     return (1);
   serv_addr.sin_port = swap(PORT);
   if (connect(sockfd, (struct sockaddr *)&serv_addr, sizeof(serv_addr)) < 0)
