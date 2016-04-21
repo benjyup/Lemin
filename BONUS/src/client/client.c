@@ -5,7 +5,7 @@
 ** Login   <puente_t@epitech.net>
 **
 ** Started on  Thu Apr 21 10:25:32 2016 Timothée Puentes
-** Last update Thu Apr 21 16:58:22 2016 Timothée Puentes
+** Last update Thu Apr 21 16:59:17 2016 Timothée Puentes
 */
 
 #include <stdio.h>
@@ -66,7 +66,6 @@ int			main(int argc, char *argv[])
   serv_addr.sin_port = swap(PORT);
   if (connect(sockfd, (struct sockaddr *)&serv_addr, sizeof(serv_addr)) < 0)
     return (my_puterror("Error connecting\n"));
-  display_client(sockfd);
   while (c != O_EXIT)
     {
       printf("Received %i\n", (c = read_order(sockfd)));
