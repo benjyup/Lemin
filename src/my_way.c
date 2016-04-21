@@ -5,7 +5,7 @@
 ** Login   <vincen_s@epitech.net>
 **
 ** Started on  Wed Apr 20 12:48:27 2016 Vincent Florian
-** Last update Wed Apr 20 17:01:56 2016 Vincent Florian
+** Last update Thu Apr 21 13:07:20 2016 Vincent Florian
 */
 
 #include <stdlib.h>
@@ -83,35 +83,66 @@ t_room_list	*my_list_path(t_leminfo *data)
     }
   my_add_to_begin_room_list(my_way, courrant->ri);
   courrant = my_way->next;
-  while (courrant != my_way)
-    {
-      if (courrant->ri->antecedent != NULL)
-	printf("1name : %s, antecedent : %s \n", courrant->NAME, (courrant->ri->antecedent)->NAME);
-      else
-	printf("1name : %s, antecedent : NULL \n", courrant->NAME);
-      courrant = courrant->next;
-    }
+  /* while (courrant != my_way) */
+  /*   { */
+  /* if (courrant->ri->antecedent != NULL) */
+  /*	printf("1name : %s, antecedent : %s \n", courrant->NAME, (courrant->ri->antecedent)->NAME); */
+  /* else */
+  /*	printf("1name : %s, antecedent : NULL \n", courrant->NAME); */
+  /* courrant = courrant->next; */
+  /* } */
   return (my_way);
 }
 
-/* int		my_antman(t_room_list *my_way, t_liminfo *data) */
-/* { */
-/*   t_room_list	*current; */
+int		my_antman(t_room_list *my_way, t_leminfo *data)
+{
+  t_room_list	*current;
+  int		i;
 
-/*   i = 1; */
-/*   while (data->father->ant_num != data->ants_nbr - 1) */
-/*     { */
-/*       current = data->father; */
-/*       i++; */
-/*     } */
-/* } */
+  i = 1;
+  current = my_way->prev;
+  while (current->ri->ant_num != data->ants_nbr + 1)
+    {
+      if (current->ri->ant_num != 0)
+	{
+	  my_putchar('P');
+	  my_put_nbr(current->ri->ant_num);
+	  my_putchar('-');
+	  my_putstr(current->ri->name);
+	  my_putchar(' ');
+	}
+      current->ri->ant_num = 0;
+      while (current->prev != my_way && current->ri->ant_num == 0)
+	current = current->prev;
+      while (current != my_way)
+	{
+	  if (current->ri->ant_num > 0 && current->ri->ant_num < data->ants_nbr + 1)
+	    {
+	      my_putchar('P');
+	      my_put_nbr(current->ri->ant_num);
+	      my_putchar('-');
+	      my_putstr(current->ri->name);
+	      my_putchar(' ');
+	    }
+	  current->next->ri->ant_num = current->ri->ant_num;
+	  current = current->prev;
+	}
+      my_putchar('\n');
+      current = current->next;
+      if (i <= data->ants_nbr + 1)
+	current->ri->ant_num = i;
+      else
+	current->ri->ant_num = 0;
+      i++;
+      current = my_way->prev;
+    }
+  return (0);
+}
 
 t_room_list	*my_path(t_leminfo *data)
 {
   t_room_list	*courrant;
 
-  /* if ((data->father = malloc(sizeof(t_room_list **))) == NULL) */
-  /*   return (NULL); */
   courrant = data->rl_root->next;
   while (courrant != data->rl_root && my_strcomp(courrant->ri->name, data->start) != 1)
     courrant = courrant->next;
@@ -125,13 +156,13 @@ t_room_list	*my_path(t_leminfo *data)
 	return (NULL);
     }
   courrant = data->rl_root->next;
-  while (courrant != data->rl_root)
-    {
-      if (courrant->ri->antecedent != NULL)
-	printf("name : %s , antecedent : %s \n", courrant->NAME, (courrant->ri->antecedent)->NAME);
-      else
-	printf("name : %s, antecedent : START \n", courrant->NAME);
-      courrant = courrant->next;
-    }
+  /* while (courrant != data->rl_root) */
+  /*   { */
+  /*     if (courrant->ri->antecedent != NULL) */
+  /*	printf("name : %s , antecedent : %s \n", courrant->NAME, (courrant->ri->antecedent)->NAME); */
+  /*     else */
+  /*	printf("name : %s, antecedent : START \n", courrant->NAME); */
+  /*     courrant = courrant->next; */
+  /*   } */
   return (my_list_path(data));
 }

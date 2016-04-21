@@ -6,7 +6,7 @@
 **
 ** Started on  Sun Apr 17 02:01:14 2016 vincent mesquita
 <<<<<<< HEAD
-** Last update Wed Apr 20 16:38:17 2016 Vincent Florian
+** Last update Thu Apr 21 12:32:31 2016 Vincent Florian
 =======
 ** Last update Wed Apr 20 16:22:30 2016 vincent mesquita
 >>>>>>> 56d471a81ae721fc3d9bbbd52ad565d36f5120b2
@@ -23,6 +23,9 @@
 # define LINKS		ri->links
 # define PARC		ri->parcours
 # define POIDS		ri->poids
+
+int			my_putstr(char *str);
+void			my_put_nbr(int nb);
 
 typedef struct		s_position
 {
@@ -72,6 +75,7 @@ void			free_leminfo(t_leminfo *leminfo);
 int			my_add_to_begin_room_list(t_room_list *root,
 						  t_room_info *ri);
 int			is_a_comment(char *str);
+int			my_antman(t_room_list *my_way, t_leminfo *data);
 int			my_errors(t_leminfo *leminfo, int check);
 t_room_list		*create_rl(void);
 int			my_add_links(t_leminfo *leminfo,
