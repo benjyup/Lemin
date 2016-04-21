@@ -5,7 +5,7 @@
 ** Login   <puente_t@epitech.net>
 **
 ** Started on  Thu Apr 21 10:33:03 2016 Timothée Puentes
-** Last update Thu Apr 21 15:43:09 2016 Timothée Puentes
+** Last update Thu Apr 21 15:48:59 2016 Timothée Puentes
 */
 
 #include <stdio.h>
@@ -53,7 +53,7 @@ t_bunny_response	mainloop(void *_data)
   unsigned int		color;
 
   data = _data;
-  if (data->count == 0)
+  if (read_order(data->sockfd) != -1 || data->count == 0)
     {
       order = read_order(data->sockfd);
       if (order != -1)

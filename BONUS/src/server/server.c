@@ -5,7 +5,7 @@
 ** Login   <puente_t@epitech.net>
 **
 ** Started on  Wed Apr 20 15:16:12 2016 Timothée Puentes
-** Last update Thu Apr 21 15:24:19 2016 Timothée Puentes
+** Last update Thu Apr 21 15:47:00 2016 Timothée Puentes
 */
 
 #include <stdlib.h>
@@ -64,6 +64,7 @@ int			etablish_new_connexion(t_reseaux *data)
 	return (my_puterror(WRITE_ERR));
       if (read(CLIENT[c], buff, BUFF) < 0 || !my_strcomp(buff, cur->ri->name))
 	return (my_puterror(READ_ERR));
+      usleep(1000);
       cur = cur->next;
       c += 1;
     }
