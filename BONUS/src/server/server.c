@@ -5,7 +5,7 @@
 ** Login   <puente_t@epitech.net>
 **
 ** Started on  Wed Apr 20 15:16:12 2016 Timothée Puentes
-** Last update Thu Apr 21 17:02:38 2016 Timothée Puentes
+** Last update Thu Apr 21 17:04:20 2016 Timothée Puentes
 */
 
 #include <stdlib.h>
@@ -60,6 +60,7 @@ int			etablish_new_connexion(t_reseaux *data)
       if ((CLIENT[c] = accept(data->sockfd, (struct sockaddr*)(&cli_addr)
 			      , &clilen)) < 0)
 	return (my_puterror("ERROR on accept\n"));
+      print_data_connexion(cli_addr, cur->ri->name);
       if (write(CLIENT[c], cur->ri->name, BUFF) != BUFF)
 	return (my_puterror(WRITE_ERR));
       usleep(1000);

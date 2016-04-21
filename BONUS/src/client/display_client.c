@@ -5,7 +5,7 @@
 ** Login   <puente_t@epitech.net>
 **
 ** Started on  Thu Apr 21 10:33:03 2016 Timothée Puentes
-** Last update Thu Apr 21 17:02:48 2016 Timothée Puentes
+** Last update Thu Apr 21 17:05:02 2016 Timothée Puentes
 */
 
 #include <stdio.h>
@@ -89,7 +89,7 @@ int		display_client(int sockfd)
     return (my_puterror(READ_ERR));
   if ((data.win = bunny_start(WIN_X, WIN_Y, false, buffer)) == NULL ||
       (data.pix = bunny_new_pixelarray(WIN_X, WIN_Y)) == NULL ||
-      (data.font = bunny_load_pixelarray("font.png")) == NULL)
+     (data.font = bunny_load_pixelarray("font.png")) == NULL)
     return (my_puterror(MALLOC_ERR));
   bunny_set_loop_main_function(mainloop);
   data.sockfd = sockfd;
