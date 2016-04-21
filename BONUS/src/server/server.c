@@ -5,7 +5,7 @@
 ** Login   <puente_t@epitech.net>
 **
 ** Started on  Wed Apr 20 15:16:12 2016 Timothée Puentes
-** Last update Thu Apr 21 15:47:00 2016 Timothée Puentes
+** Last update Thu Apr 21 16:00:17 2016 Timothée Puentes
 */
 
 #include <stdlib.h>
@@ -87,7 +87,7 @@ int			server(t_reseaux *data)
   if ((data->client = malloc(sizeof(int) * TOTAL_ROOM)) == NULL)
     return (my_puterror(MALLOC_ERR));
   listen(data->sockfd, TOTAL_ROOM);
-  if (!etablish_new_connexion(data) ||
+  if (etablish_new_connexion(data) ||
       treat_data(data))
     return (1);
   close(data->sockfd);
