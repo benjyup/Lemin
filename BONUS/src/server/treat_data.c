@@ -5,7 +5,7 @@
 ** Login   <puente_t@epitech.net>
 **
 ** Started on  Wed Apr 20 15:53:12 2016 Timothée Puentes
-** Last update Thu Apr 21 15:50:59 2016 Timothée Puentes
+** Last update Thu Apr 21 15:58:26 2016 Timothée Puentes
 */
 
 #include <stdlib.h>
@@ -60,7 +60,6 @@ static int	treat_line(t_reseaux *data, char *str)
   char		**wordtab;
   unsigned int	c;
 
-  my_putstr("New turn\n");
   if ((wordtab = my_str_to_wordtab(str, ' ')) == NULL)
     return (my_puterror(MALLOC_ERR));
   c = 0;
@@ -82,8 +81,13 @@ int		treat_data(t_reseaux *data)
 {
   char		*str;
 
+  printf("Start pinging\n", str);
   while ((str = get_next_line(0)) != NULL)
-    treat_line(data, str);
+    {
+      printf("%s\n", str);
+      treat_line(data, str);
+      free(str);
+    }
   if (broadcast_order(data, O_EXIT, 0))
     return (1);
   return (0);
