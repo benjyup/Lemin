@@ -5,7 +5,7 @@
 ** Login   <puente_t@epitech.net>
 **
 ** Started on  Wed Apr 20 12:40:52 2016 Timothée Puentes
-** Last update Wed Apr 20 12:49:55 2016 Timothée Puentes
+** Last update Wed Apr 20 22:24:57 2016 Timothée Puentes
 */
 
 #include "reseaux.h"
@@ -38,4 +38,5 @@ char			*my_memcpy(char *dest, char *src, int size)
   c = -1;
   while (++c < size)
     dest[c] = src[c];
+  return (dest);
 }
