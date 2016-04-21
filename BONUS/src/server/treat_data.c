@@ -5,7 +5,7 @@
 ** Login   <puente_t@epitech.net>
 **
 ** Started on  Wed Apr 20 15:53:12 2016 Timothée Puentes
-** Last update Thu Apr 21 15:58:26 2016 Timothée Puentes
+** Last update Thu Apr 21 16:08:15 2016 Timothée Puentes
 */
 
 #include <stdlib.h>
@@ -15,12 +15,21 @@
 
 static int	get_rank(t_reseaux *data, char *str)
 {
-  unsigned int	c;
+  int		c;
   t_room_list	*cur;
+  char		*tmp;
 
+  c = my_strlen(str);
+  if ((tmp = malloc(c + 1)) == NULL)
+    return (-my_puterror(MALLOC_ERR));
+  tmp[c] = 0;
+  while (--c >= 0)
+    tmp[c] = str[c];
+  free(str);
+  str = tmp;
   cur = data->ROOT->next;
   c = 0;
-  while (!my_strcomp(cur->ri->name, str) && c < TOTAL_ROOM)
+  while (!my_strcomp(cur->ri->name, str) && c < (int)TOTAL_ROOM)
     {
       cur = cur->next;
       c += 1;
@@ -38,8 +47,8 @@ static int	treat_action(t_reseaux *data, char *str)
 
   if ((wordtab = my_str_to_wordtab(str, '-')) == NULL)
     return (my_puterror(MALLOC_ERR));
-  if (wordtab[0][0] != 'P' || wordtab[0][0] != 0)
-    return (my_puterror(SYNTAX_ERR));
+  if (wordtab[0][0] != 'P' || wordtab[0][0] == 0)
+    return (my_puterror("SYNTAX_ERR\n"));
   c = my_getnbr(&wordtab[0][1]);
   if (c > (int)TOTAL_ANT || c < 0 ||
       (rank = get_rank(data, ANTS[c])) < 0 ||
@@ -81,7 +90,6 @@ int		treat_data(t_reseaux *data)
 {
   char		*str;
 
-  printf("Start pinging\n", str);
   while ((str = get_next_line(0)) != NULL)
     {
       printf("%s\n", str);
