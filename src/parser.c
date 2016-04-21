@@ -5,7 +5,7 @@
 ** Login   <mesqui_v@epitech.net>
 **
 ** Started on  Sun Apr 17 01:59:33 2016 vincent mesquita
-** Last update Thu Apr 21 18:15:12 2016 vincent mesquita
+** Last update Thu Apr 21 20:18:45 2016 vincent mesquita
 */
 
 #include <stdlib.h>
@@ -117,5 +117,6 @@ int		my_parser(t_leminfo *leminfo)
 	}
       free(str);
     }
-  return (((my_errors(leminfo, check) == - 1) ? (0) : (0)));
+  my_errors(leminfo, check);
+  return (0);
 }
