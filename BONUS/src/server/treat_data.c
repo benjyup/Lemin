@@ -5,7 +5,7 @@
 ** Login   <puente_t@epitech.net>
 **
 ** Started on  Wed Apr 20 15:53:12 2016 Timothée Puentes
-** Last update Thu Apr 21 14:54:45 2016 Timothée Puentes
+** Last update Thu Apr 21 15:34:36 2016 Timothée Puentes
 */
 
 #include <stdlib.h>
@@ -52,6 +52,7 @@ static int	treat_action(t_reseaux *data, char *str)
       send_order(CLIENT[rank], O_INC, 0))
     return (my_puterror(SYNTAX_ERR));
   my_free_wordtab(wordtab);
+  usleep(5000);
   return (0);
 }
 
@@ -72,6 +73,7 @@ static int	treat_line(t_reseaux *data, char *str)
   my_free_wordtab(wordtab);
   if (broadcast_order(data, O_NTURN, 0) != 0)
     return (1);
+  usleep(50000);
   return (0);
 }
 

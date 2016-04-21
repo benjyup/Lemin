@@ -5,7 +5,7 @@
 ** Login   <puente_t@epitech.net>
 **
 ** Started on  Thu Apr 21 10:33:03 2016 Timothée Puentes
-** Last update Thu Apr 21 15:24:33 2016 Timothée Puentes
+** Last update Thu Apr 21 15:43:09 2016 Timothée Puentes
 */
 
 #include <stdio.h>
@@ -53,15 +53,23 @@ t_bunny_response	mainloop(void *_data)
   unsigned int		color;
 
   data = _data;
-  order = read_order(data->sockfd);
-  color = ((data->ant == 0) ? (MY_B) : (MY_W));
-  printf("order i %i\n", order);
+  if (data->count == 0)
+    {
+      order = read_order(data->sockfd);
+      if (order != -1)
+	printf("order i %i\n", order);
+    }
+  color = MY_B;
   if (order == O_EXIT)
     return (EXIT_ON_SUCCESS);
   else if (order == O_INC || order == O_OUT)
     data->ant = ((order == O_INC) ? (1) : (0));
   else if (order == O_NTURN)
     color = RED;
+  p.x = WIN_X / 3;
+  p.y = WIN_Y / 2;
+  if (data->ant && !data->count)
+    my_tektext(data->pix, data->font, &p, "! Ant incoming !");
   p.x = 0;
   p.y = 0;
   bunny_my_fill(data->pix, color);
@@ -82,7 +90,8 @@ int		display_client(int sockfd)
   if (write(sockfd, buffer, BUFF) < 0)
     return (my_puterror(WRITE_ERR));
   if ((data.win = bunny_start(WIN_X, WIN_Y, false, buffer)) == NULL ||
-      (data.pix = bunny_new_pixelarray(WIN_X, WIN_Y)) == NULL)
+      (data.pix = bunny_new_pixelarray(WIN_X, WIN_Y)) == NULL ||
+      (data.font = bunny_load_pixelarray("font.png")) == NULL)
     return (my_puterror(MALLOC_ERR));
   bunny_set_loop_main_function(mainloop);
   data.sockfd = sockfd;

@@ -5,7 +5,7 @@
 ** Login   <puente_t@epitech.net>
 **
 ** Started on  Thu Apr 21 10:31:39 2016 Timothée Puentes
-** Last update Thu Apr 21 10:54:29 2016 Timothée Puentes
+** Last update Thu Apr 21 15:43:49 2016 Timothée Puentes
 */
 
 #ifndef CLIENT_H_
@@ -24,13 +24,24 @@ typedef struct		s_client
 {
   t_bunny_window	*win;
   t_bunny_pixelarray	*pix;
+  t_bunny_pixelarray	*font;
   int			sockfd;
   int			ant;
   int			count;
 }			t_client;
 
+void			my_tektext(t_bunny_pixelarray *out,
+				   t_bunny_pixelarray *fontpng,
+				   const t_bunny_position *pos,
+				   const char *str);
 void			bunny_my_fill(t_bunny_pixelarray *pix,
 				      unsigned int color_ui);
 int			display_client(int sockfd);
+void			tekpixel(t_bunny_pixelarray *pix,
+				 t_bunny_position *pos,
+				 t_color *color);
+void			tekpixel_t(t_bunny_pixelarray *pix,
+				   t_bunny_position *pos,
+				   t_color *color);
 
 #endif /* !CLIENT_H_ */
