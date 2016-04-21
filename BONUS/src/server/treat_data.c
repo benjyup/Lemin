@@ -5,7 +5,7 @@
 ** Login   <puente_t@epitech.net>
 **
 ** Started on  Wed Apr 20 15:53:12 2016 Timothée Puentes
-** Last update Thu Apr 21 10:37:59 2016 Timothée Puentes
+** Last update Thu Apr 21 14:54:45 2016 Timothée Puentes
 */
 
 #include <stdlib.h>
@@ -18,7 +18,7 @@ static int	get_rank(t_reseaux *data, char *str)
   unsigned int	c;
   t_room_list	*cur;
 
-  cur = data->ROOT;
+  cur = data->ROOT->next;
   c = 0;
   while (!my_strcomp(cur->ri->name, str) && c < TOTAL_ROOM)
     {

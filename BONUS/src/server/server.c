@@ -5,7 +5,7 @@
 ** Login   <puente_t@epitech.net>
 **
 ** Started on  Wed Apr 20 15:16:12 2016 Timothée Puentes
-** Last update Thu Apr 21 14:16:36 2016 Timothée Puentes
+** Last update Thu Apr 21 15:05:00 2016 Timothée Puentes
 */
 
 #include <stdlib.h>
@@ -32,6 +32,16 @@ static int		init_ants(t_reseaux *data)
   return (0);
 }
 
+static void		      print_data_connexion(struct sockaddr_in cli_addr, char *str)
+{
+  printf("Connecting %i.%i.%i.%i on room [%s]\n",
+	 (cli_addr.sin_addr.s_addr >> 8 * 3) % 256,
+	 (cli_addr.sin_addr.s_addr >> 8 * 2) % 256,
+	 (cli_addr.sin_addr.s_addr >> 8) % 256,
+	 (cli_addr.sin_addr.s_addr % 256),
+	 str);
+}
+
 int			etablish_new_connexion(t_reseaux *data)
 {
   struct sockaddr_in	cli_addr;
@@ -42,13 +52,14 @@ int			etablish_new_connexion(t_reseaux *data)
 
   if (init_ants(data))
     return (1);
-  cur = data->ROOT;
+  cur = data->ROOT->next;
   c = 0;
   while (c < TOTAL_ROOM)
     {
       if ((CLIENT[c] = accept(data->sockfd, (struct sockaddr*)(&cli_addr)
 			      , &clilen)) < 0)
 	return (my_puterror("ERROR on accept\n"));
+      print_data_connexion(cli_addr, cur->ri->name);
       if (write(CLIENT[c], cur->ri->name,
 		my_strlen(cur->ri->name)) != my_strlen(cur->ri->name))
 	return (my_puterror(WRITE_ERR));
