@@ -5,9 +5,10 @@
 ** Login   <puente_t@epitech.net>
 **
 ** Started on  Wed Apr 20 15:53:12 2016 Timothée Puentes
-** Last update Thu Apr 21 16:08:15 2016 Timothée Puentes
+** Last update Thu Apr 21 16:21:12 2016 Timothée Puentes
 */
 
+#include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
 #include "reseaux.h"
@@ -15,21 +16,12 @@
 
 static int	get_rank(t_reseaux *data, char *str)
 {
-  int		c;
+  unsigned int	c;
   t_room_list	*cur;
-  char		*tmp;
 
-  c = my_strlen(str);
-  if ((tmp = malloc(c + 1)) == NULL)
-    return (-my_puterror(MALLOC_ERR));
-  tmp[c] = 0;
-  while (--c >= 0)
-    tmp[c] = str[c];
-  free(str);
-  str = tmp;
   cur = data->ROOT->next;
   c = 0;
-  while (!my_strcomp(cur->ri->name, str) && c < (int)TOTAL_ROOM)
+  while (!my_strcomp(cur->ri->name, str) && c < TOTAL_ROOM)
     {
       cur = cur->next;
       c += 1;
@@ -60,7 +52,8 @@ static int	treat_action(t_reseaux *data, char *str)
   if ((rank = get_rank(data, ANTS[c])) < 0 ||
       send_order(CLIENT[rank], O_INC, 0))
     return (my_puterror(SYNTAX_ERR));
-  my_free_wordtab(wordtab);
+  free(wordtab[0]);
+  free(wordtab);
   return (0);
 }
 
@@ -79,7 +72,7 @@ static int	treat_line(t_reseaux *data, char *str)
       c += 1;
     }
   my_free_wordtab(wordtab);
-  usleep(2000);
+  usleep(200000);
   if (broadcast_order(data, O_NTURN, 0) != 0)
     return (1);
   usleep(2000);
@@ -94,7 +87,6 @@ int		treat_data(t_reseaux *data)
     {
       printf("%s\n", str);
       treat_line(data, str);
-      free(str);
     }
   if (broadcast_order(data, O_EXIT, 0))
     return (1);
