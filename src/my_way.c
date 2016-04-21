@@ -5,7 +5,7 @@
 ** Login   <vincen_s@epitech.net>
 **
 ** Started on  Wed Apr 20 12:48:27 2016 Vincent Florian
-** Last update Thu Apr 21 14:06:35 2016 Vincent Florian
+** Last update Thu Apr 21 16:18:08 2016 Vincent Florian
 */
 
 #include <stdlib.h>
@@ -114,7 +114,6 @@ int		my_antman(t_room_list *my_way, t_leminfo *data)
 	  my_put_nbr(current->ri->ant_num);
 	  my_putchar('-');
 	  my_putstr(current->ri->name);
-	  my_putchar(' ');
 	}
       current->ri->ant_num = 0;
       while (current->prev != my_way && current->ri->ant_num == 0)
@@ -127,7 +126,6 @@ int		my_antman(t_room_list *my_way, t_leminfo *data)
 	      my_put_nbr(current->ri->ant_num);
 	      my_putchar('-');
 	      my_putstr(current->ri->name);
-	      my_putchar(' ');
 	    }
 	  current->next->ri->ant_num = current->ri->ant_num;
 	  current = current->prev;
