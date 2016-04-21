@@ -5,7 +5,7 @@
 ** Login   <puente_t@epitech.net>
 **
 ** Started on  Thu Apr 21 10:33:03 2016 Timothée Puentes
-** Last update Thu Apr 21 17:05:02 2016 Timothée Puentes
+** Last update Thu Apr 21 17:15:17 2016 Timothée Puentes
 */
 
 #include <stdio.h>
@@ -50,12 +50,13 @@ t_bunny_response	mainloop(void *_data)
   t_bunny_position	p;
   t_client		*data;
   int			order;
+  int			tmp;
   unsigned int		color;
 
   data = _data;
-  if (read_order(data->sockfd) != -1 || data->count == 0)
+  if ((tmp = read_order(data->sockfd)) != -1 || data->count == 0)
     {
-      order = read_order(data->sockfd);
+      order = tmp;
       if (order != -1)
 	printf("order i %i\n", order);
     }
