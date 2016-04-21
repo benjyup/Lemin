@@ -5,7 +5,7 @@
 ** Login   <puente_t@epitech.net>
 **
 ** Started on  Wed Apr 20 12:41:48 2016 Timothée Puentes
-** Last update Thu Apr 21 15:34:02 2016 Timothée Puentes
+** Last update Thu Apr 21 16:30:23 2016 Timothée Puentes
 */
 
 #ifndef RESEAUX_H_
@@ -24,8 +24,8 @@
 # define	O_INC 1
 # define	O_OUT 2
 # define	O_NTURN 3
-# define	O_START 3
-# define	O_END 3
+# define	O_START 4
+# define	O_END 5
 
 # define	WRITE_ERR "Write failed\n"
 # define	READ_ERR "Read failed\n"

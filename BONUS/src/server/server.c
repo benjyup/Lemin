@@ -5,7 +5,7 @@
 ** Login   <puente_t@epitech.net>
 **
 ** Started on  Wed Apr 20 15:16:12 2016 Timothée Puentes
-** Last update Thu Apr 21 16:00:17 2016 Timothée Puentes
+** Last update Thu Apr 21 16:56:07 2016 Timothée Puentes
 */
 
 #include <stdlib.h>
@@ -24,7 +24,7 @@ static int		init_ants(t_reseaux *data)
   if ((ANTS = malloc(sizeof(char *) * (TOTAL_ANT + 1))) == NULL)
     return (my_puterror(MALLOC_ERR));
   c = 0;
-  while (c < TOTAL_ANT)
+  while (c <= TOTAL_ANT)
     {
       if ((ANTS[c] = my_strcpy(START_NAME)) == NULL)
 	return (my_puterror(MALLOC_ERR));

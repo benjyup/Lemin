@@ -5,7 +5,7 @@
 ** Login   <puente_t@epitech.net>
 **
 ** Started on  Wed Apr 20 16:28:42 2016 Timothée Puentes
-** Last update Thu Apr 21 08:46:16 2016 Timothée Puentes
+** Last update Thu Apr 21 16:48:03 2016 Timothée Puentes
 */
 
 #include <unistd.h>
@@ -18,6 +18,7 @@ int		broadcast_order(t_reseaux *data, char order, int arg)
   t_order	ord;
 
   (void)arg;
+  my_memset((char *)&ord, sizeof(ord), 0);
   ord.type = order;
   c = 0;
   while (c < TOTAL_ROOM)
@@ -34,6 +35,7 @@ int		send_order(int sockfd, char order, int data)
   t_order	ord;
 
   (void)data;
+  printf("%i\n", order);
   ord.type = order;
   if (write(sockfd, (void*)&ord, sizeof(ord)) != sizeof(ord))
     return (my_puterror(WRITE_ERR));

@@ -5,7 +5,7 @@
 ** Login   <puente_t@epitech.net>
 **
 ** Started on  Thu Apr 21 10:31:39 2016 Timothée Puentes
-** Last update Thu Apr 21 15:43:49 2016 Timothée Puentes
+** Last update Thu Apr 21 16:57:09 2016 Timothée Puentes
 */
 
 #ifndef CLIENT_H_
@@ -43,5 +43,6 @@ void			tekpixel(t_bunny_pixelarray *pix,
 void			tekpixel_t(t_bunny_pixelarray *pix,
 				   t_bunny_position *pos,
 				   t_color *color);
+int			read_order(int sockfd);
 
 #endif /* !CLIENT_H_ */

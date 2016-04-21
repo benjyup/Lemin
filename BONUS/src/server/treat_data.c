@@ -5,7 +5,7 @@
 ** Login   <puente_t@epitech.net>
 **
 ** Started on  Wed Apr 20 15:53:12 2016 Timothée Puentes
-** Last update Thu Apr 21 16:21:12 2016 Timothée Puentes
+** Last update Thu Apr 21 16:47:19 2016 Timothée Puentes
 */
 
 #include <stdio.h>
@@ -21,7 +21,8 @@ static int	get_rank(t_reseaux *data, char *str)
 
   cur = data->ROOT->next;
   c = 0;
-  while (!my_strcomp(cur->ri->name, str) && c < TOTAL_ROOM)
+  while (cur != data->ROOT &&
+	 !my_strcomp(cur->ri->name, str) && c < TOTAL_ROOM)
     {
       cur = cur->next;
       c += 1;
@@ -72,10 +73,10 @@ static int	treat_line(t_reseaux *data, char *str)
       c += 1;
     }
   my_free_wordtab(wordtab);
-  usleep(200000);
+  sleep(2);
   if (broadcast_order(data, O_NTURN, 0) != 0)
     return (1);
-  usleep(2000);
+  sleep(1);
   return (0);
 }
 
@@ -85,7 +86,6 @@ int		treat_data(t_reseaux *data)
 
   while ((str = get_next_line(0)) != NULL)
     {
-      printf("%s\n", str);
       treat_line(data, str);
     }
   if (broadcast_order(data, O_EXIT, 0))
