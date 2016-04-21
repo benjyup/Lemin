@@ -5,9 +5,10 @@
 ** Login   <puente_t@epitech.net>
 **
 ** Started on  Thu Apr 21 10:33:03 2016 Timothée Puentes
-** Last update Thu Apr 21 11:12:09 2016 Timothée Puentes
+** Last update Thu Apr 21 11:26:42 2016 Timothée Puentes
 */
 
+#include <stdio.h>
 #include <termios.h>
 #include <sys/ioctl.h>
 #include <sys/types.h>
@@ -54,6 +55,7 @@ t_bunny_response	mainloop(void *_data)
   data = _data;
   order = read_order(data->sockfd);
   color = ((data->ant == 0) ? (MY_B) : (MY_W));
+  printf("order i %i\n", order);
   if (order == O_EXIT)
     return (EXIT_ON_SUCCESS);
   else if (order == O_INC || order == O_OUT)
