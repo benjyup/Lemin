@@ -5,7 +5,7 @@
 ** Login   <vincen_s@epitech.net>
 **
 ** Started on  Wed Apr 20 12:48:27 2016 Vincent Florian
-** Last update Thu Apr 21 13:07:20 2016 Vincent Florian
+** Last update Thu Apr 21 14:06:35 2016 Vincent Florian
 */
 
 #include <stdlib.h>
@@ -100,6 +100,11 @@ int		my_antman(t_room_list *my_way, t_leminfo *data)
   int		i;
 
   i = 1;
+  current = my_way->next->next;
+  if (i <= data->ants_nbr + 1)
+    current->ri->ant_num = i;
+  else
+    current->ri->ant_num = 0;
   current = my_way->prev;
   while (current->ri->ant_num != data->ants_nbr + 1)
     {
@@ -114,7 +119,7 @@ int		my_antman(t_room_list *my_way, t_leminfo *data)
       current->ri->ant_num = 0;
       while (current->prev != my_way && current->ri->ant_num == 0)
 	current = current->prev;
-      while (current != my_way)
+      while (current->prev != my_way)
 	{
 	  if (current->ri->ant_num > 0 && current->ri->ant_num < data->ants_nbr + 1)
 	    {
