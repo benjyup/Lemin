@@ -5,7 +5,7 @@
 ** Login   <vincen_s@epitech.net>
 **
 ** Started on  Wed Apr 20 12:48:27 2016 Vincent Florian
-** Last update Thu Apr 21 16:18:08 2016 Vincent Florian
+** Last update Thu Apr 21 16:40:56 2016 Vincent Florian
 */
 
 #include <stdlib.h>
@@ -100,7 +100,7 @@ int		my_antman(t_room_list *my_way, t_leminfo *data)
   int		i;
 
   i = 1;
-  current = my_way->next->next;
+  current = my_way->next;
   if (i <= data->ants_nbr + 1)
     current->ri->ant_num = i;
   else
@@ -108,35 +108,37 @@ int		my_antman(t_room_list *my_way, t_leminfo *data)
   current = my_way->prev;
   while (current->ri->ant_num != data->ants_nbr + 1)
     {
-      if (current->ri->ant_num != 0)
-	{
-	  my_putchar('P');
-	  my_put_nbr(current->ri->ant_num);
-	  my_putchar('-');
-	  my_putstr(current->ri->name);
-	}
+      /* if (current->ri->ant_num != 0) */
+      /*	{ */
+      /*	  my_putchar('P'); */
+      /*	  my_put_nbr(current->ri->ant_num); */
+      /*	  my_putchar('-'); */
+      /*	  my_putstr(current->ri->name); */
+      /*	} */
       current->ri->ant_num = 0;
       while (current->prev != my_way && current->ri->ant_num == 0)
 	current = current->prev;
-      while (current->prev != my_way)
+      while (current != my_way)
 	{
 	  if (current->ri->ant_num > 0 && current->ri->ant_num < data->ants_nbr + 1)
 	    {
 	      my_putchar('P');
 	      my_put_nbr(current->ri->ant_num);
 	      my_putchar('-');
-	      my_putstr(current->ri->name);
+	      my_putstr(current->next->ri->name);
 	    }
 	  current->next->ri->ant_num = current->ri->ant_num;
 	  current = current->prev;
 	}
-      my_putchar('\n');
       current = current->next;
+      i++;
       if (i <= data->ants_nbr + 1)
-	current->ri->ant_num = i;
+	{
+	  my_putchar('\n');
+	  current->ri->ant_num = i;
+	}
       else
 	current->ri->ant_num = 0;
-      i++;
       current = my_way->prev;
     }
   return (0);
