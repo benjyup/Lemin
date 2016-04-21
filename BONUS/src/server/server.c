@@ -5,7 +5,7 @@
 ** Login   <puente_t@epitech.net>
 **
 ** Started on  Wed Apr 20 15:16:12 2016 Timothée Puentes
-** Last update Thu Apr 21 16:56:07 2016 Timothée Puentes
+** Last update Thu Apr 21 17:02:38 2016 Timothée Puentes
 */
 
 #include <stdlib.h>
@@ -62,8 +62,6 @@ int			etablish_new_connexion(t_reseaux *data)
 	return (my_puterror("ERROR on accept\n"));
       if (write(CLIENT[c], cur->ri->name, BUFF) != BUFF)
 	return (my_puterror(WRITE_ERR));
-      if (read(CLIENT[c], buff, BUFF) < 0 || !my_strcomp(buff, cur->ri->name))
-	return (my_puterror(READ_ERR));
       usleep(1000);
       cur = cur->next;
       c += 1;
@@ -104,5 +102,6 @@ int		main(void)
   data.leminfo = &leminfo;
   if (server(&data) != 0)
     return (ERR);
+  my_putstr("Ok\n");
   return (0);
 }
