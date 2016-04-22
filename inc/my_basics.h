@@ -5,7 +5,7 @@
 ** Login   <mesqui_v@epitech.net>
 **
 ** Started on  Mon Nov 30 12:27:07 2015 vincent mesquita
-** Last update Tue Apr 19 12:53:08 2016 Timothée Puentes
+** Last update Fri Apr 22 20:27:41 2016 vincent mesquita
 */
 
 #ifndef MY_BASICS_H_
@@ -17,6 +17,9 @@ void		my_putchar(char c);
 void		my_putchar_error(char c);
 int		my_put_nbr_error(int nbr);
 int		my_puterror2(char *str, int line);
+int		my_puterror_int(char *str,
+				int line,
+				int return_value);
 void		*my_puterror_pnt(char *str);
 int		my_putstr(char *str);
 int		my_puterror(char *str);

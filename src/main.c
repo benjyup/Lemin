@@ -5,7 +5,7 @@
 ** Login   <mesqui_v@epitech.net>
 **
 ** Started on  Sun Apr 17 01:54:13 2016 vincent mesquita
-** Last update Fri Apr 22 14:10:05 2016 vincent mesquita
+** Last update Fri Apr 22 20:32:46 2016 vincent mesquita
 */
 
 #include <stdlib.h>
@@ -36,9 +36,12 @@ int		main(void)
       my_puterror(MALLOC_ERR);
       return (0);
     }
-  if ((way = my_path(&leminfo)) == NULL)
-    return (0);
-  my_antman(way, &leminfo);
+  if (leminfo.start != NULL)
+    {
+      if ((way = my_path(&leminfo)) == NULL)
+	return (0);
+      my_antman(way, &leminfo);
+    }
   free_leminfo(&leminfo);
   return (0);
 }
