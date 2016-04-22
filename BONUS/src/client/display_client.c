@@ -5,7 +5,7 @@
 ** Login   <puente_t@epitech.net>
 **
 ** Started on  Thu Apr 21 10:33:03 2016 Timothée Puentes
-** Last update Fri Apr 22 13:15:27 2016 Timothée Puentes
+** Last update Fri Apr 22 13:28:35 2016 Timothée Puentes
 */
 
 #include <stdio.h>
@@ -50,19 +50,19 @@ void			print_data(t_client *data)
   t_bunny_position	pos;
 
   pos.y = WIN_Y / 2;
-  pos.x = WIN_X / 2 + data->count - 32;
-  if (data->order | O_INC)
+  pos.x = WIN_X / 2 + data->count;
+  if (data->order & O_INC)
     {
       my_tektext(data->pix, data->font, &pos, "A");
       my_putstr("INC\n");
     }
-  pos.x = data->count - 32;
-  if (data->order | O_OUT)
+  pos.x = data->count;
+  if (data->order & O_OUT)
     {
       my_tektext(data->pix, data->font, &pos, "A");
       my_putstr("OUT\n");
     }
-  printf("%x\n", data->order);
+  printf("print %x\n", data->order);
 }
 
 void			treat_order(t_client *data)
@@ -72,7 +72,7 @@ void			treat_order(t_client *data)
       data->order = data->order | read_order(data->sockfd);
       printf("%x\n", data->order);
     }
-  if ((data->order | O_NTURN) == 1)
+  if ((data->order & O_NTURN) != 0)
     {
       print_data(data);
       data->count = (data->count + 1) % (WIN_X + 32);
@@ -90,10 +90,10 @@ t_bunny_response	mainloop(void *_data)
   t_client		*data;
 
   data = _data;
+  bunny_my_fill(data->pix, 0x55000000);
   treat_order(data);
   p.x = 0;
   p.y = 0;
-  bunny_my_fill(data->pix, 0x32000000);
   bunny_blit(&data->win->buffer, &data->pix->clipable, &p);
   bunny_display(data->win);
   return (GO_ON);
