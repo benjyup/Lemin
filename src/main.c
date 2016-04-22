@@ -5,7 +5,7 @@
 ** Login   <mesqui_v@epitech.net>
 **
 ** Started on  Sun Apr 17 01:54:13 2016 vincent mesquita
-** Last update Fri Apr 22 22:08:49 2016 Vincent Florian
+** Last update Sat Apr 23 00:40:31 2016 vincent mesquita
 */
 
 #include <stdlib.h>
@@ -36,7 +36,7 @@ int		main(void)
       my_puterror(MALLOC_ERR);
       return (0);
     }
-  if (leminfo.start != NULL)
+  if (leminfo.start != NULL && leminfo.end != NULL)
     {
       if ((ways = my_path(&leminfo)) == NULL)
 	return (0);
