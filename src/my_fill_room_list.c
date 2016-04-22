@@ -5,7 +5,7 @@
 ** Login   <mesqui_v@epitech.net>
 **
 ** Started on  Mon Apr 18 11:04:15 2016 vincent mesquita
-** Last update Fri Apr 22 18:00:25 2016 vincent mesquita
+** Last update Fri Apr 22 18:02:30 2016 vincent mesquita
 */
 
 #include <stdlib.h>
@@ -34,8 +34,6 @@ static int		my_check_position(char **wordtab,
 					  t_room_info *ri,
 					  t_leminfo *leminfo)
 {
-  int			x;
-  int			y;
   t_room_list		*current;
 
   if (!wordtab)
