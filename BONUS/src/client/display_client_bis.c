@@ -5,7 +5,7 @@
 ** Login   <puente_t@epitech.net>
 **
 ** Started on  Fri Apr 22 13:56:03 2016 Timothée Puentes
-** Last update Fri Apr 22 14:15:58 2016 Timothée Puentes
+** Last update Fri Apr 22 17:25:11 2016 Timothée Puentes
 */
 
 #include <stdio.h>
@@ -52,10 +52,10 @@ void			print_data(t_client *data)
   pos.y = WIN_Y / 2;
   pos.x = WIN_X / 2 + data->count;
   if (data->order & O_OUT)
-    my_tektext(data->pix, data->font, &pos, "A");
+    display_sprite(data->pix, data->sprite, &pos, data->count);
   pos.x = -WIN_X / 2 + data->count;
   if (data->order & O_INC)
-      my_tektext(data->pix, data->font, &pos, "A");
+    display_sprite(data->pix, data->sprite, &pos, data->count);
   pos.y = WIN_Y / 3;
   pos.x = WIN_X / 2 - 32 * my_strlen(PRINT_START) / 2;
   if (data->start)
