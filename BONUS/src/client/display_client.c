@@ -5,7 +5,7 @@
 ** Login   <puente_t@epitech.net>
 **
 ** Started on  Thu Apr 21 10:33:03 2016 Timothée Puentes
-** Last update Fri Apr 22 13:56:16 2016 Timothée Puentes
+** Last update Fri Apr 22 14:18:01 2016 Timothée Puentes
 */
 
 #include <stdio.h>
@@ -49,22 +49,34 @@ t_bunny_response	mainloop(void *_data)
   return (GO_ON);
 }
 
+int		init_char(t_client *data)
+{
+  char		buff[BUFF + 1];
+
+  my_memset(buff, BUFF, 0);
+  if (read(data->sockfd, buff, BUFF) < 0)
+    return (my_puterror(READ_ERR));
+  if ((data->win = bunny_start(WIN_X, WIN_Y, false, buff)) == NULL ||
+      (data->pix = bunny_new_pixelarray(WIN_X, WIN_Y)) == NULL ||
+     (data->font = bunny_load_pixelarray("font.png")) == NULL)
+    return (my_puterror(MALLOC_ERR));
+  if (read(data->sockfd, buff, BUFF) < 0)
+    return (my_puterror(READ_ERR));
+  data->start = ((buff[0] == '1') ? (1) : (0));
+  data->start = ((buff[0] == '2') ? (2) : (data->start));
+  if (write(data->sockfd, buff, BUFF) < 0)
+    return (my_puterror(READ_ERR));
+  return (0);
+}
+
 int		display_client(int sockfd)
 {
   t_client	data;
-  char		buffer[BUFF + 1];
 
-  my_memset(buffer, BUFF, 0);
-  if (read(sockfd, buffer, BUFF) < 0)
-    return (my_puterror(READ_ERR));
-  if (write(sockfd, buffer, BUFF) < 0)
-    return (my_puterror(READ_ERR));
-  if ((data.win = bunny_start(WIN_X, WIN_Y, false, buffer)) == NULL ||
-      (data.pix = bunny_new_pixelarray(WIN_X, WIN_Y)) == NULL ||
-     (data.font = bunny_load_pixelarray("font.png")) == NULL)
-    return (my_puterror(MALLOC_ERR));
-  bunny_set_loop_main_function(mainloop);
   data.sockfd = sockfd;
+  if (init_char(&data) != 0)
+    return (1);
+  bunny_set_loop_main_function(mainloop);
   data.count = 0;
   data.order = 0;
   set_termios(0);

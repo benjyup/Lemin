@@ -5,7 +5,7 @@
 ** Login   <puente_t@epitech.net>
 **
 ** Started on  Thu Apr 21 10:31:39 2016 Timothée Puentes
-** Last update Fri Apr 22 13:56:56 2016 Timothée Puentes
+** Last update Fri Apr 22 14:06:12 2016 Timothée Puentes
 */
 
 #ifndef CLIENT_H_
@@ -28,6 +28,7 @@ typedef struct		s_client
   int			sockfd;
   int			count;
   int			order;
+  int			start;
 }			t_client;
 
 void			my_tektext(t_bunny_pixelarray *out,
