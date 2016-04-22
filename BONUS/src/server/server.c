@@ -5,7 +5,7 @@
 ** Login   <puente_t@epitech.net>
 **
 ** Started on  Wed Apr 20 15:16:12 2016 Timothée Puentes
-** Last update Fri Apr 22 14:05:28 2016 Timothée Puentes
+** Last update Fri Apr 22 17:30:25 2016 Timothée Puentes
 */
 
 #include <stdio.h>
@@ -66,8 +66,8 @@ int			etablish_new_connexion(t_reseaux *data)
       if ((CLIENT[c] = accept(data->sockfd, (struct sockaddr*)(&cli_addr)
 			      , &clilen)) < 0)
 	return (my_puterror("ERROR on accept\n"));
-      if (write(CLIENT[c], cur->ri->name, BUFF) != BUFF ||
-	  write(CLIENT[c], IS_START, BUFF) != BUFF ||
+      if (write(CLIENT[c], IS_START, BUFF) != BUFF ||
+	  write(CLIENT[c], cur->ri->name, BUFF) != BUFF ||
 	  read(CLIENT[c], buff, BUFF) < 0 || !my_strcomp(buff, cur->ri->name))
 	return (my_puterror("Error while pinging\n"));
       print_data_connexion(cli_addr, cur->ri->name);
