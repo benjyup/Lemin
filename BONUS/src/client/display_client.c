@@ -5,7 +5,7 @@
 ** Login   <puente_t@epitech.net>
 **
 ** Started on  Thu Apr 21 10:33:03 2016 Timothée Puentes
-** Last update Fri Apr 22 12:17:00 2016 Timothée Puentes
+** Last update Fri Apr 22 12:20:11 2016 Timothée Puentes
 */
 
 #include <stdio.h>
@@ -69,8 +69,6 @@ void			treat_order(t_client *data)
 {
   if (data->count == 0)
     {
-      if (data->order == 0)
-	return ;
       data->order = data->order | read_order(data->sockfd);
       printf("%x\n", data->order);
     }
@@ -117,6 +115,7 @@ int		display_client(int sockfd)
   data.count = 0;
   data.order = 0;
   set_termios(0);
+  my_putstr("GO!\n");
   bunny_loop(data.win, 255, &data);
   set_termios(1);
   bunny_stop(data.win);
