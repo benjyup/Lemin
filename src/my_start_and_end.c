@@ -5,7 +5,7 @@
 ** Login   <mesqui_v@epitech.net>
 **
 ** Started on  Mon Apr 18 20:33:53 2016 vincent mesquita
-** Last update Thu Apr 21 21:44:09 2016 vincent mesquita
+** Last update Fri Apr 22 13:56:08 2016 vincent mesquita
 */
 
 #include "parser.h"
@@ -15,9 +15,9 @@ int		my_start_and_end2(char *str,
 				  t_leminfo *leminfo)
 {
   if (leminfo->start_end == START && !(leminfo->start = my_strcpy(str)))
-    return (my_puterror(MALLOC_ERR));
+    return (-2);
   if (leminfo->start_end == END && !(leminfo->end = my_strcpy(str)))
-    return (my_puterror(MALLOC_ERR));
+    return (-2);
   leminfo->start_end = 0;
   return (0);
 }

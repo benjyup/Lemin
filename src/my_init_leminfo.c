@@ -5,7 +5,7 @@
 ** Login   <mesqui_v@epitech.net>
 **
 ** Started on  Sun Apr 17 20:35:37 2016 vincent mesquita
-** Last update Wed Apr 20 15:56:20 2016 Vincent Florian
+** Last update Fri Apr 22 14:05:49 2016 vincent mesquita
 */
 
 #include <stdlib.h>
@@ -44,7 +44,7 @@ int			my_add_to_begin_room_list(t_room_list *root,
     return (-1);
   current = root->next;
   if (!(new_rl = malloc(sizeof(*new_rl))))
-    return (my_puterror(MALLOC_ERR));
+    return (-2);
   new_rl->ri = ri;
   new_rl->next = current;
   new_rl->prev = root;
@@ -63,7 +63,7 @@ int			my_add_to_end_room_list(t_room_list *root,
     return (-1);
   current = root->prev;
   if (!(new_rl = malloc(sizeof(*new_rl))))
-    return (my_puterror(MALLOC_ERR));
+    return (-2);
   new_rl->ri = ri;
   new_rl->next = root;
   new_rl->prev = current;

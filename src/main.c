@@ -5,7 +5,7 @@
 ** Login   <mesqui_v@epitech.net>
 **
 ** Started on  Sun Apr 17 01:54:13 2016 vincent mesquita
-** Last update Thu Apr 21 21:47:31 2016 vincent mesquita
+** Last update Fri Apr 22 14:10:05 2016 vincent mesquita
 */
 
 #include <stdlib.h>
@@ -33,7 +33,7 @@ int		main(void)
 
   if (my_parser(&leminfo) == -2)
     {
-      my_putstr("Je return -2\n");
+      my_puterror(MALLOC_ERR);
       return (0);
     }
   if ((way = my_path(&leminfo)) == NULL)

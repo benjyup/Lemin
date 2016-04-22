@@ -5,7 +5,7 @@
 ** Login   <mesqui_v@epitech.net>
 **
 ** Started on  Sun Apr 17 01:59:33 2016 vincent mesquita
-** Last update Thu Apr 21 21:45:18 2016 vincent mesquita
+** Last update Fri Apr 22 14:08:57 2016 vincent mesquita
 */
 
 #include <stdlib.h>
@@ -28,15 +28,17 @@ static int	my_rooms(t_leminfo *leminfo,
 			 int check)
 {
   char		**wordtab;
+  int		value;
 
   if (LINE == 1 || str[0] == 0 || check != 0)
     return (check);
   if (leminfo->pipe != 0)
     return (my_puterror2("Error: Bad format\n", LINE));
+  value = -2;
   if (!(wordtab = my_str_to_wordtab(str, ' '))
-      || my_start_and_end(wordtab[0], leminfo) < 0
-      || my_fill_room_list(leminfo, wordtab))
-    return (-1);
+      || (value = my_start_and_end(wordtab[0], leminfo)) < 0
+      || (value = my_fill_room_list(leminfo, wordtab)) < 0)
+    return (value);
   my_free_wordtab(wordtab);
   return (0);
 }
@@ -47,6 +49,7 @@ static int	my_pipes(t_leminfo *leminfo,
 {
   char		**wordtab;
   char		*cpy;
+  int		value;
 
   if (LINE == 1 || check != 0)
     return (check);
@@ -57,13 +60,13 @@ static int	my_pipes(t_leminfo *leminfo,
     return (my_puterror2("Error: Bad format\n", LINE));
   if (my_strcomp(wordtab[0], wordtab[1]))
     return (0);
-  if (my_add_links(leminfo, wordtab) < 0)
-    return (-1);
+  if ((value = my_add_links(leminfo, wordtab)) < 0)
+    return (value);
   cpy = wordtab[0];
   wordtab[0] = wordtab[1];
   wordtab[1] = cpy;
-  if (my_add_links(leminfo, wordtab) < 0)
-    return (-1);
+  if ((value = my_add_links(leminfo, wordtab)) < 0)
+    return (value);
   my_free_wordtab(wordtab);
   return (0);
 }
@@ -118,5 +121,5 @@ int		my_parser(t_leminfo *leminfo)
       free(str);
     }
   my_errors(leminfo, check);
-  return (0);
+  return (((check == -2) ? (-2) : (0)));
 }
