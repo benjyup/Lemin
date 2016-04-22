@@ -5,7 +5,7 @@
 ** Login   <puente_t@epitech.net>
 **
 ** Started on  Thu Apr 21 10:33:03 2016 Timothée Puentes
-** Last update Fri Apr 22 12:20:11 2016 Timothée Puentes
+** Last update Fri Apr 22 12:28:05 2016 Timothée Puentes
 */
 
 #include <stdio.h>
@@ -77,7 +77,10 @@ void			treat_order(t_client *data)
       print_data(data);
       data->count = (data->count + 1) % (WIN_X + 32);
       if (data->count == 0)
-	data->order = 0;
+	{
+	  write(data->socked, "ok!", BUFF);
+	  data->order = 0;
+	}
     }
 }
 
