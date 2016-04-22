@@ -5,7 +5,7 @@
 ** Login   <mesqui_v@epitech.net>
 **
 ** Started on  Sun Apr 17 03:25:48 2016 vincent mesquita
-** Last update Wed Apr 20 16:42:57 2016 vincent mesquita
+** Last update Fri Apr 22 14:45:37 2016 Vincent Florian
 */
 
 #include <stdlib.h>
@@ -39,7 +39,7 @@ static void	my_free_room_info(t_room_info *ri)
   free(ri);
 }
 
-static void	my_free_room_list(t_room_list *root)
+void	my_free_room_list(t_room_list *root)
 {
   t_room_list	*current;
   t_room_list	*tmp;
