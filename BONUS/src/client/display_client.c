@@ -5,7 +5,7 @@
 ** Login   <puente_t@epitech.net>
 **
 ** Started on  Thu Apr 21 10:33:03 2016 Timothée Puentes
-** Last update Fri Apr 22 13:28:35 2016 Timothée Puentes
+** Last update Fri Apr 22 13:34:44 2016 Timothée Puentes
 */
 
 #include <stdio.h>
@@ -75,7 +75,7 @@ void			treat_order(t_client *data)
   if ((data->order & O_NTURN) != 0)
     {
       print_data(data);
-      data->count = (data->count + 1) % (WIN_X + 32);
+      data->count = (data->count + 2) % (WIN_X / 2 + 32);
       if (data->count == 0)
 	{
 	  write(data->sockfd, "ok!", BUFF);
