@@ -5,7 +5,7 @@
 ## Login   <mesqui_v@epitech.net>
 ##
 ## Started on  Sun Apr 17 01:55:36 2016 vincent mesquita
-## Last update Thu Apr 21 15:40:41 2016 Timothée Puentes
+## Last update Fri Apr 22 13:57:50 2016 Timothée Puentes
 ##
 
 NAME		=	lem_in
@@ -106,6 +106,7 @@ SRCS_CLIENT	=	../Basics/my_putchar.c		\
 			src/client/tekpixel.c		\
 			src/client/my_tektext.c		\
 			src/client/display_client.c	\
+			src/client/display_client_bis.c	\
 			src/client/client.c		\
 			src/common_net.c
 

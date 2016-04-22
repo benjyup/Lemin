@@ -5,7 +5,7 @@
 ** Login   <puente_t@epitech.net>
 **
 ** Started on  Thu Apr 21 10:33:03 2016 Timothée Puentes
-** Last update Fri Apr 22 13:39:22 2016 Timothée Puentes
+** Last update Fri Apr 22 13:56:16 2016 Timothée Puentes
 */
 
 #include <stdio.h>
@@ -17,46 +17,6 @@
 #include "lemin.h"
 #include "reseaux.h"
 #include "client.h"
-
-int			set_termios(int i)
-{
-  static struct termios	old;
-  static struct termios	new;
-
-  if (i == 0)
-    {
-      ioctl(0, TCGETS, &old);
-      ioctl(0, TCGETS, &new);
-      new.c_lflag &= ~ECHO;
-      new.c_lflag &= ~ICANON;
-      ioctl(0, TCSETS, &new);
-    }
-  else
-    ioctl(0, TCSETS, &old);
-  return (0);
-}
-
-int			read_order(int sockfd)
-{
-  t_order		order;
-
-  if (read(sockfd, &order, sizeof(order)) != sizeof(order))
-    return (0);
-  return (order.type);
-}
-
-void			print_data(t_client *data)
-{
-  t_bunny_position	pos;
-
-  pos.y = WIN_Y / 2;
-  pos.x = WIN_X / 2 + data->count;
-  if (data->order & O_OUT)
-    my_tektext(data->pix, data->font, &pos, "A");
-  pos.x = -WIN_X / 2 + data->count;
-  if (data->order & O_INC)
-      my_tektext(data->pix, data->font, &pos, "A");
-}
 
 void			treat_order(t_client *data)
 {
