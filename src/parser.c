@@ -5,7 +5,7 @@
 ** Login   <mesqui_v@epitech.net>
 **
 ** Started on  Sun Apr 17 01:59:33 2016 vincent mesquita
-** Last update Thu Apr 21 20:18:45 2016 vincent mesquita
+** Last update Thu Apr 21 21:45:18 2016 vincent mesquita
 */
 
 #include <stdlib.h>
@@ -34,7 +34,7 @@ static int	my_rooms(t_leminfo *leminfo,
   if (leminfo->pipe != 0)
     return (my_puterror2("Error: Bad format\n", LINE));
   if (!(wordtab = my_str_to_wordtab(str, ' '))
-      || my_start_and_end(wordtab[0], leminfo) == -1
+      || my_start_and_end(wordtab[0], leminfo) < 0
       || my_fill_room_list(leminfo, wordtab))
     return (-1);
   my_free_wordtab(wordtab);
@@ -57,12 +57,12 @@ static int	my_pipes(t_leminfo *leminfo,
     return (my_puterror2("Error: Bad format\n", LINE));
   if (my_strcomp(wordtab[0], wordtab[1]))
     return (0);
-  if (my_add_links(leminfo, wordtab) == -1)
+  if (my_add_links(leminfo, wordtab) < 0)
     return (-1);
   cpy = wordtab[0];
   wordtab[0] = wordtab[1];
   wordtab[1] = cpy;
-  if (my_add_links(leminfo, wordtab) == -1)
+  if (my_add_links(leminfo, wordtab) < 0)
     return (-1);
   my_free_wordtab(wordtab);
   return (0);

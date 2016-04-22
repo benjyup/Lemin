@@ -5,7 +5,7 @@
 ** Login   <mesqui_v@epitech.net>
 **
 ** Started on  Sun Apr 17 01:54:13 2016 vincent mesquita
-** Last update Thu Apr 21 15:15:02 2016 Timothée Puentes
+** Last update Thu Apr 21 21:47:31 2016 vincent mesquita
 */
 
 #include <stdlib.h>
@@ -31,9 +31,9 @@ int		main(void)
   t_leminfo	leminfo;
   t_room_list	*way;
 
-  if (my_parser(&leminfo) == -1)
+  if (my_parser(&leminfo) == -2)
     {
-      my_putstr("Je return -1\n");
+      my_putstr("Je return -2\n");
       return (0);
     }
   if ((way = my_path(&leminfo)) == NULL)
