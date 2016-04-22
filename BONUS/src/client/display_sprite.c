@@ -5,7 +5,7 @@
 ** Login   <puente_t@epitech.net>
 **
 ** Started on  Fri Apr 22 17:12:30 2016 Timothée Puentes
-** Last update Fri Apr 22 17:23:11 2016 Timothée Puentes
+** Last update Fri Apr 22 17:36:59 2016 Timothée Puentes
 */
 
 #include <lapin.h>
@@ -60,7 +60,7 @@ void			display_sprite(t_bunny_pixelarray *pix,
 {
   t_bunny_position	spri;
 
-  spri.x = ((avance % ANIM_SPEED) * SPRITE_X) % sprite->clipable.clip_width;
-  spri.y = ((avance % ANIM_SPEED) * SPRITE_X) / sprite->clipable.clip_width * SPRITE_Y;
+  spri.x = ((avance % ANIM_SPEED) % NB_SPRITE) * SPRITE_X;
+  spri.y = ((avance % ANIM_SPEED) / NB_SPRITE) * SPRITE_Y;
   my_bunnyblit(sprite, pix, &spri, pos);
 }
