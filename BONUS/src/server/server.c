@@ -5,7 +5,7 @@
 ** Login   <puente_t@epitech.net>
 **
 ** Started on  Wed Apr 20 15:16:12 2016 Timothée Puentes
-** Last update Fri Apr 22 11:33:22 2016 Timothée Puentes
+** Last update Fri Apr 22 11:53:20 2016 Timothée Puentes
 */
 
 #include <stdio.h>
@@ -36,12 +36,17 @@ static int		init_ants(t_reseaux *data)
 
 static void		      print_data_connexion(struct sockaddr_in cli_addr, char *str)
 {
-  printf("Connecting %i.%i.%i.%i on room [%s]\n",
-	 (cli_addr.sin_addr.s_addr % 256),
-	 (cli_addr.sin_addr.s_addr >> 8) % 256,
-	 (cli_addr.sin_addr.s_addr >> 8 * 2) % 256,
-	 (cli_addr.sin_addr.s_addr >> 8 * 3) % 256,
-	 str);
+  my_putstr("Connecting ");
+  my_put_nbr((cli_addr.sin_addr.s_addr) % 256);
+  my_putstr(".");
+  my_put_nbr((cli_addr.sin_addr.s_addr >> 8 * 1) % 256);
+  my_putstr(".");
+  my_put_nbr((cli_addr.sin_addr.s_addr >> 8 * 2) % 256);
+  my_putstr(".");
+  my_put_nbr((cli_addr.sin_addr.s_addr >> 8 * 3) % 256);
+  my_putstr(" on room ");
+  my_putstr(str);
+  my_putstr("\n");
 }
 
 int			etablish_new_connexion(t_reseaux *data)

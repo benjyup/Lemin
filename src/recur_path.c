@@ -5,7 +5,7 @@
 ** Login   <puente_t@epitech.net>
 **
 ** Started on  Mon Apr 18 12:24:38 2016 Timothée Puentes
-** Last update Tue Apr 19 16:11:17 2016 Timothée Puentes
+** Last update Fri Apr 22 11:51:31 2016 Timothée Puentes
 */
 
 #include <stdlib.h>
@@ -84,18 +84,16 @@ int			recur_path(t_path **list_path,
     stock(list_path, c, act_path);
   else
     return (SUCCESS);
-  printf("\nFrom %s\n", list_path[c]->name);
   c = 0;
   if ((root_link = act_room->ri->links) == NULL)
     return (SUCCESS);
   cur_link = root_link->next;
   while (cur_link != root_link)
     {
-	  printf("got %s\n", cur_link->link->ri->name);
- 	  if ((new_path = cpy_new_path(act_path, cur_link->link->ri->name)) == NULL ||
-	      recur_path(list_path, new_path, graph_root, data) == ERR)
-	    return (ERR);
-	  free_path(new_path);
+      if ((new_path = cpy_new_path(act_path, cur_link->link->ri->name)) == NULL ||
+	  recur_path(list_path, new_path, graph_root, data) == ERR)
+	return (ERR);
+      free_path(new_path);
       cur_link = cur_link->next;
       c += 1;
     }
