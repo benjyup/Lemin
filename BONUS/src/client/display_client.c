@@ -5,7 +5,7 @@
 ** Login   <puente_t@epitech.net>
 **
 ** Started on  Thu Apr 21 10:33:03 2016 Timothée Puentes
-** Last update Fri Apr 22 13:39:06 2016 Timothée Puentes
+** Last update Fri Apr 22 13:39:22 2016 Timothée Puentes
 */
 
 #include <stdio.h>
@@ -54,7 +54,7 @@ void			print_data(t_client *data)
   if (data->order & O_OUT)
     my_tektext(data->pix, data->font, &pos, "A");
   pos.x = -WIN_X / 2 + data->count;
-  if (data->order & O_INT)
+  if (data->order & O_INC)
       my_tektext(data->pix, data->font, &pos, "A");
 }
 
