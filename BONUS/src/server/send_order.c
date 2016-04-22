@@ -5,12 +5,28 @@
 ** Login   <puente_t@epitech.net>
 **
 ** Started on  Wed Apr 20 16:28:42 2016 Timothée Puentes
-** Last update Thu Apr 21 16:48:03 2016 Timothée Puentes
+** Last update Fri Apr 22 11:34:48 2016 Timothée Puentes
 */
 
 #include <unistd.h>
 #include "reseaux.h"
+#include "client.h"
 #include "my_basics.h"
+
+int		wait_for_next(t_reseaux *data)
+{
+  unsigned int	c;
+  char		buff[BUFF + 1];
+
+  c = 0;
+  while (c < TOTAL_ROOM)
+    {
+      if (read(CLIENT[c], buff, BUFF) < 0)
+	return (my_puterror(READ_ERR));
+      c += 1;
+    }
+  return (0);
+}
 
 int		broadcast_order(t_reseaux *data, char order, int arg)
 {
@@ -35,7 +51,6 @@ int		send_order(int sockfd, char order, int data)
   t_order	ord;
 
   (void)data;
-  printf("%i\n", order);
   ord.type = order;
   if (write(sockfd, (void*)&ord, sizeof(ord)) != sizeof(ord))
     return (my_puterror(WRITE_ERR));

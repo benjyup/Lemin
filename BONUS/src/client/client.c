@@ -5,7 +5,7 @@
 ** Login   <puente_t@epitech.net>
 **
 ** Started on  Thu Apr 21 10:25:32 2016 Timothée Puentes
-** Last update Thu Apr 21 17:14:26 2016 Timothée Puentes
+** Last update Fri Apr 22 11:36:43 2016 Timothée Puentes
 */
 
 #include <stdio.h>
@@ -51,7 +51,6 @@ int			main(int argc, char *argv[])
   int			sockfd;
   struct sockaddr_in	serv_addr;
   struct hostent	*server;
-  int			c;
 
   if (argc < 2)
     return (my_puterror("usage ./client_visu hostname\n"));

@@ -5,7 +5,7 @@
 ** Login   <puente_t@epitech.net>
 **
 ** Started on  Thu Apr 21 10:33:03 2016 Timothée Puentes
-** Last update Thu Apr 21 17:17:02 2016 Timothée Puentes
+** Last update Fri Apr 22 11:36:26 2016 Timothée Puentes
 */
 
 #include <stdio.h>
@@ -41,40 +41,50 @@ int			read_order(int sockfd)
   t_order		order;
 
   if (read(sockfd, &order, sizeof(order)) != sizeof(order))
-    return (-1);
+    return (0);
   return (order.type);
+}
+
+void			print_data(t_client *data)
+{
+  t_bunny_position	pos;
+
+  pos.y = WIN_Y / 2;
+  pos.x = WIN_X / 2 + data->count - 32;
+  if (data->order | O_INC)
+    my_tektext(data->pix, data->font, &pos, "A");
+  pos.x = data->count - 32;
+  if (data->order | O_INC)
+    my_tektext(data->pix, data->font, &pos, "A");
+}
+
+void			treat_order(t_client *data)
+{
+  if (data->count == 0)
+    {
+      if (data->order == 0)
+	return ;
+      data->order = data->order | read_order(data->sockfd);
+    }
+  if ((data->order | O_NTURN) == 1)
+    {
+      print_data(data);
+      data->count = (data->count + 1) % (WIN_X + 32);
+      if (data->count == 0)
+	data->order = 0;
+    }
 }
 
 t_bunny_response	mainloop(void *_data)
 {
   t_bunny_position	p;
   t_client		*data;
-  int			order;
-  int			tmp;
-  unsigned int		color;
 
   data = _data;
-  if ((tmp = read_order(data->sockfd)) != -1 || data->count == 0)
-    {
-      order = tmp;
-      if (order != -1)
-	printf("order i %i\n", order);
-    }
-  color = MY_B;
-  if (order == O_EXIT)
-    return (EXIT_ON_SUCCESS);
-  else if (order == O_INC || order == O_OUT)
-    data->ant = ((order == O_INC) ? (1) : (0));
-  else if (order == O_NTURN)
-    color = RED;
-  p.x = WIN_X / 3;
-  p.y = WIN_Y / 2;
-  if (data->ant && !data->count)
-    my_tektext(data->pix, data->font, &p, "! Ant incoming !");
+  treat_order(data);
   p.x = 0;
   p.y = 0;
-  bunny_my_fill(data->pix, color);
-  data->count = (data->count + 1) % 256;
+  bunny_my_fill(data->pix, 0x32000000);
   bunny_blit(&data->win->buffer, &data->pix->clipable, &p);
   bunny_display(data->win);
   return (GO_ON);
@@ -96,8 +106,8 @@ int		display_client(int sockfd)
     return (my_puterror(MALLOC_ERR));
   bunny_set_loop_main_function(mainloop);
   data.sockfd = sockfd;
-  data.ant = 0;
   data.count = 0;
+  data.order = 0;
   set_termios(0);
   bunny_loop(data.win, 255, &data);
   set_termios(1);

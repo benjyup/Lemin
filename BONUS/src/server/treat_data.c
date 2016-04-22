@@ -5,7 +5,7 @@
 ** Login   <puente_t@epitech.net>
 **
 ** Started on  Wed Apr 20 15:53:12 2016 Timothée Puentes
-** Last update Thu Apr 21 17:08:40 2016 Timothée Puentes
+** Last update Fri Apr 22 11:08:05 2016 Timothée Puentes
 */
 
 #include <stdio.h>
@@ -74,7 +74,8 @@ static int	treat_line(t_reseaux *data, char *str)
     }
   my_free_wordtab(wordtab);
   sleep(2);
-  if (broadcast_order(data, O_NTURN, 0) != 0)
+  if (broadcast_order(data, O_NTURN, 0) != 0 ||
+      wait_for_next(data))
     return (1);
   free(str);
   sleep(1);

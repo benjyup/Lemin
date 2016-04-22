@@ -5,9 +5,10 @@
 ** Login   <puente_t@epitech.net>
 **
 ** Started on  Wed Apr 20 15:16:12 2016 Timothée Puentes
-** Last update Thu Apr 21 17:17:42 2016 Timothée Puentes
+** Last update Fri Apr 22 11:33:22 2016 Timothée Puentes
 */
 
+#include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
 #include <sys/types.h>

@@ -5,7 +5,7 @@
 ** Login   <puente_t@epitech.net>
 **
 ** Started on  Wed Apr 20 12:41:48 2016 Timothée Puentes
-** Last update Thu Apr 21 16:30:23 2016 Timothée Puentes
+** Last update Fri Apr 22 11:34:41 2016 Timothée Puentes
 */
 
 #ifndef RESEAUX_H_
@@ -20,12 +20,12 @@
 # define	ANTS data->ant
 # define	START_NAME data->leminfo->start
 
-# define	O_EXIT 0
-# define	O_INC 1
-# define	O_OUT 2
-# define	O_NTURN 3
-# define	O_START 4
-# define	O_END 5
+# define	O_EXIT 1
+# define	O_INC 1 << 1
+# define	O_OUT 1 << 2
+# define	O_NTURN 1 << 3
+# define	O_START 1 << 4
+# define	O_END 1 << 5
 
 # define	WRITE_ERR "Write failed\n"
 # define	READ_ERR "Read failed\n"
@@ -57,5 +57,6 @@ char		*my_memcpy(char *dest, char *src, int size);
 int		send_order(int sockfd, char order, int data);
 int		broadcast_order(t_reseaux *data, char order, int arg);
 int		treat_data(t_reseaux *data);
+int		wait_for_next(t_reseaux *data);
 
 #endif /* RESEAUX_H_ */
