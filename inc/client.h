@@ -5,7 +5,7 @@
 ** Login   <puente_t@epitech.net>
 **
 ** Started on  Thu Apr 21 10:31:39 2016 Timothée Puentes
-** Last update Fri Apr 22 17:24:31 2016 Timothée Puentes
+** Last update Fri Apr 22 17:37:36 2016 Timothée Puentes
 */
 
 #ifndef CLIENT_H_
@@ -18,6 +18,7 @@
 # define	WIN_Y 1000
 # define	SPRITE_X 352
 # define	SPRITE_Y 352
+# define	NB_SPRITE 3
 # define	MY_B 0x32000000
 # define	MY_W 0x32FFFFFF
 # define	ANIM_SPEED 10
