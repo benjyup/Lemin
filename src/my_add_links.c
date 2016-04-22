@@ -5,7 +5,7 @@
 ** Login   <mesqui_v@epitech.net>
 **
 ** Started on  Tue Apr 19 11:11:20 2016 vincent mesquita
-** Last update Thu Apr 21 21:41:36 2016 vincent mesquita
+** Last update Fri Apr 22 13:54:09 2016 vincent mesquita
 */
 
 #include <stdlib.h>
@@ -22,7 +22,7 @@ static int	my_add_to_list(t_link_list *root,
     return (-1);
   current = root->prev;
   if (!(new_ll = malloc(sizeof(*new_ll))))
-    return (my_puterror(MALLOC_ERR));
+    return (-2);
   new_ll->link = link_to;
   new_ll->next = root;
   new_ll->prev = current;
@@ -64,14 +64,14 @@ int		add_the_link(t_leminfo *leminfo,
 
   if (current->LINKS == NULL
       && !(current->LINKS = create_ll()))
-    return (my_puterror(MALLOC_ERR));
+    return (-2);
   link_to = ROOT->next;
   while (link_to != ROOT && !my_strcomp(link_to->NAME, wordtab[1]))
     link_to = link_to->next;
   if (link_to == ROOT)
     return (my_puterror2("Error: Bad link\n", LINE));
   if (my_add_to_list(current->LINKS, link_to) < 0)
-    return (-1);
+    return (-2);
   return (0);
 }
 
@@ -88,7 +88,7 @@ int		my_add_links(t_leminfo *leminfo,
       if (my_strcomp(current->NAME, wordtab[0]))
 	{
 	  if (add_the_link(leminfo, wordtab, current) < 0)
-	    return (-1);
+	    return (-2);
 	  return (0);
 	}
       current = current->next;

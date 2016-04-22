@@ -5,7 +5,7 @@
 ** Login   <mesqui_v@epitech.net>
 **
 ** Started on  Mon Apr 18 11:04:15 2016 vincent mesquita
-** Last update Thu Apr 21 21:42:00 2016 vincent mesquita
+** Last update Fri Apr 22 14:03:16 2016 vincent mesquita
 */
 
 #include <stdlib.h>
@@ -39,12 +39,12 @@ int			my_fill_room_list(t_leminfo *leminfo,
       || my_strcomp(wordtab[0], "##end"))
     return (0);
   if (!(ri = malloc(sizeof(*ri))))
-    return (my_puterror(MALLOC_ERR));
+    return (-2);
   ri->links = NULL;
   if (my_wordtab_len(wordtab) != 3)
     return (my_puterror2("Error: Bad format\n", LINE));
   if (!(ri->name = my_strcpy(wordtab[0])))
-    return (my_puterror(MALLOC_ERR));
+    return (-2);
   if (my_nan(wordtab[1]) || my_nan(wordtab[2]))
     return (my_puterror2("Error: Bad format\n", LINE));
   ri->pos.x = my_getnbr(wordtab[1]);
@@ -54,7 +54,7 @@ int			my_fill_room_list(t_leminfo *leminfo,
   ri->parcours = 0;
   ri->ant_num = 0;
   if (my_add_to_end_room_list(leminfo->rl_root, ri) < 0)
-    return (-1);
+    return (-2);
   leminfo->total_link += 1;
   return (0);
 }
