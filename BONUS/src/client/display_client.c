@@ -5,7 +5,7 @@
 ** Login   <puente_t@epitech.net>
 **
 ** Started on  Thu Apr 21 10:33:03 2016 Timothée Puentes
-** Last update Fri Apr 22 13:34:44 2016 Timothée Puentes
+** Last update Fri Apr 22 13:39:06 2016 Timothée Puentes
 */
 
 #include <stdio.h>
@@ -51,31 +51,21 @@ void			print_data(t_client *data)
 
   pos.y = WIN_Y / 2;
   pos.x = WIN_X / 2 + data->count;
-  if (data->order & O_INC)
-    {
-      my_tektext(data->pix, data->font, &pos, "A");
-      my_putstr("INC\n");
-    }
-  pos.x = data->count;
   if (data->order & O_OUT)
-    {
+    my_tektext(data->pix, data->font, &pos, "A");
+  pos.x = -WIN_X / 2 + data->count;
+  if (data->order & O_INT)
       my_tektext(data->pix, data->font, &pos, "A");
-      my_putstr("OUT\n");
-    }
-  printf("print %x\n", data->order);
 }
 
 void			treat_order(t_client *data)
 {
   if (data->count == 0)
-    {
-      data->order = data->order | read_order(data->sockfd);
-      printf("%x\n", data->order);
-    }
+    data->order = data->order | read_order(data->sockfd);
   if ((data->order & O_NTURN) != 0)
     {
       print_data(data);
-      data->count = (data->count + 2) % (WIN_X / 2 + 32);
+      data->count = (data->count + 10) % (WIN_X + 32);
       if (data->count == 0)
 	{
 	  write(data->sockfd, "ok!", BUFF);
