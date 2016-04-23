@@ -5,7 +5,7 @@
 ** Login   <mesqui_v@epitech.net>
 **
 ** Started on  Sun Apr 17 01:54:13 2016 vincent mesquita
-** Last update Sat Apr 23 13:12:03 2016 Timothée Puentes
+** Last update Sat Apr 23 13:12:01 2016 Timothée Puentes
 */
 
 #include <stdlib.h>
@@ -38,6 +38,7 @@ int		main(void)
     }
   if (leminfo.start != NULL && leminfo.end != NULL)
     {
+  my_putstr("##visu\n");
       if ((ways = my_path(&leminfo)) == NULL)
 	return (0);
       my_check_ways(ways);

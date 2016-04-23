@@ -5,7 +5,7 @@
 ## Login   <mesqui_v@epitech.net>
 ##
 ## Started on  Sun Apr 17 01:55:36 2016 vincent mesquita
-## Last update Fri Apr 22 17:23:47 2016 Timothée Puentes
+## Last update Sat Apr 23 13:17:17 2016 Timothée Puentes
 ##
 
 NAME		=	lem_in
@@ -41,6 +41,7 @@ SRCS		=	../Basics/my_putchar.c		\
 			../src/there_is_dash.c		\
 			../src/my_nan.c			\
 			../src/my_way.c			\
+			../src/my_ways_list.c		\
 			../src/free_leminfo.c		\
 			../src/my_epure_str.c		\
 			../src/my_init_leminfo.c	\
