@@ -5,7 +5,7 @@
 ** Login   <mesqui_v@epitech.net>
 **
 ** Started on  Sun Apr 17 01:54:13 2016 vincent mesquita
-** Last update Fri Apr 22 14:10:05 2016 vincent mesquita
+** Last update Sat Apr 23 00:40:31 2016 vincent mesquita
 */
 
 #include <stdlib.h>
@@ -29,16 +29,20 @@ void		print_all_path(t_path *path)
 int		main(void)
 {
   t_leminfo	leminfo;
-  t_room_list	*way;
+  t_ways	*ways;
 
   if (my_parser(&leminfo) == -2)
     {
       my_puterror(MALLOC_ERR);
       return (0);
     }
-  if ((way = my_path(&leminfo)) == NULL)
-    return (0);
-  my_antman(way, &leminfo);
+  if (leminfo.start != NULL && leminfo.end != NULL)
+    {
+      if ((ways = my_path(&leminfo)) == NULL)
+	return (0);
+      my_check_ways(ways);
+      my_antman(ways, &leminfo);
+    }
   free_leminfo(&leminfo);
   return (0);
 }

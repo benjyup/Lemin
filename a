@@ -1,16 +1,25 @@
-123
+10
+0 63 88
+1 6 1
+2 49 1
 ##start
-Benjy 1 2
-##end
-Flo 1 2
-Vincent 1 2
-Timo 1 2
-Pierre 1 2
-Ahmed 1 2
-Benjy-Vincent
-Benjy-Flo
-Vincent-Flo
-Benjy-Timo
-Timo-Vincent
-Pierre-Ahmed
-Ahmed-Benjy
+3 51 85
+4 7 92
+5 90 34
+6 59 25
+7 61 78
+8 88 47
+9 83 48
+0-0
+0-1
+0-2
+3-8
+4-0
+4-1
+4-3
+5-2
+5-3
+5-7
+8-8
+9-1
+9-6

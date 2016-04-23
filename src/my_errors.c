@@ -5,7 +5,7 @@
 ** Login   <mesqui_v@epitech.net>
 **
 ** Started on  Wed Apr 20 11:43:34 2016 vincent mesquita
-** Last update Thu Apr 21 21:39:33 2016 vincent mesquita
+** Last update Fri Apr 22 20:29:56 2016 vincent mesquita
 */
 
 #include <stdlib.h>
@@ -35,9 +35,9 @@ static int	my_check_end_start(t_leminfo *leminfo)
 int		my_errors(t_leminfo *leminfo, int check)
 {
   if ((!leminfo->start || !leminfo->end) && leminfo->pipe == 0 && check == 0)
-    return (my_puterror("Error: there is no start, or no end\n"));
+    return (my_puterror2("Error: there is no start, or no end\n", LINE));
   if (my_check_end_start(leminfo) < 0 && check == 0)
-    return (my_puterror("Error: ##Start or ##End have no link\n"));
+    return (my_puterror2("Error: ##Start or ##End have no link\n", LINE));
   if (leminfo->line == 1 && check == 0)
     return (my_puterror("Error: there is no information on stdin\n"));
   if (leminfo->pipe == 0 && check == 0)

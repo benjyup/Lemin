@@ -5,7 +5,7 @@
 ** Login   <mesqui_v@epitech.net>
 **
 ** Started on  Sun Apr 17 01:59:33 2016 vincent mesquita
-** Last update Fri Apr 22 14:08:57 2016 vincent mesquita
+** Last update Fri Apr 22 20:39:37 2016 vincent mesquita
 */
 
 #include <stdlib.h>
@@ -103,7 +103,7 @@ int		my_parser(t_leminfo *leminfo)
   char		check;
 
   if (!my_init_leminfo(leminfo))
-    return (-1);
+    return (-2);
   check = 0;
   while (check >= 0 && (str = get_next_line(0)) != NULL)
     {

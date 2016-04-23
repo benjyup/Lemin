@@ -6,7 +6,7 @@
 **
 ** Started on  Sun Apr 17 02:01:14 2016 vincent mesquita
 <<<<<<< HEAD
-** Last update Thu Apr 21 12:32:31 2016 Vincent Florian
+** Last update Fri Apr 22 22:09:14 2016 Vincent Florian
 =======
 ** Last update Wed Apr 20 16:22:30 2016 vincent mesquita
 >>>>>>> 56d471a81ae721fc3d9bbbd52ad565d36f5120b2
@@ -58,6 +58,13 @@ typedef struct		s_room_list
   struct s_room_list	*prev;
 }			t_room_list;
 
+typedef struct		s_ways
+{
+  t_room_list		*way;
+  struct s_ways		*next;
+  struct s_ways		*prev;
+}			t_ways;
+
 typedef struct		s_leminfo
 {
   unsigned int		line;
@@ -71,11 +78,18 @@ typedef struct		s_leminfo
   t_room_list		*father;
 }			t_leminfo;
 
+void			my_delete_list(t_ways *curr);
+t_ways			*create_ways(void);
+void			my_check_ways(t_ways *ways);
+void			my_free_room_list(t_room_list *root);
+int			my_add_to_end_ways_list(t_ways *root,
+						t_room_list *ri);
+t_ways			*create_ways(void);
 void			free_leminfo(t_leminfo *leminfo);
 int			my_add_to_begin_room_list(t_room_list *root,
 						  t_room_info *ri);
 int			is_a_comment(char *str);
-int			my_antman(t_room_list *my_way, t_leminfo *data);
+int			my_antman(t_ways *my_way, t_leminfo *data);
 int			my_errors(t_leminfo *leminfo, int check);
 t_room_list		*create_rl(void);
 int			my_add_links(t_leminfo *leminfo,
@@ -93,6 +107,6 @@ int			my_fill_room_list(t_leminfo *leminfo,
 int			my_add_to_end_room_list(t_room_list *root,
 						t_room_info *ri);
 void			my_show_room_list(t_room_list *root);
-t_room_list		*my_path(t_leminfo *data);
+t_ways			*my_path(t_leminfo *data);
 
 #endif /* !PARSER_H_ */

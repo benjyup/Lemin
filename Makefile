@@ -5,14 +5,14 @@
 ## Login   <mesqui_v@epitech.net>
 ##
 ## Started on  Sun Apr 17 01:55:36 2016 vincent mesquita
-## Last update Thu Apr 21 12:07:10 2016 Timothée Puentes
+## Last update Fri Apr 22 22:09:45 2016 Vincent Florian
 ##
 
 NAME	=	lem_in
 
 CC	=	gcc
 
-CFLAGS	=	-W -Wall -Wextra -I./inc -g3
+CFLAGS	+=	-W -Wall -Wextra -I./inc -g3
 
 SRCS	=	./Basics/my_putchar.c		\
 		./Basics/my_putstr.c		\
@@ -32,6 +32,7 @@ SRCS	=	./Basics/my_putchar.c		\
 		./src/there_is_dash.c		\
 		./src/my_nan.c			\
 		./src/my_way.c			\
+		./src/my_ways_list.c		\
 		./src/free_leminfo.c		\
 		./src/my_epure_str.c		\
 		./src/my_init_leminfo.c		\
