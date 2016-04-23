@@ -5,7 +5,7 @@
 ** Login   <puente_t@epitech.net>
 **
 ** Started on  Fri Apr 22 17:12:30 2016 Timothée Puentes
-** Last update Sat Apr 23 13:24:27 2016 Timothée Puentes
+** Last update Sat Apr 23 13:27:50 2016 Timothée Puentes
 */
 
 #include <lapin.h>
@@ -35,10 +35,10 @@ static void		my_bunnyblit(t_bunny_pixelarray *origin,
   t_color		color;
 
   height_char = 0;
-  while (height_char++ != SPRITE_X)
+  while (height_char++ <= SPRITE_Y)
     {
       width_char = 0;
-      while (width_char++ != SPRITE_Y)
+      while (width_char++ <= SPRITE_X)
 	{
 	  color = my_get_pixel(origin, pos_ori);
 	  tekpixel_t(dest, pos_dest, &color);
