@@ -5,7 +5,7 @@
 ** Login   <mesqui_v@epitech.net>
 **
 ** Started on  Mon Apr 18 11:04:15 2016 vincent mesquita
-** Last update Fri Apr 22 20:34:17 2016 vincent mesquita
+** Last update Sat Apr 23 13:50:04 2016 vincent mesquita
 */
 
 #include <stdlib.h>
@@ -39,6 +39,8 @@ static int		my_check_position(char **wordtab,
   if (!wordtab)
     return (-1);
   current = ROOT->next;
+  if (my_nan(wordtab[1]) || my_nan(wordtab[2]))
+    return(my_puterror2("Error: invalid position\n", LINE));
   ri->pos.x = my_getnbr(wordtab[1]);
   ri->pos.y = my_getnbr(wordtab[2]);
   while (current != ROOT)
