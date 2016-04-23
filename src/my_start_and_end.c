@@ -5,7 +5,7 @@
 ** Login   <mesqui_v@epitech.net>
 **
 ** Started on  Mon Apr 18 20:33:53 2016 vincent mesquita
-** Last update Fri Apr 22 13:56:08 2016 vincent mesquita
+** Last update Sat Apr 23 16:48:41 2016 Vincent Florian
 */
 
 #include "parser.h"
@@ -42,7 +42,7 @@ int		my_start_and_end(char *str,
 	  leminfo->start_end = END;
 	}
     }
-  else if (!my_strcomp(str,"##start") && !my_strcomp(str,"##end"))
+  else if (!my_strcomp(str, "##start") && !my_strcomp(str, "##end"))
     if (my_start_and_end2(str, leminfo) < 0)
       return (-1);
   return (0);

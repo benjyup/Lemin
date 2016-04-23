@@ -5,7 +5,7 @@
 ** Login   <mesqui_v@epitech.net>
 **
 ** Started on  Mon Apr 18 11:04:15 2016 vincent mesquita
-** Last update Sat Apr 23 13:50:04 2016 vincent mesquita
+** Last update Sat Apr 23 16:48:21 2016 Vincent Florian
 */
 
 #include <stdlib.h>
@@ -40,14 +40,14 @@ static int		my_check_position(char **wordtab,
     return (-1);
   current = ROOT->next;
   if (my_nan(wordtab[1]) || my_nan(wordtab[2]))
-    return(my_puterror2("Error: invalid position\n", LINE));
+    return (my_puterror2("Error: invalid position\n", LINE));
   ri->pos.x = my_getnbr(wordtab[1]);
   ri->pos.y = my_getnbr(wordtab[2]);
   while (current != ROOT)
     {
       if (current->ri->pos.x == ri->pos.x
-  	  && current->ri->pos.y == ri->pos.y)
-  	return (my_puterror2("Error: position already used\n", LINE));
+	  && current->ri->pos.y == ri->pos.y)
+	return (my_puterror2("Error: position already used\n", LINE));
       current = current->next;
     }
   return (0);

@@ -5,7 +5,7 @@
 ** Login   <mesqui_v@epitech.net>
 **
 ** Started on  Wed Apr 20 11:43:34 2016 vincent mesquita
-** Last update Sat Apr 23 09:43:16 2016 vincent mesquita
+** Last update Sat Apr 23 16:48:08 2016 Vincent Florian
 */
 
 #include <stdlib.h>
@@ -42,5 +42,5 @@ int		my_errors(t_leminfo *leminfo, int check)
     return (my_puterror2("Error: ##Start or ##End have no link\n", LINE));
   if (leminfo->pipe == 0 && check == 0)
     return (my_puterror("Error: there is no link\n"));
-  return(0);
+  return (0);
 }
