@@ -5,7 +5,7 @@
 ** Login   <vincen_s@epitech.net>
 **
 ** Started on  Wed Apr 20 12:48:27 2016 Vincent Florian
-** Last update Fri Apr 22 22:08:06 2016 Vincent Florian
+** Last update Sat Apr 23 09:44:51 2016 Vincent Florian
 */
 
 #include <stdlib.h>
@@ -219,6 +219,8 @@ t_ways		*my_path(t_leminfo *data)
   while (courrant != data->rl_root && my_strcomp(courrant->ri->name,
 						 data->start) != 1)
     courrant = courrant->next;
+  if (courrant == data->rl_root || !courrant->ri || !courrant->ri->links)
+    return (NULL);
   curr = courrant->ri->links->next;
   while (curr != courrant->ri->links)
     {

@@ -5,7 +5,7 @@
 ** Login   <vincen_s@epitech.net>
 **
 ** Started on  Fri Apr 22 11:41:04 2016 Vincent Florian
-** Last update Fri Apr 22 15:00:18 2016 Vincent Florian
+** Last update Sat Apr 23 09:31:22 2016 Vincent Florian
 */
 
 #include <stdlib.h>
@@ -33,7 +33,6 @@ void		my_delete_list(t_ways *curr)
   prev = curr->prev;
   prev->next = next;
   next->prev = prev;
-  /* my_free_room_list(curr->way); */
 }
 
 int		my_add_to_end_ways_list(t_ways *root,

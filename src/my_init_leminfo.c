@@ -5,7 +5,7 @@
 ** Login   <mesqui_v@epitech.net>
 **
 ** Started on  Sun Apr 17 20:35:37 2016 vincent mesquita
-** Last update Fri Apr 22 20:40:25 2016 vincent mesquita
+** Last update Sat Apr 23 09:31:44 2016 Vincent Florian
 */
 
 #include <stdlib.h>
@@ -40,7 +40,7 @@ int			my_add_to_begin_room_list(t_room_list *root,
   t_room_list		*new_rl;
   t_room_list		*current;
 
-  if (!root || !ri || name_already_used(ri->name, root))
+  if (!root || !ri)
     return (-1);
   current = root->next;
   if (!(new_rl = malloc(sizeof(*new_rl))))
