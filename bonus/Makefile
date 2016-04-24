@@ -5,7 +5,7 @@
 ## Login   <mesqui_v@epitech.net>
 ##
 ## Started on  Sun Apr 17 01:55:36 2016 vincent mesquita
-## Last update Sun Apr 24 22:52:15 2016 Vincent Florian
+## Last update Sun Apr 24 23:05:44 2016 Vincent Florian
 ##
 
 NAME		=	lem_in
@@ -16,7 +16,7 @@ NAME_CLIENT	=	client_visu
 
 CC		=	gcc
 
-CFLAGS		=	-W -Wall -Wextra -I../inc -g3
+CFLAGS		=	-W -Wall -Wextra -I../inc
 
 LIB		=	-L/home/${USER}/.froot/lib	\
 			-llapin -lsfml-audio		\
