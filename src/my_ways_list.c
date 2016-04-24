@@ -5,7 +5,7 @@
 ** Login   <vincen_s@epitech.net>
 **
 ** Started on  Fri Apr 22 11:41:04 2016 Vincent Florian
-** Last update Sun Apr 24 21:42:40 2016 vincent mesquita
+** Last update Sun Apr 24 22:17:44 2016 Vincent Florian
 */
 
 #include <stdlib.h>
@@ -33,6 +33,20 @@ void		my_delete_list(t_ways *curr)
   prev = curr->prev;
   prev->next = next;
   next->prev = prev;
+}
+
+void		reset_data(t_leminfo *data)
+{
+  t_room_list	*curr;
+
+  curr = data->rl_root->next;
+  while (curr && curr->ri && curr != data->rl_root)
+    {
+      curr->ri->poids =-1;
+      curr->ri->ant_num = 0;
+      curr->ri->antecedent = NULL;
+      curr = curr->next;
+    }
 }
 
 int		my_add_to_end_ways_list(t_ways *root,

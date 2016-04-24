@@ -5,7 +5,7 @@
 ** Login   <mesqui_v@epitech.net>
 **
 ** Started on  Sun Apr 24 21:09:42 2016 vincent mesquita
-** Last update Sun Apr 24 21:09:43 2016 vincent mesquita
+** Last update Sun Apr 24 22:10:53 2016 Vincent Florian
 */
 
 #ifndef PARSER_H_
@@ -75,8 +75,10 @@ typedef struct		s_leminfo
   t_room_list		*father;
 }			t_leminfo;
 
-void		print_my_move2(t_leminfo *info,
-			       t_ways *my_ways);
+void			reset_data(t_leminfo *data);
+t_ways			*my_path(t_leminfo *data);
+void			print_my_move2(t_leminfo *info,
+				       t_ways *my_ways);
 int			solo_ants(t_ways *my_way, t_leminfo *data);
 void			my_delete_list(t_ways *curr);
 t_ways			*create_ways(void);
