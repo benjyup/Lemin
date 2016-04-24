@@ -5,12 +5,29 @@
 ** Login   <mesqui_v@epitech.net>
 **
 ** Started on  Tue Apr 19 11:11:20 2016 vincent mesquita
-** Last update Fri Apr 22 13:54:09 2016 vincent mesquita
+** Last update Sun Apr 24 14:02:59 2016 vincent mesquita
 */
 
 #include <stdlib.h>
 #include "parser.h"
 #include "my_basics.h"
+
+static int		name_already_used(char *name,
+					  t_link_list *root)
+{
+  t_link_list		*current;
+
+  if (!name || !root)
+    return (1);
+  current = root->next;
+  while (current != root)
+    {
+      if (my_strcomp(name, current->link->NAME))
+	return (1);
+      current = current->next;
+    }
+  return (0);
+}
 
 static int	my_add_to_list(t_link_list *root,
 			       t_room_list *link_to)
@@ -20,6 +37,8 @@ static int	my_add_to_list(t_link_list *root,
 
   if (!root || !link_to)
     return (-1);
+  if (name_already_used(link_to->NAME, root))
+    return (0);
   current = root->prev;
   if (!(new_ll = malloc(sizeof(*new_ll))))
     return (-2);
