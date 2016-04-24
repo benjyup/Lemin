@@ -5,7 +5,7 @@
 ** Login   <mesqui_v@epitech.net>
 **
 ** Started on  Mon Apr 18 11:04:15 2016 vincent mesquita
-** Last update Sat Apr 23 16:48:21 2016 Vincent Florian
+** Last update Sun Apr 24 11:12:13 2016 Vincent Florian
 */
 
 #include <stdlib.h>
@@ -74,6 +74,7 @@ int			my_fill_room_list(t_leminfo *leminfo,
   ri->poids = -1;
   ri->parcours = 0;
   ri->ant_num = 0;
+  ri->lenght = 0;
   if (my_check_position(wordtab, ri, leminfo) == -1)
     return (-1);
   if (my_add_to_end_room_list(leminfo->rl_root, ri) < 0)

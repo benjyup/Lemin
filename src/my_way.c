@@ -5,7 +5,7 @@
 ** Login   <vincen_s@epitech.net>
 **
 ** Started on  Wed Apr 20 12:48:27 2016 Vincent Florian
-** Last update Sat Apr 23 18:46:27 2016 Vincent Florian
+** Last update Sun Apr 24 12:38:19 2016 Vincent Florian
 */
 
 #include <stdlib.h>
@@ -70,7 +70,9 @@ t_room_list	*my_list_path(t_leminfo *data)
 {
   t_room_list	*courrant;
   t_room_list	*my_way;
+  int		i;
 
+  i = 0;
   courrant = data->father;
   if (!(my_way = create_rl()))
     return (NULL);
@@ -78,9 +80,10 @@ t_room_list	*my_list_path(t_leminfo *data)
     {
       my_add_to_begin_room_list(my_way, courrant->ri);
       courrant = courrant->ri->antecedent;
+      i++;
     }
   my_add_to_begin_room_list(my_way, courrant->ri);
-  courrant = my_way->next;
+  my_way->next->ri->lenght = 1;
   return (my_way);
 }
 
@@ -196,6 +199,7 @@ void		find_my_ways(t_room_list *courrant, t_leminfo *data,
 			     t_ways *ways)
 {
   t_link_list	*curr;
+  t_room_list	*path;
 
   curr = courrant->ri->links->next;
   while (curr != courrant->ri->links)
@@ -209,8 +213,13 @@ void		find_my_ways(t_room_list *courrant, t_leminfo *data,
 	  if ((my_poids(data, 0)) == -1)
 	    break ;
 	}
-      if (my_strcomp(data->father->NAME, data->end))
-	my_add_to_end_ways_list(ways, my_list_path(data));
+      if (my_strcomp(data->father->NAME, data->end) &&
+	  (path = my_list_path(data)) != NULL)
+	{
+	  my_add_to_end_ways_list(ways, path);
+	  if (path->next->ri->lenght == 2)
+	    break ;
+	}
       reset_data(data);
       curr = curr->next;
     }

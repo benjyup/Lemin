@@ -6,7 +6,7 @@
 **
 ** Started on  Sun Apr 17 02:01:14 2016 vincent mesquita
 <<<<<<< HEAD
-** Last update Sat Apr 23 13:51:35 2016 Vincent Florian
+** Last update Sun Apr 24 11:11:36 2016 Vincent Florian
 =======
 ** Last update Wed Apr 20 16:22:30 2016 vincent mesquita
 >>>>>>> 56d471a81ae721fc3d9bbbd52ad565d36f5120b2
@@ -46,6 +46,7 @@ typedef struct		s_room_info
   t_position		pos;
   int			ant_num;
   int			poids;
+  int			lenght;
   int			parcours;
   struct s_room_list	*antecedent;
   t_link_list		*links;
