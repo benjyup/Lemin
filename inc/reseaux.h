@@ -5,7 +5,7 @@
 ** Login   <puente_t@epitech.net>
 **
 ** Started on  Wed Apr 20 12:41:48 2016 Timothée Puentes
-** Last update Fri Apr 22 14:17:47 2016 Timothée Puentes
+** Last update Sun Apr 24 22:24:03 2016 Timothée Puentes
 */
 
 #ifndef RESEAUX_H_
@@ -20,9 +20,9 @@
 # define	ANTS data->ant
 # define	END_NAME data->leminfo->end
 # define	START_NAME data->leminfo->start
-# define	__IS ((my_strcomp(END_NAME,				\
+# define	__IS ((my_strcomp(END_NAME,		\
 				   cur->ri->name)) ? ("2") : ("0"))
-# define	IS_START ((my_strcomp(START_NAME,			\
+# define	IS_START ((my_strcomp(START_NAME,	\
 				   cur->ri->name)) ? ("1") : (__IS))
 # define	PRINT_START ((data->start == 1) ? ("Start") : ("End"))
 # define	O_EXIT 1
