@@ -4,12 +4,8 @@
 ** Made by vincent mesquita
 ** Login   <mesqui_v@epitech.net>
 **
-** Started on  Sun Apr 17 02:01:14 2016 vincent mesquita
-<<<<<<< HEAD
-** Last update Sun Apr 24 21:03:50 2016 vincent mesquita
-=======
-** Last update Wed Apr 20 16:22:30 2016 vincent mesquita
->>>>>>> 56d471a81ae721fc3d9bbbd52ad565d36f5120b2
+** Started on  Sun Apr 24 21:09:42 2016 vincent mesquita
+** Last update Sun Apr 24 21:09:43 2016 vincent mesquita
 */
 
 #ifndef PARSER_H_

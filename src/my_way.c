@@ -5,7 +5,7 @@
 ** Login   <vincen_s@epitech.net>
 **
 ** Started on  Wed Apr 20 12:48:27 2016 Vincent Florian
-** Last update Sun Apr 24 21:04:34 2016 vincent mesquita
+** Last update Sun Apr 24 21:14:38 2016 vincent mesquita
 */
 
 #include <stdlib.h>
@@ -19,7 +19,8 @@ static int	my_poids(t_leminfo *data, int i)
 
   j = -1;
   courrant = data->rl_root->next;
-  while (courrant && courrant->ri && courrant != data->rl_root && i <= 0)
+  while (courrant && courrant->ri
+	 && courrant != data->rl_root && i <= 0)
     {
       if (courrant->PARC == 0)
 	i = courrant->POIDS;
@@ -49,7 +50,8 @@ static void	my_son(t_leminfo *data)
     return ;
   courrant = (data->father)->ri->links->next;
   (data->father)->ri->parcours = 1;
-  while (courrant && courrant->link && courrant != (data->father)->LINKS)
+  while (courrant && courrant->link
+	 && courrant != (data->father)->LINKS)
     {
       current = data->rl_root->next;
       while (current && current->ri && current != data->rl_root &&
@@ -97,7 +99,8 @@ void		print_my_move(t_room_list *current, int *flag)
   *flag = 1;
 }
 
-void		move_my_ants(t_leminfo *data, int *i, t_ways *curr, int *flag)
+void		move_my_ants(t_leminfo *data, int *i,
+			     t_ways *curr, int *flag)
 {
   t_room_list	*current;
 
@@ -237,8 +240,8 @@ t_ways		*my_path(t_leminfo *data)
   while (courrant != data->rl_root && courrant->ri &&
 	 my_strcomp(courrant->ri->name, data->start) != 1)
     courrant = courrant->next;
-  if (courrant == data->rl_root || !courrant->ri || !courrant->ri->links ||
-      (ways = create_ways()) == NULL)
+  if (courrant == data->rl_root || !courrant->ri || !courrant->ri->links
+      || (ways = create_ways()) == NULL)
     return (NULL);
   find_my_ways(courrant, data, ways);
   if ((current = ways->next) == ways)

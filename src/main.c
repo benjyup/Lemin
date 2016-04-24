@@ -5,13 +5,32 @@
 ** Login   <mesqui_v@epitech.net>
 **
 ** Started on  Sun Apr 17 01:54:13 2016 vincent mesquita
-** Last update Sun Apr 24 13:52:57 2016 vincent mesquita
+** Last update Sun Apr 24 21:57:23 2016 vincent mesquita
 */
 
 #include <stdlib.h>
 #include <stdio.h>
 #include "lemin.h"
 #include "my_basics.h"
+
+static void	free_ways(t_ways *root)
+{
+  t_ways	*current;
+  t_ways	*tmp;
+
+  if (!root)
+    return ;
+  current = root->next;
+  while (current != root)
+    {
+      tmp = current;
+      if (!current->way)
+	free(current->way);
+      current = current->next;
+      free(tmp);
+    }
+  free(root);
+}
 
 void		print_all_path(t_path *path)
 {
@@ -41,5 +60,6 @@ int		main(void)
       my_antman(ways, &leminfo);
     }
   free_leminfo(&leminfo);
+  free_ways(ways);
   return (0);
 }
