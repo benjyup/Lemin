@@ -5,7 +5,7 @@
 ** Login   <vincen_s@epitech.net>
 **
 ** Started on  Wed Apr 20 12:48:27 2016 Vincent Florian
-** Last update Sun Apr 24 17:23:49 2016 Vincent Florian
+** Last update Sun Apr 24 21:04:34 2016 vincent mesquita
 */
 
 #include <stdlib.h>
@@ -144,13 +144,7 @@ int		my_antman(t_ways *my_way, t_leminfo *data)
 	my_putchar('\n');
     }
   if (data->ants_nbr > 1 && data->ants_nbr % 2 == 0)
-    {
-      my_putchar('P');
-      my_put_nbr(data->ants_nbr);
-      my_putchar('-');
-      my_putstr(my_way->next->way->prev->NAME);
-      my_putchar('\n');
-    }
+    print_my_move2(data, my_way);
   return (0);
 }
 

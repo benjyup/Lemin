@@ -6,7 +6,7 @@
 **
 ** Started on  Sun Apr 17 02:01:14 2016 vincent mesquita
 <<<<<<< HEAD
-** Last update Sun Apr 24 11:11:36 2016 Vincent Florian
+** Last update Sun Apr 24 21:03:50 2016 vincent mesquita
 =======
 ** Last update Wed Apr 20 16:22:30 2016 vincent mesquita
 >>>>>>> 56d471a81ae721fc3d9bbbd52ad565d36f5120b2
@@ -79,6 +79,8 @@ typedef struct		s_leminfo
   t_room_list		*father;
 }			t_leminfo;
 
+void		print_my_move2(t_leminfo *info,
+			       t_ways *my_ways);
 int			solo_ants(t_ways *my_way, t_leminfo *data);
 void			my_delete_list(t_ways *curr);
 t_ways			*create_ways(void);
