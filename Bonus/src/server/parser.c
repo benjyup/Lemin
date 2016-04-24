@@ -5,7 +5,7 @@
 ** Login   <mesqui_v@epitech.net>
 **
 ** Started on  Sun Apr 17 01:59:33 2016 vincent mesquita
-** Last update Thu Apr 21 12:04:04 2016 Timothée Puentes
+** Last update Sun Apr 24 22:49:00 2016 vincent mesquita
 */
 
 #include <stdlib.h>
@@ -102,7 +102,8 @@ int		my_parser(t_leminfo *leminfo)
   if (!my_init_leminfo(leminfo))
     return (-1);
   check = 0;
-  while (check >= 0 && (str = get_next_line(0)) != NULL && !my_strcomp(str, "##visu"))
+  while (check >= 0 && (str = get_next_line(0)) != NULL
+	 && !my_strcomp(str, "##visu"))
     {
       if (!is_a_comment(str))
 	{

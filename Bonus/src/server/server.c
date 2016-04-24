@@ -5,7 +5,7 @@
 ** Login   <puente_t@epitech.net>
 **
 ** Started on  Wed Apr 20 15:16:12 2016 Timothée Puentes
-** Last update Sat Apr 23 13:29:48 2016 Timothée Puentes
+** Last update Sun Apr 24 22:51:23 2016 vincent mesquita
 */
 
 #include <stdio.h>
@@ -34,7 +34,9 @@ static int		init_ants(t_reseaux *data)
   return (0);
 }
 
-static void		      print_data_connexion(struct sockaddr_in cli_addr, char *str)
+static void		print_data_connexion(struct sockaddr_in
+					     cli_addr,
+					     char *str)
 {
   my_putstr("Connecting ");
   my_put_nbr((cli_addr.sin_addr.s_addr) % 256);
