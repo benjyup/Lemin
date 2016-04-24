@@ -5,7 +5,7 @@
 ** Login   <vincen_s@epitech.net>
 **
 ** Started on  Wed Apr 20 12:48:27 2016 Vincent Florian
-** Last update Sun Apr 24 17:13:08 2016 Vincent Florian
+** Last update Sun Apr 24 17:23:49 2016 Vincent Florian
 */
 
 #include <stdlib.h>
@@ -105,7 +105,7 @@ void		move_my_ants(t_leminfo *data, int *i, t_ways *curr, int *flag)
   current->ri->ant_num = 0;
   while (current->prev != curr->way && current->ri->ant_num == 0)
     current = current->prev;
-  while (current && current->ri && currant != curr->way)
+  while (current && current->ri && current != curr->way)
     {
       if (current->ri->ant_num > 0 &&
 	  current->ri->ant_num < data->ants_nbr + 1)
