@@ -5,28 +5,28 @@
 ** Login   <vincen_s@epitech.net>
 **
 ** Started on  Wed Apr 20 12:48:27 2016 Vincent Florian
-** Last update Sun Apr 24 12:38:19 2016 Vincent Florian
+** Last update Sun Apr 24 17:13:08 2016 Vincent Florian
 */
 
 #include <stdlib.h>
 #include "my_basics.h"
 #include "parser.h"
 
-static int		my_poids(t_leminfo *data, int i)
+static int	my_poids(t_leminfo *data, int i)
 {
   t_room_list	*courrant;
   int		j;
 
   j = -1;
   courrant = data->rl_root->next;
-  while (courrant != data->rl_root && i <= 0)
+  while (courrant && courrant->ri && courrant != data->rl_root && i <= 0)
     {
       if (courrant->PARC == 0)
 	i = courrant->POIDS;
       courrant = courrant->next;
     }
   courrant = data->rl_root->next;
-  while (courrant != data->rl_root)
+  while (courrant && courrant->ri && courrant != data->rl_root)
     {
       if (courrant->PARC == 0 &&
 	  courrant->POIDS > 0 && i >= courrant->POIDS)
@@ -40,24 +40,24 @@ static int		my_poids(t_leminfo *data, int i)
   return (j);
 }
 
-static void		my_son(t_leminfo *data)
+static void	my_son(t_leminfo *data)
 {
   t_link_list	*courrant;
   t_room_list	*current;
 
-  if ((data->father)->ri->links == NULL)
+  if ((data->father)->ri == NULL || data->father->ri->links == NULL)
     return ;
   courrant = (data->father)->ri->links->next;
   (data->father)->ri->parcours = 1;
-  while (courrant != (data->father)->LINKS)
+  while (courrant && courrant->link && courrant != (data->father)->LINKS)
     {
       current = data->rl_root->next;
-      while (current != data->rl_root &&
+      while (current && current->ri && current != data->rl_root &&
 	     my_strcomp(current->NAME, courrant->link->NAME) != 1)
 	current = current->next;
-      if ((current->PARC == 0) && (((data->father)->POIDS
-				    + 1 < current->POIDS) ||
-				   (current->POIDS == -1)))
+      if (current->ri && (current->PARC == 0) &&
+	  (((data->father)->POIDS + 1 < current->POIDS) ||
+	   (current->POIDS == -1)))
 	{
 	  current->POIDS = (data->father)->POIDS + 1;
 	  (current->ri->antecedent) = data->father;
@@ -87,16 +87,17 @@ t_room_list	*my_list_path(t_leminfo *data)
   return (my_way);
 }
 
-void		print_my_move(t_room_list *current)
+void		print_my_move(t_room_list *current, int *flag)
 {
   my_putchar('P');
   my_put_nbr(current->ri->ant_num);
   my_putchar('-');
   my_putstr(current->next->ri->name);
   my_putchar(' ');
+  *flag = 1;
 }
 
-int		move_my_ants(t_leminfo *data, int *i, t_ways *curr)
+void		move_my_ants(t_leminfo *data, int *i, t_ways *curr, int *flag)
 {
   t_room_list	*current;
 
@@ -104,11 +105,11 @@ int		move_my_ants(t_leminfo *data, int *i, t_ways *curr)
   current->ri->ant_num = 0;
   while (current->prev != curr->way && current->ri->ant_num == 0)
     current = current->prev;
-  while (current != curr->way)
+  while (current && current->ri && currant != curr->way)
     {
-      if (current->ri->ant_num > 0 && current->ri->ant_num
-	  < data->ants_nbr + 1)
-	print_my_move(current);
+      if (current->ri->ant_num > 0 &&
+	  current->ri->ant_num < data->ants_nbr + 1)
+	print_my_move(current, flag);
       current->next->ri->ant_num = current->ri->ant_num;
       current = current->prev;
     }
@@ -124,19 +125,23 @@ int		my_antman(t_ways *my_way, t_leminfo *data)
 {
   t_ways	*curr;
   int		i;
+  int		flag;
 
   i = 0;
   curr = my_way;
-  while (curr->next->way->prev->ri->ant_num <
+  while (curr->next->way->prev
+	 && curr->next->way->prev->ri->ant_num <
 	 data->ants_nbr - (data->ants_nbr + 1) % 2)
     {
+      flag = 0;
       curr = my_way->next;
-      while (curr != my_way)
+      while (curr && curr != my_way)
 	{
-	  move_my_ants(data, &i, curr);
+	  move_my_ants(data, &i, curr, &flag);
 	  curr = curr->next;
 	}
-      my_putchar('\n');
+      if (flag == 1)
+	my_putchar('\n');
     }
   if (data->ants_nbr > 1 && data->ants_nbr % 2 == 0)
     {
@@ -158,7 +163,7 @@ void		my_check_ways(t_ways *ways)
 
   lenght = -1;
   curr = ways->next;
-  while (curr != ways)
+  while (curr && curr->way && curr != ways)
     {
       i = 0;
       current = curr->way;
@@ -169,7 +174,7 @@ void		my_check_ways(t_ways *ways)
       curr = curr->next;
     }
   curr = ways->next;
-  while (curr != ways)
+  while (curr && curr->way && curr != ways)
     {
       i = 0;
       current = curr->way;
@@ -186,7 +191,7 @@ void		reset_data(t_leminfo *data)
   t_room_list	*curr;
 
   curr = data->rl_root->next;
-  while (curr != data->rl_root)
+  while (curr && curr->ri && curr != data->rl_root)
     {
       curr->ri->poids =-1;
       curr->ri->ant_num = 0;
@@ -195,14 +200,16 @@ void		reset_data(t_leminfo *data)
     }
 }
 
-void		find_my_ways(t_room_list *courrant, t_leminfo *data,
+int		find_my_ways(t_room_list *courrant, t_leminfo *data,
 			     t_ways *ways)
 {
   t_link_list	*curr;
   t_room_list	*path;
 
+  if (courrant->ri->links == NULL)
+    return (-1);
   curr = courrant->ri->links->next;
-  while (curr != courrant->ri->links)
+  while (curr && curr->link && curr != courrant->ri->links)
     {
       data->father = curr->link;
       (data->father)->ri->poids = 0;
@@ -215,32 +222,33 @@ void		find_my_ways(t_room_list *courrant, t_leminfo *data,
 	}
       if (my_strcomp(data->father->NAME, data->end) &&
 	  (path = my_list_path(data)) != NULL)
-	{
-	  my_add_to_end_ways_list(ways, path);
-	  if (path->next->ri->lenght == 2)
-	    break ;
-	}
+	my_add_to_end_ways_list(ways, path);
       reset_data(data);
       curr = curr->next;
     }
+  if (ways->next == ways)
+    return (-1);
+  return (0);
 }
 
 t_ways		*my_path(t_leminfo *data)
 {
   t_room_list	*courrant;
-  t_link_list	*curr;
   t_ways	*ways;
   t_ways	*current;
 
+  if (data->rl_root->next == NULL)
+    return (NULL);
   courrant = data->rl_root->next;
-  while (courrant != data->rl_root && my_strcomp(courrant->ri->name,
-						 data->start) != 1)
+  while (courrant != data->rl_root && courrant->ri &&
+	 my_strcomp(courrant->ri->name, data->start) != 1)
     courrant = courrant->next;
   if (courrant == data->rl_root || !courrant->ri || !courrant->ri->links ||
       (ways = create_ways()) == NULL)
     return (NULL);
   find_my_ways(courrant, data, ways);
-  current = ways->next;
+  if ((current = ways->next) == ways)
+    return (NULL);
   while (current != ways)
     {
       my_add_to_begin_room_list(current->way, courrant->ri);
