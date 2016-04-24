@@ -5,7 +5,7 @@
 ** Login   <mesqui_v@epitech.net>
 **
 ** Started on  Tue Apr 19 11:11:20 2016 vincent mesquita
-** Last update Sun Apr 24 14:02:59 2016 vincent mesquita
+** Last update Sun Apr 24 16:27:37 2016 Peixoto Benjamin
 */
 
 #include <stdlib.h>
@@ -29,7 +29,7 @@ static int		name_already_used(char *name,
   return (0);
 }
 
-static int	my_add_to_list(t_link_list *root,
+static int		my_add_to_list(t_link_list *root,
 			       t_room_list *link_to)
 {
   t_link_list		*new_ll;
@@ -62,24 +62,11 @@ static t_link_list	*create_ll(void)
   return (root);
 }
 
-void		show(t_link_list *root)
+int			add_the_link(t_leminfo *leminfo,
+				     char **wordtab,
+				     t_room_list *current)
 {
-  t_link_list	*current;
-
-  current = root->next;
-  while (current != root)
-    {
-      my_putstr(current->link->NAME);
-      my_putchar(10);
-      current = current->next;
-    }
-}
-
-int		add_the_link(t_leminfo *leminfo,
-			     char **wordtab,
-			     t_room_list *current)
-{
-  t_room_list	*link_to;
+  t_room_list		*link_to;
 
   if (current->LINKS == NULL
       && !(current->LINKS = create_ll()))
@@ -94,10 +81,10 @@ int		add_the_link(t_leminfo *leminfo,
   return (0);
 }
 
-int		my_add_links(t_leminfo *leminfo,
-			     char **wordtab)
+int			my_add_links(t_leminfo *leminfo,
+				     char **wordtab)
 {
-  t_room_list	*current;
+  t_room_list		*current;
 
   if (!leminfo || !wordtab)
     return (-1);

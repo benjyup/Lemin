@@ -5,7 +5,7 @@
 ** Login   <mesqui_v@epitech.net>
 **
 ** Started on  Wed Apr 20 14:51:46 2016 vincent mesquita
-** Last update Wed Apr 20 16:10:46 2016 vincent mesquita
+** Last update Sun Apr 24 16:24:58 2016 Peixoto Benjamin
 */
 
 #include "my_basics.h"
@@ -13,7 +13,7 @@
 static int	hash_count(char *str)
 {
   unsigned int	i;
-  unsigned int count;
+  unsigned int	count;
 
   i = 0;
   count = 0;
