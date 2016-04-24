@@ -5,7 +5,7 @@
 ## Login   <mesqui_v@epitech.net>
 ##
 ## Started on  Sun Apr 17 01:55:36 2016 vincent mesquita
-## Last update Sat Apr 23 13:17:17 2016 Timothée Puentes
+## Last update Sun Apr 24 16:50:04 2016 Timothée Puentes
 ##
 
 NAME		=	lem_in
@@ -36,7 +36,9 @@ SRCS		=	../Basics/my_putchar.c		\
 			../Basics/my_free_wordtab.c	\
 			../Basics/my_show_wordtab.c	\
 			../Basics/my_wordtab_len.c	\
-			../Basics/get_next_line.c	\
+			../gnl/get_next_line.c		\
+			../gnl/gnl2.c			\
+			../gnl/gnl_use.c		\
 			src/main.c			\
 			../src/there_is_dash.c		\
 			../src/my_nan.c			\

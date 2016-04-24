@@ -5,7 +5,7 @@
 ** Login   <puente_t@epitech.net>
 **
 ** Started on  Wed Apr 20 15:16:12 2016 Timothée Puentes
-** Last update Fri Apr 22 17:30:25 2016 Timothée Puentes
+** Last update Sat Apr 23 13:29:48 2016 Timothée Puentes
 */
 
 #include <stdio.h>
@@ -80,7 +80,7 @@ int			etablish_new_connexion(t_reseaux *data)
 
 int			server(t_reseaux *data)
 {
- struct sockaddr_in	serv_addr;
+  struct sockaddr_in	serv_addr;
 
   if ((data->sockfd = socket(AF_INET, SOCK_STREAM, 0)) < 0)
     return (my_puterror("ERROR opening socket"));
