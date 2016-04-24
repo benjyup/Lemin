@@ -5,7 +5,7 @@
 ** Login   <puente_t@epitech.net>
 **
 ** Started on  Thu Apr 21 10:25:32 2016 Timothée Puentes
-** Last update Fri Apr 22 11:36:43 2016 Timothée Puentes
+** Last update Sun Apr 24 21:10:10 2016 Peixoto Benjamin
 */
 
 #include <stdio.h>
@@ -59,11 +59,13 @@ int			main(int argc, char *argv[])
     return (1);
   my_memset((char *)&serv_addr, sizeof(serv_addr), 0);
   serv_addr.sin_family = AF_INET;
-  if (my_memcpy((char *)&serv_addr.sin_addr.s_addr, (char *)server->h_addr,
+  if (my_memcpy((char *)&serv_addr.sin_addr.s_addr,
+		(char *)server->h_addr,
 		server->h_length) == NULL)
     return (1);
   serv_addr.sin_port = swap(PORT);
-  if (connect(sockfd, (struct sockaddr *)&serv_addr, sizeof(serv_addr)) < 0)
+  if (connect(sockfd, (struct sockaddr *)&serv_addr,
+	      sizeof(serv_addr)) < 0)
     return (my_puterror("Error connecting\n"));
   display_client(sockfd);
   close(sockfd);
