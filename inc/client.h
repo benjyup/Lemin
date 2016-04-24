@@ -5,7 +5,7 @@
 ** Login   <puente_t@epitech.net>
 **
 ** Started on  Thu Apr 21 10:31:39 2016 Timothée Puentes
-** Last update Fri Apr 22 17:46:59 2016 Timothée Puentes
+** Last update Sun Apr 24 22:21:56 2016 Vincent Florian
 */
 
 #ifndef CLIENT_H_
@@ -13,16 +13,16 @@
 
 # include <lapin.h>
 
-# define	BUFF 248
-# define	WIN_X 1000
-# define	WIN_Y 1000
-# define	SPRITE_X 352
-# define	SPRITE_Y 325
-# define	NB_SPRITE_X 3
-# define	NB_SPRITE_Y 4
-# define	MY_B 0x32000000
-# define	MY_W 0x32FFFFFF
-# define	ANIM_SPEED 100
+# define		BUFF 248
+# define		WIN_X 1000
+# define		WIN_Y 1000
+# define		SPRITE_X 352
+# define		SPRITE_Y 325
+# define		NB_SPRITE_X 3
+# define		NB_SPRITE_Y 4
+# define		MY_B 0x32000000
+# define		MY_W 0x32FFFFFF
+# define		ANIM_SPEED 100
 
 typedef struct		s_client
 {
