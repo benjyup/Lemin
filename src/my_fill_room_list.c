@@ -5,30 +5,12 @@
 ** Login   <mesqui_v@epitech.net>
 **
 ** Started on  Mon Apr 18 11:04:15 2016 vincent mesquita
-** Last update Sun Apr 24 16:44:08 2016 vincent mesquita
+** Last update Sun Apr 24 22:34:14 2016 Vincent Florian
 */
 
 #include <stdlib.h>
 #include "parser.h"
 #include "my_basics.h"
-
-void			my_show_room_list(t_room_list *root)
-{
-  t_room_list		*current;
-
-  current = root->next;
-  while (current != root)
-    {
-      my_putchar('\n');
-      my_putstr(current->ri->name);
-      my_putchar('\n');
-      my_put_nbr(current->ri->pos.x);
-      my_putchar('\n');
-      my_put_nbr(current->ri->pos.y);
-      my_putchar('\n');
-      current = current->next;
-    }
-}
 
 static int		my_check_position(char **wordtab,
 					  t_room_info *ri,

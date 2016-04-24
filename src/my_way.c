@@ -5,7 +5,7 @@
 ** Login   <vincen_s@epitech.net>
 **
 ** Started on  Wed Apr 20 12:48:27 2016 Vincent Florian
-** Last update Sun Apr 24 22:15:22 2016 Vincent Florian
+** Last update Sun Apr 24 22:36:23 2016 Vincent Florian
 */
 
 #include <stdlib.h>
@@ -22,7 +22,8 @@ static void	print_my_move(t_room_list *current, int *flag)
   *flag = 1;
 }
 
-static void	move_my_ants(t_leminfo *data, int *i, t_ways *curr, int *flag)
+static void	move_my_ants(t_leminfo *data, int *i,
+			     t_ways *curr, int *flag)
 {
   t_room_list	*current;
 

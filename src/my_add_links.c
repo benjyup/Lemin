@@ -5,7 +5,7 @@
 ** Login   <mesqui_v@epitech.net>
 **
 ** Started on  Tue Apr 19 11:11:20 2016 vincent mesquita
-** Last update Sun Apr 24 16:27:37 2016 Peixoto Benjamin
+** Last update Sun Apr 24 22:28:28 2016 Vincent Florian
 */
 
 #include <stdlib.h>
@@ -30,7 +30,7 @@ static int		name_already_used(char *name,
 }
 
 static int		my_add_to_list(t_link_list *root,
-			       t_room_list *link_to)
+				       t_room_list *link_to)
 {
   t_link_list		*new_ll;
   t_link_list		*current;

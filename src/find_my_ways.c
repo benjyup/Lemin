@@ -5,7 +5,7 @@
 ** Login   <vincen_s@epitech.net>
 **
 ** Started on  Sun Apr 24 21:55:25 2016 Vincent Florian
-** Last update Sun Apr 24 22:19:11 2016 Vincent Florian
+** Last update Sun Apr 24 22:31:46 2016 Vincent Florian
 */
 
 #include <stdlib.h>
@@ -19,7 +19,8 @@ static int		my_poids(t_leminfo *data, int i)
 
   j = -1;
   courrant = data->rl_root->next;
-  while (courrant && courrant->ri && courrant != data->rl_root && i <= 0)
+  while (courrant && courrant->ri &&
+	 courrant != data->rl_root && i <= 0)
     {
       if (courrant->PARC == 0)
 	i = courrant->POIDS;

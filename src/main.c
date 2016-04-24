@@ -5,7 +5,7 @@
 ** Login   <mesqui_v@epitech.net>
 **
 ** Started on  Sun Apr 17 01:54:13 2016 vincent mesquita
-** Last update Sun Apr 24 21:57:23 2016 vincent mesquita
+** Last update Sun Apr 24 22:33:54 2016 Vincent Florian
 */
 
 #include <stdlib.h>
@@ -30,19 +30,6 @@ static void	free_ways(t_ways *root)
       free(tmp);
     }
   free(root);
-}
-
-void		print_all_path(t_path *path)
-{
-  t_path	*cur;
-
-  cur = path;
-  while (cur != NULL)
-    {
-      my_putstr(cur->name);
-      my_putstr("\n");
-      cur = cur->next;
-    }
 }
 
 int		main(void)
