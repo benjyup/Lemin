@@ -5,10 +5,9 @@
 ** Login   <puente_t@epitech.net>
 **
 ** Started on  Thu Apr 21 10:33:03 2016 Timothée Puentes
-** Last update Fri Apr 22 17:30:31 2016 Timothée Puentes
+** Last update Sun Apr 24 22:43:12 2016 Vincent Florian
 */
 
-#include <stdio.h>
 #include <termios.h>
 #include <sys/ioctl.h>
 #include <sys/types.h>
@@ -50,9 +49,9 @@ t_bunny_response	mainloop(void *_data)
   return (GO_ON);
 }
 
-int		init_char(t_client *data)
+int			init_char(t_client *data)
 {
-  char		buff[BUFF + 1];
+  char			buff[BUFF + 1];
 
   my_memset(buff, BUFF, 0);
   if (read(data->sockfd, buff, BUFF) < 0)
@@ -63,17 +62,17 @@ int		init_char(t_client *data)
     return (my_puterror(READ_ERR));
   if ((data->win = bunny_start(WIN_X, WIN_Y, false, buff)) == NULL ||
       (data->pix = bunny_new_pixelarray(WIN_X, WIN_Y)) == NULL ||
-     (data->font = bunny_load_pixelarray("font.png")) == NULL ||
-     (data->sprite = bunny_load_pixelarray("chicken.png")) == NULL)
+      (data->font = bunny_load_pixelarray("font.png")) == NULL ||
+      (data->sprite = bunny_load_pixelarray("chicken.png")) == NULL)
     return (my_puterror(MALLOC_ERR));
   if (write(data->sockfd, buff, BUFF) < 0)
     return (my_puterror(READ_ERR));
   return (0);
 }
 
-int		display_client(int sockfd)
+int			display_client(int sockfd)
 {
-  t_client	data;
+  t_client		data;
 
   data.sockfd = sockfd;
   if (init_char(&data) != 0)

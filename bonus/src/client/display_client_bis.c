@@ -5,10 +5,9 @@
 ** Login   <puente_t@epitech.net>
 **
 ** Started on  Fri Apr 22 13:56:03 2016 Timothée Puentes
-** Last update Fri Apr 22 17:25:11 2016 Timothée Puentes
+** Last update Sun Apr 24 22:48:01 2016 Vincent Florian
 */
 
-#include <stdio.h>
 #include <termios.h>
 #include <sys/ioctl.h>
 #include <sys/types.h>

@@ -5,7 +5,7 @@
 ## Login   <mesqui_v@epitech.net>
 ##
 ## Started on  Sun Apr 17 01:55:36 2016 vincent mesquita
-## Last update Sun Apr 24 16:50:04 2016 Timothée Puentes
+## Last update Sun Apr 24 22:52:15 2016 Vincent Florian
 ##
 
 NAME		=	lem_in
@@ -19,7 +19,7 @@ CC		=	gcc
 CFLAGS		=	-W -Wall -Wextra -I../inc -g3
 
 LIB		=	-L/home/${USER}/.froot/lib	\
-			-llapin -lsfml-audio 		\
+			-llapin -lsfml-audio		\
 			-lsfml-graphics -lsfml-window	\
 			-lsfml-system -lstdc++ -ldl -lm
 
@@ -43,6 +43,7 @@ SRCS		=	../Basics/my_putchar.c		\
 			../src/there_is_dash.c		\
 			../src/my_nan.c			\
 			../src/my_way.c			\
+			../src/find_my_ways.c		\
 			../src/my_ways_list.c		\
 			../src/free_leminfo.c		\
 			../src/my_epure_str.c		\
@@ -50,10 +51,9 @@ SRCS		=	../Basics/my_putchar.c		\
 			../src/my_fill_room_list.c	\
 			../src/my_start_and_end.c	\
 			../src/my_add_links.c		\
-			../src/find_way.c		\
 			../src/my_errors.c		\
 			../src/is_a_comment.c		\
-			../src/recur_path.c		\
+			../src/print_my_move.c		\
 			../src/parser.c
 
 OBJS		=	$(SRCS:.c=.o)
@@ -89,7 +89,7 @@ SRCS_SERV	=	src/server/server.c		\
 			../src/is_a_comment.c		\
 			src/server/parser.c
 
-OBJS_SERV	=	$(SRCS_SERV:.c=.o) 
+OBJS_SERV	=	$(SRCS_SERV:.c=.o)
 
 
 SRCS_CLIENT	=	../Basics/my_putchar.c		\
@@ -114,7 +114,7 @@ SRCS_CLIENT	=	../Basics/my_putchar.c		\
 			src/client/client.c		\
 			src/common_net.c
 
-OBJS_CLIENT	=	$(SRCS_CLIENT:.c=.o) 
+OBJS_CLIENT	=	$(SRCS_CLIENT:.c=.o)
 
 all: $(NAME)
 

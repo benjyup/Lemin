@@ -5,10 +5,9 @@
 ** Login   <puente_t@epitech.net>
 **
 ** Started on  Thu Apr 21 10:25:32 2016 Timothée Puentes
-** Last update Sun Apr 24 21:10:10 2016 Peixoto Benjamin
+** Last update Sun Apr 24 22:44:31 2016 Vincent Florian
 */
 
-#include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
 #include <sys/types.h>
@@ -27,14 +26,14 @@ struct hostent		*init_hostent(char *ip)
 
   if ((server = malloc(sizeof(*server))) == NULL ||
       (server->h_name = my_strcpy(ip)) == NULL ||
-      (server->h_aliases = malloc(sizeof(char*))) == NULL ||
-      (server->h_addr_list = malloc(sizeof(char*) * 2)) == NULL ||
+      (server->h_aliases = malloc(sizeof(char *))) == NULL ||
+      (server->h_addr_list = malloc(sizeof(char *) * 2)) == NULL ||
       (server->h_addr = malloc(5)) == NULL ||
       (ip_cut = my_str_to_wordtab(ip, '.')) == NULL)
     return (NULL);
   server->h_length = 4;
   server->h_aliases[0] = NULL;
-    server->h_addrtype = 2;
+  server->h_addrtype = 2;
   c = 0;
   while (c < server->h_length)
     {

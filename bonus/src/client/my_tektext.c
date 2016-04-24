@@ -5,13 +5,13 @@
 ** Login   <mesqui_v@epitech.net>
 **
 ** Started on  Mon Feb 15 15:11:08 2016 vincent mesquita
-** Last update Fri Apr 22 17:15:10 2016 Timothée Puentes
+** Last update Sun Apr 24 22:42:06 2016 Vincent Florian
 */
 
 #include <lapin.h>
 #include "client.h"
 
-static void	my_getchar(char c, t_bunny_position *pos)
+static void		my_getchar(char c, t_bunny_position *pos)
 {
   if (c >= 'a' && c <= 'z')
     c -= 32;
@@ -19,12 +19,12 @@ static void	my_getchar(char c, t_bunny_position *pos)
   pos->y = ((c - ' ') / 10) * 32;
 }
 
-static t_color	my_get_pixel(t_bunny_pixelarray *pix,
-			     t_bunny_position *pos)
+static t_color		my_get_pixel(t_bunny_pixelarray *pix,
+				     t_bunny_position *pos)
 {
-  int		i;
-  unsigned int	*pix_buff;
-  t_color	color;
+  int			i;
+  unsigned int		*pix_buff;
+  t_color		color;
 
   pix_buff = pix->pixels;
   i = pos->y * pix->clipable.clip_width + pos->x;
@@ -33,14 +33,14 @@ static t_color	my_get_pixel(t_bunny_pixelarray *pix,
   return (color);
 }
 
-static void	my_bunnyblit(t_bunny_pixelarray *origin,
-			     t_bunny_pixelarray *dest,
-			     t_bunny_position *pos_ori,
-			     t_bunny_position *pos_dest)
+static void		my_bunnyblit(t_bunny_pixelarray *origin,
+				     t_bunny_pixelarray *dest,
+				     t_bunny_position *pos_ori,
+				     t_bunny_position *pos_dest)
 {
-  int		width_char;
-  int		height_char;
-  t_color	color;
+  int			width_char;
+  int			height_char;
+  t_color		color;
 
   height_char = 0;
   while (height_char++ != 32)
