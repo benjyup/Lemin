@@ -5,7 +5,7 @@
 ** Login   <puente_t@epitech.net>
 **
 ** Started on  Fri Mar  4 16:38:30 2016 Timothée Puentes
-** Last update Sun Apr 24 17:07:49 2016 Timothée Puentes
+** Last update Sun Apr 24 23:00:59 2016 vincent mesquita
 */
 
 #include <stdlib.h>
@@ -13,9 +13,9 @@
 #include <unistd.h>
 #include "get_next_line.h"
 
-char	*mystrcpy(char *dest, const char *src)
+char		*mystrcpy(char *dest, const char *src)
 {
-  int	c;
+  int		c;
 
   c = 0;
   if (dest == NULL || src == NULL)
@@ -29,9 +29,9 @@ char	*mystrcpy(char *dest, const char *src)
   return (dest);
 }
 
-int	my_len(const char *str)
+int		my_len(const char *str)
 {
-  int	n;
+  int		n;
 
   if (str == NULL)
     return (0);
