@@ -5,7 +5,7 @@
 ## Login   <mesqui_v@epitech.net>
 ##
 ## Started on  Sun Apr 17 01:55:36 2016 vincent mesquita
-## Last update Sun Apr 24 23:05:44 2016 Vincent Florian
+## Last update Mon Apr 25 16:40:33 2016 Vincent Florian
 ##
 
 NAME		=	lem_in
@@ -53,6 +53,7 @@ SRCS		=	../Basics/my_putchar.c		\
 			../src/my_add_links.c		\
 			../src/my_errors.c		\
 			../src/is_a_comment.c		\
+			../src/my_check_dash.c		\
 			../src/print_my_move.c		\
 			../src/parser.c
 
