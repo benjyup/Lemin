@@ -5,7 +5,7 @@
 ** Login   <mesqui_v@epitech.net>
 **
 ** Started on  Sun Apr 17 01:59:33 2016 vincent mesquita
-** Last update Sun Apr 24 15:47:22 2016 vincent mesquita
+** Last update Mon Apr 25 11:10:47 2016 vincent mesquita
 */
 
 #include <stdlib.h>
@@ -55,7 +55,8 @@ static int	my_pipes(t_leminfo *leminfo,
     return (check);
   if (!leminfo->start || !leminfo->end)
     return (my_puterror("Error: there is no start, or no end\n"));
-  if (!(wordtab = my_str_to_wordtab(str, '-'))
+  if (my_check_dash(str) == -1
+      || !(wordtab = my_str_to_wordtab(str, '-'))
       || my_wordtab_len(wordtab) != 2)
     return (my_puterror2("Error: Bad format\n", LINE));
   if (my_strcomp(wordtab[0], wordtab[1]))
