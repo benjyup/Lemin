@@ -5,7 +5,7 @@
 ** Login   <puente_t@epitech.net>
 **
 ** Started on  Fri Apr 22 13:56:03 2016 Timothée Puentes
-** Last update Mon Apr 25 19:01:10 2016 Timothée Puentes
+** Last update Mon Apr 25 19:08:47 2016 Timothée Puentes
 */
 
 #include <termios.h>
@@ -60,8 +60,8 @@ void			print_data(t_client *data)
   pos.x = WIN_X / 2 - 32 * my_strlen(PRINT_START) / 2;
   if (data->start)
     my_tektext(data->pix, data->font, &pos, PRINT_START);
-  if ((data->order | O_INC) != 0)
+  if ((data->order & O_INC) != 0)
     total += 1;
-  if ((data->order | O_OUT) != 0 && total != 0)
+  if ((data->order & O_OUT) != 0 && total != 0)
     total -= 1;
 }

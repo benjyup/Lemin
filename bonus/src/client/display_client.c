@@ -5,7 +5,7 @@
 ** Login   <puente_t@epitech.net>
 **
 ** Started on  Thu Apr 21 10:33:03 2016 Timothée Puentes
-** Last update Mon Apr 25 19:01:31 2016 Timothée Puentes
+** Last update Mon Apr 25 19:09:35 2016 Timothée Puentes
 */
 
 #include <termios.h>
@@ -46,7 +46,7 @@ t_bunny_response	mainloop(void *_data)
   treat_order(data);
   p.x = 0;
   p.y = 0;
-  if ((data->order | O_EXIT) != 0)
+  if ((data->order & O_EXIT) != 0)
     return (EXIT_ON_ERROR);
   bunny_blit(&data->win->buffer, &data->pix->clipable, &p);
   bunny_display(data->win);

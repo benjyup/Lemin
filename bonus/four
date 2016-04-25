@@ -1,11 +1,11 @@
 5
 ##start
 rene 2 3
-##end
-renard 1 3
 reychou 3 4
 re 3 3
+##end
+renard 1 3
+rene-re
 rene-reychou
 reychou-renard
 re-renard
-rene-re
