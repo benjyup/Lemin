@@ -5,7 +5,7 @@
 ** Login   <puente_t@epitech.net>
 **
 ** Started on  Fri Apr 22 13:56:03 2016 Timothée Puentes
-** Last update Sun Apr 24 22:48:01 2016 Vincent Florian
+** Last update Mon Apr 25 19:01:10 2016 Timothée Puentes
 */
 
 #include <termios.h>
@@ -47,6 +47,7 @@ int			read_order(int sockfd)
 void			print_data(t_client *data)
 {
   t_bunny_position	pos;
+  static int		total = 0;
 
   pos.y = WIN_Y / 2;
   pos.x = WIN_X / 2 + data->count;
@@ -59,4 +60,8 @@ void			print_data(t_client *data)
   pos.x = WIN_X / 2 - 32 * my_strlen(PRINT_START) / 2;
   if (data->start)
     my_tektext(data->pix, data->font, &pos, PRINT_START);
+  if ((data->order | O_INC) != 0)
+    total += 1;
+  if ((data->order | O_OUT) != 0 && total != 0)
+    total -= 1;
 }

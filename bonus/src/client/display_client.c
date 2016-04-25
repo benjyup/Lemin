@@ -5,7 +5,7 @@
 ** Login   <puente_t@epitech.net>
 **
 ** Started on  Thu Apr 21 10:33:03 2016 Timothée Puentes
-** Last update Sun Apr 24 22:43:12 2016 Vincent Florian
+** Last update Mon Apr 25 19:01:31 2016 Timothée Puentes
 */
 
 #include <termios.h>
@@ -19,6 +19,8 @@
 
 void			treat_order(t_client *data)
 {
+  static int		total = 0;
+
   if (data->count == 0)
     data->order = data->order | read_order(data->sockfd);
   if ((data->order & O_NTURN) != 0)
@@ -44,6 +46,8 @@ t_bunny_response	mainloop(void *_data)
   treat_order(data);
   p.x = 0;
   p.y = 0;
+  if ((data->order | O_EXIT) != 0)
+    return (EXIT_ON_ERROR);
   bunny_blit(&data->win->buffer, &data->pix->clipable, &p);
   bunny_display(data->win);
   return (GO_ON);
