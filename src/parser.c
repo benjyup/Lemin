@@ -5,7 +5,7 @@
 ** Login   <mesqui_v@epitech.net>
 **
 ** Started on  Sun Apr 17 01:59:33 2016 vincent mesquita
-** Last update Mon Apr 25 16:31:56 2016 Vincent Florian
+** Last update Mon Apr 25 21:04:05 2016 vincent mesquita
 */
 
 #include <stdlib.h>
@@ -106,10 +106,8 @@ int		my_parser(t_leminfo *leminfo)
   if (!my_init_leminfo(leminfo))
     return (-2);
   check = 0;
-  while (check >= 0 && (str = get_next_line(0)) != NULL)
+  while (check >= 0 && (str = get_next_line(0)) != NULL && str[0] != 0)
     {
-      if (!str[0])
-	break ;
       if (!is_a_comment(str))
 	{
 	  my_epure_str(str);
